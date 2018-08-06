@@ -7,11 +7,15 @@ import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
 import { WelcomeScreenComponent } from '../components/StartScreenComponents/welcome-screen/welcome-screen';
 import { SplashComponent } from '../components/StartScreenComponents/splash/splash';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { FooterComponent } from '../components/footer/footer';
+
 @NgModule({
   declarations: [
     MyApp,
     StartScreenPage,
     SplashComponent,
+    FooterComponent,
 WelcomeScreenComponent
   ],
   imports: [
@@ -23,11 +27,13 @@ WelcomeScreenComponent
     MyApp,
     StartScreenPage,
     SplashComponent,
+    FooterComponent,
     WelcomeScreenComponent
   ],
   providers: [
     StatusBar,
     Facebook,
+    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

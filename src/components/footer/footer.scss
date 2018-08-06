@@ -1,0 +1,33 @@
+footerlogin {
+  .align-footer-bottom {
+    position: absolute;
+    bottom: 0;
+    background: #01aef0;
+    padding-bottom: 25px;
+  }
+  .align-content-center ion-col {
+    text-align: center;
+    margin-top: -35px;
+    ion-icon {
+      font-size: 2em;
+      color: #ffffff;
+      position: relative;
+      background: #01aef0;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      padding: 8px 10px;
+      margin: 5px;
+    }
+    ion-icon::after {
+      content: '';
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      background-color: #01aef0;
+      z-index: -1;
+      margin-left: -44px;
+      margin-top: -20px;
+      border-radius: 50%;
+    }
+  }
+}
