@@ -9,13 +9,17 @@ import { WelcomeScreenComponent } from '../components/StartScreenComponents/welc
 import { SplashComponent } from '../components/StartScreenComponents/splash/splash';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FooterComponent } from '../components/footer/footer';
-
+import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { LoginPage } from '../pages/login/login';
+import { CloudComponent } from '../components/UIcomponents/cloud/cloud';
 @NgModule({
   declarations: [
     MyApp,
     StartScreenPage,
     SplashComponent,
     FooterComponent,
+    LoginPage,
+    CloudComponent,
 WelcomeScreenComponent
   ],
   imports: [
@@ -28,12 +32,15 @@ WelcomeScreenComponent
     StartScreenPage,
     SplashComponent,
     FooterComponent,
+    LoginPage,
+    CloudComponent,
     WelcomeScreenComponent
   ],
   providers: [
     StatusBar,
     Facebook,
     SplashScreen,
+    TwitterConnect,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

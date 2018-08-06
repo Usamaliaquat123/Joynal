@@ -1,0 +1,58 @@
+cloud {
+  .clouds-set {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  img {
+    -webkit-animation: slideInSmooth ease-in-out 1;
+    animation: slideInSmooth ease-in-out 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-duration: 18s;
+    animation-duration: 18s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    width:40%;
+  }
+  img:nth-child(1){
+    margin-left: -10vw;
+    margin-top: -3%;
+  }
+  img:nth-child(1n+2){
+    margin-left: 15vw;
+    margin-top: 0%;
+    position: absolute;
+  }
+  img:nth-child(2n+2){
+    margin-left: 14vw;
+    margin-top: 6%;
+    left:0;
+    position: absolute;
+  }
+  img:nth-child(3n+2){
+    margin-left: -40vw;
+    margin-top: -1%;
+    position: absolute;
+    right:0;
+  }
+
+  @-webkit-keyframes slideInSmooth {
+    0% {
+      -webkit-transform: skewY(-2deg) skewX(0deg) translate3d(100%,-5%,0);
+    }
+    20% {
+      -webkit-transform: skewY(0deg) translate3d(80%,0%,0);
+    }
+    60% {
+      -webkit-transform: skewX(2deg) skewY(2deg) translate3d(60%,5%,0);
+    }
+    80% {
+      -webkit-transform: skewY(-2deg) translate3d(30%,3%,0);
+    }
+  100% {
+    -webkit-transform: skewY(0deg) skewX(0deg) translate3d(0,-2%,0);
+  }
+  }
+}
