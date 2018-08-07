@@ -1,3 +1,4 @@
+import { SignupPage } from './../pages/signup/signup';
 import { StartScreenPage } from './../pages/start-screen/start-screen';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';

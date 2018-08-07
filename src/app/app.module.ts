@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StartScreenPage } from './../pages/start-screen/start-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -12,6 +13,14 @@ import { FooterComponent } from '../components/footer/footer';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { LoginPage } from '../pages/login/login';
 import { CloudComponent } from '../components/UIcomponents/cloud/cloud';
+import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
+import { HttpModule } from "@angular/http";
+import { IonicStorageModule } from '@ionic/storage';
+import { SignupPage } from '../pages/signup/signup';
+// import { OauthCordova } from "ng2-cordova-oauth/platform/cordova";
+// // import { Instagram } from '@ionic-native/instagram';
+// import {Instagram } from "ng2-cordova-oauth/core";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,10 +29,17 @@ import { CloudComponent } from '../components/UIcomponents/cloud/cloud';
     FooterComponent,
     LoginPage,
     CloudComponent,
-WelcomeScreenComponent
+WelcomeScreenComponent,
+SignupPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -34,14 +50,18 @@ WelcomeScreenComponent
     FooterComponent,
     LoginPage,
     CloudComponent,
-    WelcomeScreenComponent
+    WelcomeScreenComponent,
+    SignupPage
   ],
   providers: [
     StatusBar,
     Facebook,
+    //  Instagram,
+    // OauthCordova,
     SplashScreen,
     TwitterConnect,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    JoynalApiProvider
   ]
 })
 export class AppModule {}

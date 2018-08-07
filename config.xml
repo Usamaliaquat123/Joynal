@@ -86,4 +86,6 @@
         <variable name="APP_NAME" value="Joynal" />
     </plugin>
     <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-instagram-plugin" spec="^0.5.7" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.3" />
 </widget>

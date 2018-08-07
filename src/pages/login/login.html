@@ -1,5 +1,7 @@
 <ion-content padding>
   <cloud></cloud>
+  <form [formGroup]="authForm" (ngSubmit)="login(authForm.value)">
+
   <ion-grid justify-content-center class="login-page">
     <ion-row>
       <ion-col>
@@ -8,14 +10,16 @@
     </ion-row>
     <ion-row>
       <!--<ion-list>-->
-
+        <div class="error-box-main" >
+          Login failed; Invalid email or password
+        </div>
         <ion-col col-12>
           <ion-item>
             <ion-label floating>
               <ion-icon name="mail"></ion-icon>
               Email
             </ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input [formControl]="authForm.controls['email']" type="text"></ion-input>
           </ion-item>
         </ion-col>
 
@@ -25,16 +29,23 @@
               <ion-icon name="lock"></ion-icon>
               Password
             </ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-input [formControl]="authForm.controls['password']" type="password" ></ion-input>
           </ion-item>
         </ion-col>
 
       <!--</ion-list>-->
 
       <div padding>
-        <button ion-button full>Sign In</button>
+        <button ion-button type="submit" full>Sign In</button>
       </div>
-    </ion-row>
-  </ion-grid>
-  <footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>
+
+
+      <div padding text-center>
+          <button ion-button (click)="signUp()">SignUp</button>
+      </div>
+  </ion-row>
+   </ion-grid>
+   
+</form>
+<footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>
 </ion-content>
