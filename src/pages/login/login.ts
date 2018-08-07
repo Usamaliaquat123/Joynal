@@ -16,23 +16,13 @@ import { TwitterConnect } from "@ionic-native/twitter-connect";
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  authfb : any;
+  authtweet : any;
+  authInsta : any;
   constructor(public twitter :  TwitterConnect,public fb : Facebook,public navCtrl: NavController, public navParams: NavParams) {
-  }
-  // Bug : todo : fixing tomorrow at developer.facebook.com implementing 28 char hash
-  // Facebook Authentication
-  fbAuth(){
-    this.fb.login(['public_profile', 'user_friends','email']).then((res : FacebookLoginResponse) => console.log('users data' , res));
-  }
-  // todo : Requesting for twiter developer account the application is under reviewing
-  // Twitter Authentication
-  twitterAuth(){
-    this.twitter.login();
-  }
-  // todo : Implementing instagram authentication tomorrow
-  // Instagram Authentication
-  InstaAuth(){
-
+    this.authfb = fb.login(['public_profile', 'user_friends','email']);
+    this.authtweet = twitter.login();
+    this.authInsta = 'etc'
   }
 
 }

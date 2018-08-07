@@ -32,10 +32,9 @@
       <!--</ion-list>-->
 
       <div padding>
-        <button block>Sign In</button>
+        <button ion-button full>Sign In</button>
       </div>
     </ion-row>
   </ion-grid>
-
-  <footerlogin></footerlogin>
+  <footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>
 </ion-content>
