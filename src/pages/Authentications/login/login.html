@@ -1,0 +1,53 @@
+<ion-content padding>
+  <cloud></cloud>
+  <form [formGroup]="authForm" (ngSubmit)="login(authForm.value)">
+
+  <ion-grid justify-content-center class="login-page">
+    <ion-row>
+      <ion-col>
+        <h1>Login</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!--<ion-list>-->
+        <!-- <div class="error-box-main" >
+          Login failed; Invalid email or password
+        </div> -->
+        <ion-col col-12>
+          <ion-item no-lines>
+              <ion-label><ion-icon name="ios-mail" item-start></ion-icon></ion-label>
+            <ion-input [formControl]="authForm.controls['email']" type="text" placeholder= "Email"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12>
+          <ion-item no-lines>
+             <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
+            <ion-input [formControl]="authForm.controls['password']" type="password" placeholder="password" ></ion-input> 
+          </ion-item>
+          <br>
+          <ion-grid>
+            <ion-row>
+                  <ion-col class="alligningRememberMeAndForgotPass">
+                      <ion-radio></ion-radio> <p>Remember me</p>
+                  </ion-col>
+                  <ion-col>
+                      <p class="forgotPass" (click)="forgotPage()" text-right>Forgot password ?</p>
+                  </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+  </ion-row>
+   </ion-grid>
+     <div >
+          <button style="border-radius: 5px; text-transform:none; letter-spacing: 1px;" ion-button color="primary" type="submit" full>Sign In</button>
+      </div>
+        <div class="createAnAccount" text-center>
+          <p>Create an account ?</p>
+        </div>
+       
+</form>
+<div class="signupButton" text-center>
+  <button  (click)="signUp()">SignUp</button>
+</div>
+<footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>
+</ion-content>

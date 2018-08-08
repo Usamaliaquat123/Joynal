@@ -1,9 +1,8 @@
-import { JoynalApiProvider } from './../../providers/joynal-api/joynal-api';
+import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
-import { query } from '../../../node_modules/@angular/core/src/render3/instructions';
- import { ItemNameValidators } from "../../common/validators/temName.validators";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import firebase from "firebase";
 /**
  * Generated class for the SignupPage page.
  *
@@ -18,6 +17,7 @@ import { query } from '../../../node_modules/@angular/core/src/render3/instructi
   providers : [JoynalApiProvider]
 })
 export class SignupPage {
+  // Importiong social inputs
   authfb : any;
   authtweet : any;
   authInsta : any;
@@ -28,12 +28,11 @@ export class SignupPage {
     // FormPassword Checker
     passwordType : String =  'password';
     passwordShown : boolean = false;
+ 
   constructor(public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
-    // this.authfb = fb.login(['public_profile', 'user_friends','email']);
-    // this.authtweet = twitter.login();
-      // this.authInsta = insta.isInstalled().then(res => {
-      //   console.log(` information about ${res}`)
-      // })
+    const fbProvider = firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+ 
+.then((res) => console.log(res));
     this.authForm = formBuilder.group({
       'name' : [null, Validators.compose([Validators.required])],
       'email' : [null, Validators.compose([ Validators.required,Validators.minLength(3), Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')
@@ -63,6 +62,9 @@ export class SignupPage {
 
 
 
+  goBack(){
+    this.navCtrl.pop();
+  }
   user(email){
     console.log('trigger');
     this.apiJoynal.checkingUserIfExists(email).subscribe(data => {

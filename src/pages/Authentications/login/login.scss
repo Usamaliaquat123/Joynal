@@ -1,0 +1,71 @@
+page-login {
+
+  ion-grid.login-page {
+    margin-top: 15vh;
+  }
+  h1 {
+    text-align: center;
+    letter-spacing: 2px;
+  }
+// implementing error box
+  .error-box-main {
+    color: #D8000C;
+    background-color: rgba(255,255,255, 0.65);
+    margin: 10px 0;
+    padding: 12px;
+  }
+  .item-md {
+    background-color: #CDEFFB;
+    border-radius: 8px;
+    height: 15%;
+  }
+  ion-input{
+    font-size: 0.8em;
+  }
+.ion-label{
+  padding: 5px;
+}
+  // ion-item.item.item-block.item-ios.item-input
+  // ion-item.item.item-block.item-md.item-input {
+  //   border-bottom: 1px solid;
+  // }
+
+
+  .custom-login-label input[type]{
+      margin-left: 20px;
+  }
+  .custom-login-label i {
+      position: absolute;
+      bottom: 12px;
+  }
+
+  .createAnAccount  p{
+    letter-spacing: 1px;
+    font-size:14px;
+  }
+.alligningRememberMeAndForgotPass ion-radio{
+  float: left;
+  margin-top: 13px;
+  margin-right: 5px;
+}
+
+
+  .rememberMe .forgotPass{
+    clear: left;
+  }
+
+  .signupButton  button{
+    display: inline-block;
+    width: 200px;
+    padding: 8px;
+    color:  #01AEF0;
+    background-color: transparent;
+    border: 1px solid #01AEF0;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+  }
+  // .input-cover{
+  //   background-color: #CDEFFB;
+  // }
+}

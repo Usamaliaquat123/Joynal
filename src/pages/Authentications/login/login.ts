@@ -1,4 +1,5 @@
-import { JoynalApiProvider } from './../../providers/joynal-api/joynal-api';
+import { ForgotPasswordPage } from './../../Authentications/forgot-password/forgot-password';
+import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -47,5 +48,8 @@ export class LoginPage {
 
   signUp(){
     this.navCtrl.push(SignupPage);
+  }
+  forgotPage(){
+    this.navCtrl.push(ForgotPasswordPage);
   }
 }

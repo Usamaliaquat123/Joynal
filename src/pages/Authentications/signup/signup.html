@@ -1,0 +1,71 @@
+
+  
+<!-- <ion-header style="opacity: .10">
+
+  <ion-navbar>
+    <ion-title>
+      Helllo
+    </ion-title>
+  </ion-navbar>
+</ion-header> -->
+<ion-content padding>
+    <button clear class="backbutton" ion-button icon-only  (click)="goBack()">
+        <ion-icon name="md-arrow-back"></ion-icon>
+      </button>
+ <!-- <div   (click)="goBack()">
+    <ion-icon (click)="goBack()" style="font-size:25px;" name="md-arrow-back"></ion-icon>
+ </div> -->
+    <cloud></cloud>
+<div class="alligingItems">
+  <form [formGroup]="authForm" (ngSubmit)="signUp(authForm.value)">
+    <ion-grid justify-content-center class="login-page">
+      <ion-row>
+        <ion-col>
+          <h1>Register</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+          <ion-col col-12>
+              <ion-item no-lines>
+ 
+                 <ion-input [formControl]="authForm.controls['name']" type="name" placeholder="name" ></ion-input> 
+               </ion-item>
+              </ion-col>
+          <ion-col col-12>
+                <ion-item no-lines>
+                   <ion-input [formControl]="authForm.controls['email']" type="email" placeholder="email" ></ion-input> 
+                 </ion-item>
+            <!-- <span *ngIf="authForm.get('email').dirty || formSubmitclicked">
+              <small class="error" *ngIf="authForm.get('email').hasError('isEmailUnique')">This email has been registered already</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('required')">The Email field is required.</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">The Email field must contain a valid email address.</small>
+          </span> -->
+          </ion-col>
+          <ion-col col-12>
+            <ion-item no-lines>
+               <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"  placeholder="password" ></ion-input> 
+               <ion-icon style="font-size: 25px;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
+             </ion-item>  
+          </ion-col>
+          <ion-col col-12>
+            <ion-item no-lines>
+               <ion-input [type]="passwordType"  placeholder="Confirm Password" ></ion-input> 
+               <ion-icon style="font-size: 25px;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
+             </ion-item>
+          </ion-col>
+  
+      
+  
+    </ion-row>
+     </ion-grid>
+       <div padding>
+          <button ion-button type="submit" full>Sign Up</button>
+        </div>
+  </form>
+
+</div>
+
+
+    <footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>
+</ion-content>

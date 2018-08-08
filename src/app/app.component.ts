@@ -1,15 +1,17 @@
-import { SignupPage } from './../pages/signup/signup';
+import { ForgotPasswordPage } from './../pages/Authentications/forgot-password/forgot-password';
+import { SignupPage } from './../pages/Authentications/signup/signup';
 import { StartScreenPage } from './../pages/start-screen/start-screen';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {LoginPage} from "../pages/login/login";
-
+import {LoginPage} from "../pages/Authentications/login/login";
+import firebase from 'firebase'
+import { firebaseKeys } from "../config/keys";
 // import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
-})
+})  
 export class MyApp {
   rootPage:any = LoginPage;
 
@@ -20,6 +22,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+    firebase.initializeApp(firebaseKeys.firebaseKeys);
   }
 }
 
