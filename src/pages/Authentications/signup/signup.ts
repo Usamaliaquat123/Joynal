@@ -30,9 +30,7 @@ export class SignupPage {
     passwordShown : boolean = false;
  
   constructor(public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
-    const fbProvider = firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
- 
-.then((res) => console.log(res));
+  ;
     this.authForm = formBuilder.group({
       'name' : [null, Validators.compose([Validators.required])],
       'email' : [null, Validators.compose([ Validators.required,Validators.minLength(3), Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')

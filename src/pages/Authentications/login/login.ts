@@ -1,12 +1,12 @@
-import { ForgotPasswordPage } from './../../Authentications/forgot-password/forgot-password';
+
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { TwitterConnect } from "@ionic-native/twitter-connect";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { SignupPage } from '../signup/signup';
-
+import { Storage } from "@ionic/storage";
+import  firebase from "firebase";
 
 @IonicPage()
 @Component({
@@ -22,7 +22,7 @@ export class LoginPage {
 
   // authfoem intgration
   authForm : FormGroup;
-  constructor(public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public twitter :  TwitterConnect,public fb : Facebook,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public storage :Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public twitter :  TwitterConnect,public fb : Facebook,public navCtrl: NavController, public navParams: NavParams) {
     this.authfb = fb.login(['public_profile', 'user_friends','email']);
     this.authtweet = twitter.login();
       // this.authInsta = insta.isInstalled().then(res => {
@@ -46,10 +46,34 @@ export class LoginPage {
      })
   }
 
+  ionViewCanEnter(){
+    // this.storage.ready().then(() => {
+    //     this.storage.get('').then(data => {
+
+    //     })
+    // })
+    // var that = this
+    // firebase.auth().onAuthStateChanged(socialUser => {
+    
+    //   if (socialUser) {
+        
+    //   } else {
+    //     this.storage.ready().then(() => {
+    //       this.storage.get('access_token').then(data => {
+    //         if(data !== ''){
+
+    //         }
+    //       })
+    //     })
+    //   }
+    // });
+  }
+
+
   signUp(){
-    this.navCtrl.push(SignupPage);
+    this.navCtrl.push('SignupPage');
   }
   forgotPage(){
-    this.navCtrl.push(ForgotPasswordPage);
+    this.navCtrl.push("ForgotPasswordPage");
   }
 }

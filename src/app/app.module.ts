@@ -11,10 +11,10 @@ import { MyApp } from './app.component';
 import { WelcomeScreenComponent } from '../components/StartScreenComponents/welcome-screen/welcome-screen';
 import { SplashComponent } from '../components/StartScreenComponents/splash/splash';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FooterComponent } from '../components/footer/footer';
+import { FooterComponent } from '../components/UIcomponents/commons/footer/footer';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { LoginPage } from '../pages/Authentications/login/login';
-import { CloudComponent } from '../components/UIcomponents/cloud/cloud';
+import { CloudComponent } from '../components/UIcomponents/commons/cloud/cloud';
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
@@ -26,14 +26,7 @@ import firebase from 'firebase'
 @NgModule({
   declarations: [
     MyApp,
-    StartScreenPage,
-    SplashComponent,
-    FooterComponent,
-    LoginPage,
-    CloudComponent,
-WelcomeScreenComponent,
-SignupPage,
-ForgotPasswordPage
+   
   ],
   imports: [
     BrowserModule,
@@ -48,14 +41,7 @@ ForgotPasswordPage
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    StartScreenPage,
-    SplashComponent,
-    FooterComponent,
-    LoginPage,
-    CloudComponent,
-    WelcomeScreenComponent,
-    SignupPage,
-    ForgotPasswordPage
+   
   ],
   providers: [
     StatusBar,

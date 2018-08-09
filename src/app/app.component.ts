@@ -13,7 +13,7 @@ import { firebaseKeys } from "../config/keys";
   templateUrl: 'app.html'
 })  
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:string = "LoginPage";
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
