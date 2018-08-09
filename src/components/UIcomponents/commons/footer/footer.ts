@@ -4,6 +4,7 @@ import { Facebook ,FacebookLoginResponse} from "@ionic-native/facebook";
 import firebase from "firebase";
 import { Storage } from '@ionic/storage';
 import { user } from "../../../../models/users";
+
 /**
  * Generated class for the FooterComponent component.
  *
@@ -34,13 +35,11 @@ export class FooterComponent {
       .then(userData => {
         console.log(userData);
           // Saving data in local
+          
           this.user.fbUid = userData.user.uid;
           this.user.name = userData.user.displayName;
           this.user.email = userData.user.email;
-          
-          // console.log(userData.user.email);
-          // console.log(userData.user.displayName);
-          // console.log(userData.user.uid);
+    
         this.storage.set('userName', this.user.name);
         this.storage.set('userEmail', this.user.email);
         this.storage.set('FBuserId', this.user.fbUid);

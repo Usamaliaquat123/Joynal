@@ -20,6 +20,7 @@ import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { SignupPage } from '../pages/Authentications/signup/signup';
 import firebase from 'firebase'
+import { Deeplinks } from "@ionic-native/deeplinks";
 // import { OauthCordova } from "ng2-cordova-oauth/platform/cordova";
 // // import { Instagram } from '@ionic-native/instagram';
 // import {Instagram } from "ng2-cordova-oauth/core";
@@ -50,6 +51,7 @@ import firebase from 'firebase'
     // OauthCordova,
     SplashScreen,
     Geolocation,
+    Deeplinks,
     TwitterConnect,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider

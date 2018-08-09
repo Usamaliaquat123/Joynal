@@ -1,6 +1,4 @@
-import { ForgotPasswordPage } from './../pages/Authentications/forgot-password/forgot-password';
-import { SignupPage } from './../pages/Authentications/signup/signup';
-import { StartScreenPage } from './../pages/start-screen/start-screen';
+
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/Authentications/login/login";
 import firebase from 'firebase'
 import { firebaseKeys } from "../config/keys";
+import { Deeplinks } from "@ionic-native/deeplinks";
 // import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'

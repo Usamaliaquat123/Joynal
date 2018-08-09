@@ -3,12 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import firebase from "firebase";
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -40,21 +35,6 @@ export class SignupPage {
   }
 
   checkUserExists(email) {
-    // const q = new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //    this.apiJoynal.checkingUserIfExists(control.value).subscribe(() => {
-    //       resolve(null);
-    //     }, () => { resolve({ 'isEmailUnique': true }); });
-    //   }, 3000);
-    // });
-    // return q;
-    // setTimeout(() => {
-    //   this.apiJoynal.checkingUserIfExists(email).subscribe(data => {
-    //     console.log(data)
-    //   }),(e , res) => {
-    //     console.log(res) 
-    //   };
-    // }, 15000);
 
   }
 
@@ -85,19 +65,9 @@ export class SignupPage {
 
 
   signUp(value){
-    console.log(value);
-    // this.apiJoynal.checkingUserIfExists(value.email).subscribe(data => {
-    //   if(data.toString){
-    //     console.log('cleared')
-    //   }else{
-    //     console.log('not cleared')
-    //   }
-    // },err => {
-    //   console.log('email is allready exists!');
-    // })
     this.apiJoynal.authenticationSignup(value.name , value.email,value.password).subscribe(data => {
-      console.log(data);
-    })
+      this.navCtrl.push('LoginPage');
+    },err => console.log(err));
 
   }
 }

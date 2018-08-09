@@ -85,10 +85,16 @@
         <variable name="APP_ID" value="309827406430552" />
         <variable name="APP_NAME" value="Joynal" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-instagram-plugin" spec="^0.5.7" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.3" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <plugin name="ionic-plugin-deeplinks" spec="^1.0.17">
+        <variable name="URL_SCHEME" value="joynal" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_HOST" value="5stardesigners.com" />
+        <variable name="ANDROID_PATH_PREFIX" value="/" />
+    </plugin>
+    <engine name="android" spec="6.3.0" />
 </widget>

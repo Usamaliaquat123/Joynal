@@ -22,7 +22,7 @@ export class LoginPage {
 
   // authfoem intgration
   authForm : FormGroup;
-  constructor(public storage :Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public twitter :  TwitterConnect,public fb : Facebook,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public twitter :  TwitterConnect,public fb : Facebook,public navCtrl: NavController, public navParams: NavParams) {
     this.authfb = fb.login(['public_profile', 'user_friends','email']);
     this.authtweet = twitter.login();
       // this.authInsta = insta.isInstalled().then(res => {
@@ -39,34 +39,32 @@ export class LoginPage {
 
   login(value){
       console.log(value);
-    
+    // this.storage.set('email',value.email);
+    // this.storage.set('password',value.password);
     const val = value;
      this.joynalApi.authenticationLogin(val.email,val.password).subscribe(data => {
        console.log(data);
+       
      })
   }
 
   ionViewCanEnter(){
-    // this.storage.ready().then(() => {
-    //     this.storage.get('').then(data => {
-
-    //     })
-    // })
-    // var that = this
-    // firebase.auth().onAuthStateChanged(socialUser => {
-    
-    //   if (socialUser) {
+ 
+    var that = this
+    firebase.auth().onAuthStateChanged(socialUser => {
         
-    //   } else {
-    //     this.storage.ready().then(() => {
-    //       this.storage.get('access_token').then(data => {
-    //         if(data !== ''){
+      if (socialUser) {
+        this.navCtrl.push('')
+      } else {
+        this.storage.ready().then(() => {
+          this.storage.get('Session.access_token').then(data => {
+            if(data !== ''){
 
-    //         }
-    //       })
-    //     })
-    //   }
-    // });
+            }
+          })
+        })
+      }
+    });
   }
 
 
