@@ -45,13 +45,13 @@
           <ion-col col-12>
             <ion-item no-lines>
                <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"  placeholder="password" ></ion-input> 
-               <ion-icon style="font-size: 25px;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
+               <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
              </ion-item>  
           </ion-col>
           <ion-col col-12>
             <ion-item no-lines>
                <ion-input [type]="passwordType"  placeholder="Confirm Password" ></ion-input> 
-               <ion-icon style="font-size: 25px;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
+               <ion-icon  style="font-size: 25px; z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
              </ion-item>
           </ion-col>
   

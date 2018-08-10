@@ -22,6 +22,7 @@ export class LoginPage {
 
   // authfoem intgration
   authForm : FormGroup;
+  data : any;
   constructor(public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public twitter :  TwitterConnect,public fb : Facebook,public navCtrl: NavController, public navParams: NavParams) {
     this.authfb = fb.login(['public_profile', 'user_friends','email']);
     this.authtweet = twitter.login();
@@ -43,8 +44,15 @@ export class LoginPage {
     // this.storage.set('password',value.password);
     const val = value;
      this.joynalApi.authenticationLogin(val.email,val.password).subscribe(data => {
-       console.log(data);
-       
+      this.data = data.json();
+      console.log(data.json());
+      this.storage.set('session.accessToken',this.data.token);
+      this.storage.set('session.name',this.data.userName);
+      this.storage.set('session.email',this.data.userEmail);
+      this.storage.set('session.userId',this.data.uid);
+      this.storage.set('session.isNotificationAllowed',this.data.isNotificationAllowed);
+      this.storage.set('session.isEntryVisible',this.data.isEntryVisible);
+      this.navCtrl.push('HomeScreenPage');
      })
   }
 
@@ -53,13 +61,13 @@ export class LoginPage {
     var that = this
     firebase.auth().onAuthStateChanged(socialUser => {
         
-      if (socialUser) {
+      if(socialUser) {
         this.navCtrl.push('')
       } else {
         this.storage.ready().then(() => {
-          this.storage.get('Session.access_token').then(data => {
+          this.storage.get('session.accessToken').then(data => {
             if(data !== ''){
-
+              this.navCtrl.push('HomeScreenPage');
             }
           })
         })

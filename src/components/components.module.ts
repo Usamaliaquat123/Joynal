@@ -10,7 +10,8 @@ import { IonicModule } from 'ionic-angular';
 	CloudComponent,
 	FooterComponent,
 	SplashComponent,
-	WelcomeScreenComponent 
+	WelcomeScreenComponent,
+     
 
 	],
 	imports: [IonicModule],
@@ -18,7 +19,8 @@ import { IonicModule } from 'ionic-angular';
 		CloudComponent,
 		FooterComponent,
 		SplashComponent,
-    WelcomeScreenComponent 
+    WelcomeScreenComponent,
+     
 	]
 })
 export class ComponentsModule {}

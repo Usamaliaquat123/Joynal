@@ -46,8 +46,9 @@ export class SignupPage {
   user(email){
     console.log('trigger');
     this.apiJoynal.checkingUserIfExists(email).subscribe(data => {
-      console.log(data);
-    })
+      
+    });
+
   }
   togglePassword(){
     console.log('clicked');
@@ -66,6 +67,7 @@ export class SignupPage {
 
   signUp(value){
     this.apiJoynal.authenticationSignup(value.name , value.email,value.password).subscribe(data => {
+      
       this.navCtrl.push('LoginPage');
     },err => console.log(err));
 
