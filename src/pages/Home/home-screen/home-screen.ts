@@ -19,4 +19,7 @@ export class HomeScreenPage {
   }
 
 
+  AddEntry(){
+    this.navCtrl.push('')
+  }
 }

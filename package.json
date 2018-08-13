@@ -31,6 +31,7 @@
     "@ionic/storage": "^2.1.3",
     "cordova-android": "6.3.0",
     "cordova-instagram-plugin": "^0.5.7",
+    "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^2.3.0",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -88,7 +89,8 @@
         "DEEPLINK_4_HOST": " ",
         "DEEPLINK_5_SCHEME": " ",
         "DEEPLINK_5_HOST": " "
-      }
+      },
+      "cordova-plugin-datepicker": {}
     },
     "platforms": [
       "android"

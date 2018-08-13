@@ -1,5 +1,5 @@
 
-import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
+import { JoynalApiProvider } from '../../../providers/joynal-api/joynal-api
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
