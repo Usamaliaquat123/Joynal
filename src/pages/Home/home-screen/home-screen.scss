@@ -1,3 +1,49 @@
 page-home-screen {
+  // Changing cloud size
+ 
+  .header{
+    border: 1px solid aliceblue;
+    padding: 10px;
+    box-shadow: -2px -1px 14px black;
+      .joynalLogo{
+        text-align: center;
+        padding: 20px 15px;
+      }
+  }
+  .newEntry{
+    border: 1px solid;
+    padding: 45px 5px;
+    box-shadow: inset 0px 0px rgba(0,0,0,0.5);
+    // box-shadow: -2px -1px 14px black;
+    background-color: #01AEF0;
+    color: aliceblue;
+    font-size: 12px;
+    letter-spacing: 1px;
 
+  }
+  .otherEntries{
+    background-color: #E5F6FD;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px ;
+    .userUploadedPhoto{
+      float: left;
+      padding: 10px;
+      width: 70px;
+      height: 70px;
+      border: 1px solid ;
+      margin-right: 10px;
+    }
+  }
+   .userEntryDate{
+     float: left;
+     width: 70px;
+     height: 70px;
+     padding-left: 10px;
+     padding-right: 10px;
+    font-size: 20px;
+    border: 1px solid aliceblue;
+    
+  }
 }

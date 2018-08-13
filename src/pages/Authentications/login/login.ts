@@ -58,16 +58,15 @@ export class LoginPage {
 
   ionViewCanEnter(){
  
-    var that = this
+ 
     firebase.auth().onAuthStateChanged(socialUser => {
-        
       if(socialUser) {
-        this.navCtrl.push('')
+        this.navCtrl.push('HomeScreenPage');
       } else {
         this.storage.ready().then(() => {
           this.storage.get('session.accessToken').then(data => {
             if(data !== ''){
-              this.navCtrl.push('HomeScreenPage');
+              // this.navCtrl.push('HomeScreenPage');
             }
           })
         })

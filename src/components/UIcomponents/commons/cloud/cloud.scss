@@ -6,6 +6,7 @@ cloud {
     left: 0;
   }
   img {
+    width: 500px;
     -webkit-animation: slideInSmooth ease-in-out 1;
     animation: slideInSmooth ease-in-out 1;
     -webkit-animation-fill-mode: forwards;
@@ -30,6 +31,7 @@ cloud {
     margin-top: 6%;
     left:0;
     position: absolute;
+    width: 250px;
   }
   img:nth-child(3n+2){
     margin-left: -40vw;

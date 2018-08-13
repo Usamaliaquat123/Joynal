@@ -1,3 +1,4 @@
+
 import { Component , Input , Output, EventEmitter} from '@angular/core';
 import { TwitterConnect } from "@ionic-native/twitter-connect";
 import { Facebook ,FacebookLoginResponse} from "@ionic-native/facebook";
@@ -34,12 +35,11 @@ export class FooterComponent {
       const fbProvider = firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(userData => {
         console.log(userData);
+        
           // Saving data in local
-          
           this.user.fbUid = userData.user.uid;
           this.user.name = userData.user.displayName;
           this.user.email = userData.user.email;
-    
         this.storage.set('userName', this.user.name);
         this.storage.set('userEmail', this.user.email);
         this.storage.set('FBuserId', this.user.fbUid);
