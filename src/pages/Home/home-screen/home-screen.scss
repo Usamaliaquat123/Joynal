@@ -5,11 +5,10 @@ page-home-screen {
     border: 1px solid aliceblue;
     padding: 10px;
     box-shadow: -2px -1px 14px black;
-    img{
-      width: 100%;
-      height: auto;
-      
-    }
+      .joynalLogo{
+        text-align: center;
+        padding: 20px 15px;
+      }
   }
   .newEntry{
     border: 1px solid;
@@ -43,8 +42,8 @@ page-home-screen {
      height: 70px;
      padding-left: 10px;
      padding-right: 10px;
-    font-size: 20px;
-    border: 1px solid aliceblue;
+     font-size: 20px;
+     border: 1px solid aliceblue;
     
   }
 }

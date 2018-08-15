@@ -36,11 +36,4 @@ page-signup {
       .backbutton  {
         z-index: 9999999;
       }
-
-
-      @media (max-height: 554px) {
-        .footerResp{
-          visibility: hidden;
-        }
-      }
 }

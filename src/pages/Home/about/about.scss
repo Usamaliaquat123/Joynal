@@ -1,0 +1,17 @@
+page-about {
+    ion-header{
+        position: relative;
+    }
+    .back-button.show-back-button {
+        display: block;
+        position: absolute;
+        left: 5px;
+        z-index: 999999999;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+        background: rgba(248, 248, 248, 0.5);
+    }
+    .aboutus-heading{
+        margin-top: 10px;
+    }
+}

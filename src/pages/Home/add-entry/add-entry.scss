@@ -1,0 +1,96 @@
+page-add-entry {
+    ion-header{
+        position: relative;
+    }
+    .back-button.show-back-button {
+        display: block;
+        position: absolute;
+        left: 5px;
+        z-index: 999999999;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+        background: rgba(248, 248, 248, 0.5);
+    }
+    .currentDateHeader, .recentEntryDateHeader{
+        margin-top: 5%;
+        font-size: 1.6rem;
+        color: #424242d6;
+        background-color: transparent;
+        text-align: center;
+        outline: none;
+        text-decoration: none;
+        justify-content: center;
+        display: flex;
+        p{
+            margin: 0;
+        }
+        .badge-md {
+            border-radius: 15px;
+            color: #fff;
+            background-color: #01AEF0;
+        }
+    }
+    .newEntry{
+        margin-top: 8%;
+        border: 1px solid;
+        box-shadow: inset 0px 0px rgba(0,0,0,0.5);
+        // box-shadow: -2px -1px 14px black;
+        background-color: #01AEF0;
+        color: aliceblue;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .recentEntries{
+        margin-top: 8%;
+        box-shadow: inset 0px 0px rgba(0,0,0,0.5);
+        background-color: #D7F0FB;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .recentEntries-innertext{
+        margin-top: 5%;
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+    .recentEntries-counter{
+        margin-left: 3%;
+        font-size: 1.6rem;
+        font-weight: bold;
+        text-align: center;
+        outline: none;
+        text-decoration: none;
+    }
+    .recentEntries-counter-emoji{
+        margin-left: 4vw;
+        margin-top: -1%;
+        font-size: 1.6rem;
+        font-weight: bold;
+        text-align: center;
+        outline: none;
+        text-decoration: none;
+        position: absolute;
+    }
+    .recentEntries-emoji{
+        display: flex;
+        margin: 0;
+    }
+    .recentEntries-emoji-extra{
+        position: relative;
+    }
+    ion-badge {
+        padding: 3px 8px;
+        text-align: center;
+        display: inline-block;
+        min-width: 10px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        line-height: 1;
+        white-space: nowrap;
+        vertical-align: baseline;
+    }
+    .badge-md {
+        border-radius: 10px;
+        color: #15b4f1;
+        background-color: #dededea8;
+    }
+}

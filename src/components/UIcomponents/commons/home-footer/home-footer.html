@@ -1,21 +1,21 @@
 <!-- Generated template for the HomeFooter component -->
 <ion-grid class="align-footer-bottom">
     <ion-row class="align-content-center" justify-content-center>
-      <ion-col col-2>
-        <ion-icon name="ios-notifications"></ion-icon>
+      <ion-col >
+        <ion-icon name="ios-notifications" (click)="redirectNotifications()"></ion-icon>
       </ion-col>
-      <ion-col col-2>
+      <ion-col >
         <ion-icon name="md-settings"></ion-icon>
       </ion-col>
-      <ion-col col-2>
+      <ion-col>
         <ion-icon name="ios-trophy"></ion-icon>
       </ion-col>
-      <ion-col col-2>
-        <ion-icon name="ios-information-circle-outline"></ion-icon>
+      <ion-col >
+        <ion-icon name="ios-information-circle-outline" (click)="about()"></ion-icon>
       </ion-col>
-      <ion-col col-2>
+      <ion-col>
           <ion-icon name="md-log-out" (click)="logout()"></ion-icon>
-      </ion-col>
+        </ion-col>
     </ion-row>
-  </ion-grid>
+</ion-grid>
   

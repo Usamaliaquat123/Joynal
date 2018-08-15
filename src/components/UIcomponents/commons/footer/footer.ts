@@ -27,11 +27,15 @@ export class FooterComponent {
   constructor(public storage : Storage ,public twitter : TwitterConnect ,public fb : Facebook ) {
   }
 
-  async fbAuth(){
-    try{
-      await firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+
+
+    // Bug : todo : fixing tomorrow at developer.facebook.com implementing 28 char hash
+    // Facebook Authentication
+    fbAuth(){
+      const fbProvider = firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(userData => {
         console.log(userData);
+        
           // Saving data in local
           this.user.fbUid = userData.user.uid;
           this.user.name = userData.user.displayName;
@@ -40,10 +44,6 @@ export class FooterComponent {
         this.storage.set('userEmail', this.user.email);
         this.storage.set('FBuserId', this.user.fbUid);
       })
-    }catch{
-      console.log('Not Connected!!')
-    }
-    
     }
     // todo : Requesting for twiter developer account the application is under reviewing
     // Twitter Authentication

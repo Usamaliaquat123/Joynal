@@ -26,3 +26,5 @@ export class ForgotPasswordPage {
     this.navCtrl.pop();
   }
 }
+// name: 'resetPass',
+// segment: 'resetPass'

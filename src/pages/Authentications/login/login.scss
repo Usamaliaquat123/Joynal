@@ -1,7 +1,5 @@
 page-login {
-  .no-scroll .scroll-content{
-    overflow: hidden;
-}
+
   ion-grid.login-page {
     margin-top: 8vh;
   }
@@ -16,7 +14,7 @@ page-login {
     margin: 10px 0;
     padding: 12px;
   }
-  .item-md {
+  .item-md, .item-ios {
     background-color: #CDEFFB;
     border-radius: 8px;
     height: 15%;
@@ -73,24 +71,4 @@ page-login {
   .clearfix {
     clear:both;
   }
-
-  // @media (max-height: 554px) {
-  //   .footerResp{
-  //     // visibility: hidden;
-  //   }
-  // }
-.footerResp{
-  
-}
-  @media (min-height: 430px) {
-    .footerResp {
-      //margin-top: 15vh;
-      //margin-bottom: 1vh;
-      position: absolute;
-      width: 100%;
-      bottom: 12px;
-      display: block;
-    }
-  }
- 
 }

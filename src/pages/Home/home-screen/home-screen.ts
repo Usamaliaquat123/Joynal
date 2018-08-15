@@ -18,8 +18,9 @@ export class HomeScreenPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-
-  AddEntry(){
-    this.navCtrl.push('')
+  addEntry(){
+    this.navCtrl.push("AddEntryPage");
   }
+
+
 }

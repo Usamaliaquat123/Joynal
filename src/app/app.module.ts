@@ -15,7 +15,7 @@ import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
-import { Keyboard } from "@ionic-native/keyboard";
+
 import { Deeplinks } from "@ionic-native/deeplinks";
 // import { OauthCordova } from "ng2-cordova-oauth/platform/cordova";
 // // import { Instagram } from '@ionic-native/instagram';
@@ -43,7 +43,6 @@ import { Deeplinks } from "@ionic-native/deeplinks";
   providers: [
     StatusBar,
     Facebook,
-    Keyboard,
     //  Instagram,
     // OauthCordova,
     SplashScreen,
