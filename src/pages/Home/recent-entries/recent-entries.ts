@@ -9,13 +9,15 @@ import { Storage } from "@ionic/storage";
   providers : [JoynalApiProvider]
 })
 export class RecentEntriesPage {
-
+  userId :any;
   constructor( public storage: Storage,public JoynalApi : JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  previousUserEntries(){
-        this.storage.get('session.userId ')
-        this.JoynalApi.getListofEntriesOfUser()
+  async previousUserEntries(){
+        this.userId = this.storage.get('session.userId')
+        await this.JoynalApi.getListofEntriesOfUser(this.userId).subscribe(data => {
+              
+        })
   }
 
 }

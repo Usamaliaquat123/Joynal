@@ -20,27 +20,32 @@ export class HomeFooterComponent {
   
   }
 
-  logout(){
-    firebase.auth().onAuthStateChanged(user => {
-      if(user){
-        console.log(user);
-        // destroying all sessions
-          this.storage.remove('userName');
-          this.storage.remove('userEmail');
-          this.storage.remove('FBuserId');
-        // signout from firebase
-        firebase.auth().signOut().then(() => {this.navCtrl.setRoot('LoginPage');});
-       
-      }else{
-        // destroying all sessions
-        this.storage.remove('session.accessToken');
-        this.storage.remove('session.name');
-        this.storage.remove('session.email');
-        this.storage.remove('session.userId');
-        this.storage.remove('session.isNotificationAllowed');
-        this.storage.remove('session.isEntryVisible');
-        this.navCtrl.setRoot('LoginPage');
-      }
-    })
+  async logout(){
+    try{
+      await firebase.auth().onAuthStateChanged(user => {
+        if(user){
+          console.log(user);
+          // destroying all sessions
+            this.storage.remove('userName');
+            this.storage.remove('userEmail');
+            this.storage.remove('FBuserId');
+          // signout from firebase
+          firebase.auth().signOut().then(() => {this.navCtrl.setRoot('LoginPage');});
+         
+        }else{
+          // destroying all sessions
+          this.storage.remove('session.accessToken');
+          this.storage.remove('session.name');
+          this.storage.remove('session.email');
+          this.storage.remove('session.userId');
+          this.storage.remove('session.isNotificationAllowed');
+          this.storage.remove('session.isEntryVisible');
+          this.navCtrl.setRoot('LoginPage');
+        }
+      })
+    }catch{
+      console.log('Not Connected!')
+    }
+ 
   }
 }

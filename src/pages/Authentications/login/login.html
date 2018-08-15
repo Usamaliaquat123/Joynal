@@ -1,4 +1,7 @@
-<ion-content padding>
+<ion-content class="no-scroll">
+  <!-- <div ion-fixed>
+
+</div> -->
   <cloud></cloud>
   <form [formGroup]="authForm" (ngSubmit)="login(authForm.value)">
 
@@ -50,5 +53,5 @@
   <button  (click)="signUp()" type="button">SignUp</button>
 </div>
 <div class="clearfix"></div>
-<footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta" ></footerlogin>
+<footerlogin class="footerResp" [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta" ></footerlogin>
 </ion-content>

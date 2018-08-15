@@ -65,11 +65,15 @@ export class SignupPage {
  
 
 
-  signUp(value){
-    this.apiJoynal.authenticationSignup(value.name , value.email,value.password).subscribe(data => {
-      
+ async signUp(value){
+   try{
+    await this.apiJoynal.authenticationSignup(value.name,value.email,value.password).subscribe(data => {
       this.navCtrl.push('LoginPage');
     },err => console.log(err));
+   }catch{
+     console.log('Please check your connection and try again');
+   }
+    
 
   }
 }

@@ -9,15 +9,12 @@ export class JoynalApiProvider {
   
   }
 
-// Authenticating users login POST
   authenticationLogin(userEmail , userPassword){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/login',{ userEmail : userEmail, userPassword : userPassword })
   }
-// Authenticating users Signup POST
   authenticationSignup(username,userEmail, userPassword){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users', { userName : username ,userEmail : userEmail , userPassword : userPassword})
   }
-// Checking user if exists in real time  
   checkingUserIfExists(userEmail){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/check-user', {userEmail : userEmail})
   }
