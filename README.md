@@ -17,12 +17,12 @@ This text you see here is *actually* written in Markdown! To get a feel for Mark
 ### Tech
 
 Thanks
-* [angular] - allow us to create 
-* [ionic] - awesome web-based text editor
-* [yii] - Markdown parser done right. Fast and easy to extend.
-* [php] - great UI boilerplate for modern web apps
-* [stripe] - evented I/O for the backend
-* [cordova] - fast node.js network app framework [@tjholowaychuk]
+* [angular] - Component based framework 
+* [ionic] - Libr for mob UI's
+* [yii] - Framework for php backend
+* [php] - Language for backend handlers
+* [stripe] - Api for payment process
+* [cordova] - converting web to hybrid 
 
 ### Installation
 
