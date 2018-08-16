@@ -50,7 +50,7 @@ entry {
             border-radius: 50%;
         }
     }
-    ion-textarea{
+    textarea{
         background-color: #ffffff96;
         border-radius: 10px;
         padding: 20px 15px 20px 15px;
@@ -58,7 +58,8 @@ entry {
         margin-left: 20px;
         height: 130px;
         overflow: auto;
-        ion-input{
+        width: 100%;
+        text-input{
             position: absolute;
             -webkit-box-flex: 1;
             -webkit-flex: 1;
@@ -75,11 +76,11 @@ entry {
             color: white;
         }
     }
-    .geo-location-position, .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end]{
+    .geo-location-position {
         z-index: 999999;
         margin-left: -25px;
-        margin-top: 6px;
-        margin-bottom: 10px;
+        margin-top: -17px;
+        margin-bottom: 0px;
     }
     .test{
         background-color: #01aef0;
@@ -128,6 +129,22 @@ entry {
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
-        height: 48px;
+        height: 35px;
+    }
+    .row {
+        margin-top: -14px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end] {
+        margin-left: -50px;
+        margin-top: -60px;
+        margin-bottom: 10px;
     }
 }

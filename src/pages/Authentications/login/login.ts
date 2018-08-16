@@ -52,7 +52,7 @@ export class LoginPage {
       this.storage.set('session.userId',this.data.uid);
       this.storage.set('session.isNotificationAllowed',this.data.isNotificationAllowed);
       this.storage.set('session.isEntryVisible',this.data.isEntryVisible);
-      this.navCtrl.push('HomeScreenPage');
+      this.navCtrl.setRoot('HomeScreenPage');
      })
   }
 

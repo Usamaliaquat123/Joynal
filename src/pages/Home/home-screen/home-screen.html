@@ -1,28 +1,45 @@
-
+<ion-header text-center>
+    <ion-navbar>
+        <!-- Header -->
+        <img width="250" height="150" src="../../../assets/imgs/icons/joynal-logo.png" alt="">
+        <!-- some clouds -->
+        <cloud></cloud>
+    </ion-navbar>
+</ion-header>
 
 <ion-content>
-  <!-- some cloud -->
-  <cloud></cloud>
-  <!-- Header -->
-  <div class="header">
-      <h1 class="joynalLogo">Joynal</h1>
-  </div>
   <!-- Create entry -->
   <div class="newEntry" text-center>
       <p (click)="addEntry()"><img width="50" height="50" src="../../../assets/imgs/icons/calenderAdd.png" alt=""><br>
       Add new entry</p>
   </div>
   <!-- list of other entries -->
-  <div class="otherEntries">
-    <!-- User Uploaded photo -->
-    <div class="userUploadedPhoto" >
-        
-    </div>
-    <!-- User Entry date -->
-    <div class="userEntryDate">
-        <p>29<br>May</p>
-    </div>
-  </div>
-  <!-- Implementing Home footer component -->
-  <home-footer></home-footer>
+  <ion-list>
+    <ion-item>
+        <div class="otherEntries">
+            <!-- User Uploaded photo -->
+            <div class="userUploadedPhoto" >
+                <img src="../../../assets/imgs/icons/camera-picture-dummy.jpg" alt="">
+            </div>
+            <!-- User Entry date -->
+            <h1 class="userEntryDate"> 29 <br>
+                May </h1>
+        </div>
+    </ion-item>
+    <ion-item>
+        <div class="userEntryHeading">
+            <strong><h1>Your Heading Goes Here</h1></strong>
+        </div>
+        <div class="userEntryText">
+            <p text-wrap>Lorem Ipsum is simply dummy text of the printing
+                and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<ion-footer>
+    <!-- Implementing Home footer component -->
+    <home-footer></home-footer>
+</ion-footer>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController  } from 'ionic-angular';
 
 /**
  * Generated class for the HomeScreenPage page.
@@ -13,9 +13,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-home-screen',
   templateUrl: 'home-screen.html',
 })
-export class HomeScreenPage {
+export class HomeScreenPage{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams) {
   }
 
   addEntry(){
