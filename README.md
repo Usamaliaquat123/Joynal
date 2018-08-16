@@ -1,4 +1,4 @@
-# Chief Safety (c)
+# Chief Safety
 Its an app that allow us to create inspections, edit categories , sub categories and forword these inspections to email. 
 
   - Forword inspections with pdf format.
