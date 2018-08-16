@@ -51,7 +51,7 @@ entry {
         }
     }
     textarea{
-        background-color: #ffffff96;
+        background-color: #4DC6F5;
         border-radius: 10px;
         padding: 20px 15px 20px 15px;
         color: white;
@@ -72,9 +72,7 @@ entry {
             padding: 0px;
             width: calc(100% - 8px - 8px);
         }
-        ::placeholder{
-            color: white;
-        }
+        border-color: #4DC6F5;
     }
     .geo-location-position {
         z-index: 999999;

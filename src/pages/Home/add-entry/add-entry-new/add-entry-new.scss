@@ -42,8 +42,11 @@ page-add-entry-new {
         padding-left: 15px;
         padding-right: 0px;
         font-size: 30px;
+        border: 1px solid;
+        border-color: #c8c7cc;
         background-color: #c8c7cc42;
         border-radius: 5px;
+        color: #222222c9;
         max-width: 100%;
       }
       .userEntryHeading{
@@ -54,8 +57,28 @@ page-add-entry-new {
         font-size: 4em;
         float: left;
     }
+    .userEntryLocation{
+        float: left;
+        width: 80px;
+        height: 80px;
+        padding-left: 30px;
+        padding-right: 0px;
+        font-size: 30px;
+        border: 1px solid;
+        border-color: #c8c7cc;
+        margin-left: 10px;
+        background-color: #c8c7cc42;
+        border-radius: 5px;
+        color: #222222c9;
+        max-width: 100%;
+
+        h3{
+            font-weight: 700;
+            margin-left: -12px;
+        }
+      }
     .list-md {
-        margin: 40px 0 16px;
+        margin: 50px 0 16px;
     }
 
     // Removing Header Border
