@@ -55,8 +55,9 @@ entry {
         border-radius: 10px;
         color: white;
         height: 130px;
-        overflow: auto;
+        overflow: scroll;
         width: 100%;
+        padding: 10px;
         text-input{
             position: absolute;
             -webkit-box-flex: 1;
@@ -71,10 +72,13 @@ entry {
         }
         border-color: #4DC6F5;
     }
+    textarea::placeholder{
+        color: white;
+    }
     .geo-location-position {
         background-color: #4DC6F5;
         z-index: 999999;
-        margin-left: -25px;
+        margin-left: 0px;
         margin-top: -17px;
         margin-bottom: 0px;
         width: 100%;
@@ -87,7 +91,7 @@ entry {
         font-size: 1.6rem;
         position: relative;
         color:white;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
         background-color: transparent;
         outline: none;
         text-decoration: none;
@@ -113,6 +117,7 @@ entry {
         border-bottom: 0px solid #dedede;
     }
 
+    // Input buttons grid styling
     .grid {
         padding: 5px;
         margin-left: auto;
@@ -138,5 +143,25 @@ entry {
         -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    }
+
+    // Entry title styling
+    input{
+        background-color: transparent;
+        border-radius: 10px;
+        color: white;
+        width: 100%;
+        border: 1px solid #4DC6F5;
+        margin-bottom: 2px;
+        padding: 12px;
+        margin-right: 8px;
+        .text-input-md {
+            margin: 13px 8px;
+            padding: 0;
+            width: calc(100% - 8px - 8px);
+        }
+    }
+    input::placeholder{
+        color: white;
     }
 }
