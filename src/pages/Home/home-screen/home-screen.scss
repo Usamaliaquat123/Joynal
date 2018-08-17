@@ -1,23 +1,25 @@
 page-home-screen {
-  // Changing cloud size
- 
-  .header{
-    border: 1px solid aliceblue;
-      .joynalLogo{
-        text-align: center;
-        padding: 20px 15px;
-      }
+  ion-navbar{
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  ion-content{
+    background: #E5F6FD;
   }
   .newEntry{
     border: 1px solid;
     padding: 45px 5px;
-    box-shadow: inset 0px 0px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     // box-shadow: -2px -1px 14px black;
     background-color: #01AEF0;
     color: aliceblue;
     font-size: 12px;
+    margin-bottom: 5px;
+    border-color: transparent;
     letter-spacing: 1px;
-
+    border-radius: 10px;
+    
   }
   .otherEntries{
     background-color: #E5F6FD;
@@ -30,7 +32,7 @@ page-home-screen {
       padding: 0px;
       width: 100px;
       height: 100px;
-      border: 2px solid #01aef094;
+      border: 2px solid transparent;
       margin-right: 10px;
       overflow: hidden;
       border-radius: 5px;
@@ -49,9 +51,10 @@ page-home-screen {
     padding-left: 15px;
     padding-right: 0px;
     font-size: 30px;
-    background-color: #c8c7cc42;
+    background-color:white;
     border-radius: 5px;
     max-width: 100%;
+    margin-top: 2px;
   }
   .userEntryHeading{
     float: left;
@@ -60,5 +63,20 @@ page-home-screen {
   .userEntryText{
     font-size: 4em;
     float: left;
+  }
+  .item-md {
+    padding-left: 16px;
+    padding-right: 0;
+    position: relative;
+    font-size: 1.6rem;
+    font-weight: normal;
+    text-transform: none;
+    color: #000;
+    background-color: #fff;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent;
   }
 }

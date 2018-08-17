@@ -49,4 +49,10 @@ export class HomeFooterComponent {
   about(){
     this.navCtrl.push("AboutPage");
   }
+  redirectAchievements(){
+    this.navCtrl.push("AchievementsPage");
+  }
+  redirectSettings(){
+    this.navCtrl.push("SettingsPage");
+  }
 }

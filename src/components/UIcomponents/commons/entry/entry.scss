@@ -51,11 +51,9 @@ entry {
         }
     }
     textarea{
-        background-color: #4DC6F5;
+        background-color: transparent;
         border-radius: 10px;
-        padding: 20px 15px 20px 15px;
         color: white;
-        margin-left: 20px;
         height: 130px;
         overflow: auto;
         width: 100%;
@@ -68,17 +66,19 @@ entry {
             width: 100%;
         }
         .text-input-md {
-            margin: -10px 8px;
             padding: 0px;
             width: calc(100% - 8px - 8px);
         }
         border-color: #4DC6F5;
     }
     .geo-location-position {
+        background-color: #4DC6F5;
         z-index: 999999;
         margin-left: -25px;
         margin-top: -17px;
         margin-bottom: 0px;
+        width: 100%;
+        border-color: #4DC6F5;
     }
     .test{
         background-color: #01aef0;
@@ -138,11 +138,5 @@ entry {
         -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    }
-
-    .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end] {
-        margin-left: -50px;
-        margin-top: -60px;
-        margin-bottom: 10px;
     }
 }
