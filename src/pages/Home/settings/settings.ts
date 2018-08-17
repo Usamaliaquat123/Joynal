@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
+  public entryVisibilityToggle:boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -22,4 +22,8 @@ export class SettingsPage {
     console.log('ionViewDidLoad SettingsPage');
   }
 
+  entryVisibilityToggleChange() {
+    console.log(this.entryVisibilityToggle);
+
+  }
 }

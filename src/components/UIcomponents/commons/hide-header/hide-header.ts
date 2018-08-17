@@ -1,11 +1,5 @@
-import { Directive, Input, ElementRef, Renderer, OnInit } from '@angular/core';
+import { Directive, Input, ElementRef, Renderer, OnInit, Component} from '@angular/core';
 
-/**
- * Generated class for the HideHeaderDirective directive.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/DirectiveMetadata-class.html
- * for more info on Angular Directives.
- */
 @Directive({
   selector: '[hide-header]', // Attribute selector
   host: {
@@ -19,7 +13,6 @@ export class HideHeaderDirective implements OnInit {
   scrollContent;
 
   constructor(public element: ElementRef, public renderer: Renderer) {
-
     console.log('Hello HideHeaderDirective Directive');
   }
 
@@ -31,13 +24,12 @@ export class HideHeaderDirective implements OnInit {
   }
 
   onContentScroll(event){
-    if(event.scrollTop > 96){
-      this.renderer.setElementStyle(this.header, "top", "-300px")
+    if(event.scrollTop > 40){
+      this.renderer.setElementStyle(this.header, "top", "-450px")
       this.renderer.setElementStyle(this.scrollContent, "margin-top", "0px")
     } else {
       this.renderer.setElementStyle(this.header, "top", "0px");
-      this.renderer.setElementStyle(this.scrollContent, "margin-top", "330px")
+      this.renderer.setElementStyle(this.scrollContent, "margin-top", "380px")
     }
   }
-
 }

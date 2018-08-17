@@ -11,10 +11,36 @@
     <ion-label>
       John Doe<br>
       <ion-label>
-          <ion-icon name="ios-create" item-start></ion-icon>
+          <ion-icon name="ios-create-outline" item-start></ion-icon>
           <p>Edit name</p>
       </ion-label> 
     </ion-label>
-    
   </ion-item>
+  <ion-item>
+    <ion-label>
+      .......<br>
+      <ion-label>
+          <ion-icon name="ios-create-outline" item-start></ion-icon>
+          <p>Edit password</p>
+      </ion-label> 
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      Reminder Time <br>
+      <h1 style="margin-top: 10px;">09:30</h1>
+      <ion-label>
+          <ion-icon name="ios-create-outline" item-start></ion-icon>
+          <p>Edit</p>
+      </ion-label> 
+    </ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label>
+        Entry Visibility <br>
+      </ion-label>
+      <ion-toggle [(ngModel)]="entryVisibilityToggle" (ionChange)="entryVisibilityToggleChange()"></ion-toggle>
+  </ion-item>
+  <p class="ptest" text-wrap>By turning this on, your entries will be shared with other users anonymously</p> 
+
 </ion-content>
