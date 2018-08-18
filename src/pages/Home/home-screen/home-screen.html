@@ -19,7 +19,7 @@
         <div class="otherEntries">
             <!-- User Uploaded photo -->
             <div class="userUploadedPhoto" >
-                <img src="../../../assets/imgs/icons/camera-picture-dummy.jpg" alt="">
+                <img (click)="showAlert(imageSource)" [src]="imageSource" alt="">
             </div>
             <!-- User Entry date -->
             <h1 class="userEntryDate"> 29 <br>

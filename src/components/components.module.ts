@@ -29,7 +29,7 @@ import { ScrollHideDirective } from './UIcomponents/commons/scroll-hide/scroll-h
     	HomeFooterComponent,
 		EntryComponent,
 		ScrollHideDirective,
-		HideHeaderDirective  
+		HideHeaderDirective,
 	]
 })
 export class ComponentsModule {}

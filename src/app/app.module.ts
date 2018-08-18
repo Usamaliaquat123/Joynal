@@ -17,13 +17,10 @@ import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
 
 import { Deeplinks } from "@ionic-native/deeplinks";
-// import { OauthCordova } from "ng2-cordova-oauth/platform/cordova";
-// // import { Instagram } from '@ionic-native/instagram';
-// import {Instagram } from "ng2-cordova-oauth/core";
+
 @NgModule({
   declarations: [
     MyApp,
-   
   ],
   imports: [
     BrowserModule,
@@ -38,7 +35,6 @@ import { Deeplinks } from "@ionic-native/deeplinks";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-   
   ],
   providers: [
     StatusBar,
