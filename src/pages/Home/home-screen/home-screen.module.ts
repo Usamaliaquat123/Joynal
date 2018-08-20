@@ -1,5 +1,5 @@
 import { ComponentsModule } from './../../../components/components.module';
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomeScreenPage } from './home-screen';
 
@@ -9,7 +9,7 @@ import { HomeScreenPage } from './home-screen';
   ],
   imports: [
     IonicPageModule.forChild(HomeScreenPage),
-    ComponentsModule
+    ComponentsModule,
   ],
   exports :[
     HomeScreenPage

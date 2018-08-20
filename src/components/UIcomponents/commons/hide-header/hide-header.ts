@@ -29,7 +29,7 @@ export class HideHeaderDirective implements OnInit {
       this.renderer.setElementStyle(this.scrollContent, "margin-top", "0px")
     } else {
       this.renderer.setElementStyle(this.header, "top", "0px");
-      this.renderer.setElementStyle(this.scrollContent, "margin-top", "380px")
+      this.renderer.setElementStyle(this.scrollContent, "margin-top", "300px")
     }
   }
 }

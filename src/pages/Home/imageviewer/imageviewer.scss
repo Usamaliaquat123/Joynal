@@ -1,0 +1,36 @@
+page-imageviewer {
+    .content-md {
+        color: #000;
+        background-color: black;
+    }
+    ion-header{
+        position: relative;
+    }
+    .back-button.show-back-button {
+        display: block;
+        position: absolute;
+        left: 5px;
+        z-index: 999999999;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+        background: rgba(0, 0, 0, 0.5);
+    }
+    .grid {
+        padding: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .scroll-content {
+        margin-top: 10px !important;
+    }
+}

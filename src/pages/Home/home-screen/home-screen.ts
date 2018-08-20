@@ -9,19 +9,17 @@ import { IonicPage, NavController, NavParams, ViewController, AlertController } 
 })
 
 export class HomeScreenPage{ 
-  imageSource : String;
+  public imageSource : string;
+  public test : string;
   constructor(public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.imageSource = "https://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg";
   }
-  public specialist = "<img [src]=imageSource>";
   addEntry(){
     this.navCtrl.push("AddEntryPage");
   }
-  showAlert(imageSource) {
-    console.log(imageSource);
-    const alert = this.alertCtrl.create({
-      subTitle: '<img src=https://www.readersdigest.ca/wp-content/uploads/2011/01/4-ways-cheer-up-depressed-cat.jpg>'
+  testImage(){
+    this.navCtrl.push("ImageviewerPage",{
+      imageSource:this.imageSource
     });
-    alert.present();
   }
 }

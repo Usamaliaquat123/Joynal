@@ -7,6 +7,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,8 +16,10 @@ import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Deeplinks } from "@ionic-native/deeplinks";
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { Deeplinks } from "@ionic-native/deeplinks";
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    BrowserAnimationsModule,
+    IonicImageViewerModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
@@ -45,6 +50,7 @@ import { Deeplinks } from "@ionic-native/deeplinks";
     Geolocation,
     Deeplinks,
     TwitterConnect,
+    IonicImageViewerModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider
   ]

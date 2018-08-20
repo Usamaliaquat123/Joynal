@@ -18,8 +18,8 @@
     <ion-item>
         <div class="otherEntries">
             <!-- User Uploaded photo -->
-            <div class="userUploadedPhoto" >
-                <img (click)="showAlert(imageSource)" [src]="imageSource" alt="">
+            <div class="userUploadedPhoto" (click)="testImage()">
+                <img [src]="imageSource" alt="">
             </div>
             <!-- User Entry date -->
             <h1 class="userEntryDate"> 29 <br>
@@ -38,6 +38,16 @@
         </div>
     </ion-item>
   </ion-list>
+
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>Here i am</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                Thank to pop me out of that button, but now i'm done so you can close this window.
+            </div>
+        </div>
+    </div>
 </ion-content>
 <ion-footer>
     <!-- Implementing Home footer component -->
