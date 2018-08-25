@@ -1,0 +1,41 @@
+page-achievements-main {
+    .content-md {
+        color: #000;
+        background-color: white;
+    }
+    ion-header{
+        position: relative;
+    }
+    .back-button.show-back-button {
+        display: block;
+        position: absolute;
+        left: 5px;
+        z-index: 999999999;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+        background: rgba(248, 248, 248, 0.5);
+    }
+    h5{
+        padding-top: 20px;
+        color: #424242cf;
+        font-size: 1em;
+    }
+    p{
+        color: #424242cf;
+        font-size: 0.8em;
+    }
+    .scroll-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: fixed;
+        z-index: 1;
+        display: block;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+        contain: size style layout;
+    }
+}

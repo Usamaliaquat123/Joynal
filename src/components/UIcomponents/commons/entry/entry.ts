@@ -1,11 +1,6 @@
 import { Component} from '@angular/core';
+import { AlertController } from 'ionic-angular';
 
-/**
- * Generated class for the EntryComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'entry',
   templateUrl: 'entry.html'
@@ -13,9 +8,16 @@ import { Component} from '@angular/core';
 export class EntryComponent {
   text: string;
 
-  constructor() {
+  constructor(private alertCtrl: AlertController) {
     console.log('Hello EntryComponent Component');
     this.text = 'Hello World';
   }
-
+  didYouKnowAchievement(){
+    let alert = this.alertCtrl.create({
+      title: '<h1 text-center>Did you know</h1>',
+      subTitle: '<p text-wrap text-center>Quote about user entry appears here</p>',
+      buttons: ['Dismiss']
+    }); 
+    alert.present();
+  }
 }

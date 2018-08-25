@@ -1,0 +1,26 @@
+<ion-header text-center>
+  <ion-navbar>
+    <ion-title>Share Your Achievements</ion-title>
+    <cloud></cloud>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 50%">
+      <div text-center>
+        <h3 text-wrap>I've logged something that made me happy for ten days running in my Joynal. "In my Joynal"</h3>
+      </div>
+    </ion-row>
+    <ion-row justify-content-center align-items-center style="margin-top: -20px;">
+      <svg-icon [src]="shareIcon" [svgStyle]="{'width.px':150,'padding.px':1,'margin.px':3}" (click)="socialShare()">
+      </svg-icon>
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
+      <div text-center>
+        <p text-wrap>Note: This app will only share your achievement and not what was actually written in your entry. <a (click)="shareWhyMessage()">Why?</a></p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

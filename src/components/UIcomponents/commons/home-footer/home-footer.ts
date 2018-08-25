@@ -50,7 +50,7 @@ export class HomeFooterComponent {
     this.navCtrl.push("AboutPage");
   }
   redirectAchievements(){
-    this.navCtrl.push("AchievementsPage");
+    this.navCtrl.push("AchievementsMainPage");
   }
   redirectSettings(){
     this.navCtrl.push("SettingsPage");

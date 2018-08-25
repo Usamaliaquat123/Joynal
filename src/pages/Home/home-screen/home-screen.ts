@@ -17,7 +17,7 @@ export class HomeScreenPage{
   addEntry(){
     this.navCtrl.push("AddEntryPage");
   }
-  testImage(){
+  showImageFull(){
     this.navCtrl.push("ImageviewerPage",{
       imageSource:this.imageSource
     });

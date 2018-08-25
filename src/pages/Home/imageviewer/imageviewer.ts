@@ -7,10 +7,10 @@ import { IonicPage, NavController, NavParams, Navbar } from 'ionic-angular';
   templateUrl: 'imageviewer.html',
 })
 export class ImageviewerPage {
-  @ViewChild (Navbar) navBar : Navbar; // add this line
+  @ViewChild (Navbar) navBar : Navbar;
   public imageSource : string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.imageSource = this.navParams.get('imageSource')
+    this.imageSource = this.navParams.get('imageSource');
   }
 
   ionViewDidLoad() {

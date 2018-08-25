@@ -47,12 +47,14 @@ page-home-screen {
   }
   .userEntryDate{
     float: left;
-    width: 80px;
-    height: 80px;
-    padding-left: 15px;
+    width: 70px;
+    height: 70px;
+    padding-left: 19px;
     padding-right: 0px;
-    font-size: 30px;
+    font-size: 1.5em;
+    padding-top: 12px;
     background-color:white;
+    color: #222222c9;
     border-radius: 5px;
     max-width: 100%;
     margin-top: 2px;
@@ -140,5 +142,38 @@ page-home-screen {
     .popup{
       width: 70%;
     }
+  }
+
+  .item-md h1 {
+    margin: 0 0 2px;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  .item-ios h1{
+    margin: 0 0 2px;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  .item-md p {
+    overflow: inherit;
+    font-size: 1.1rem;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #8e9093;
+    margin: 0 0 2px;
+  }
+  .item-ios p{
+    overflow: inherit;
+    font-size: 1.1rem;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #8e9093;
+    margin: 0 0 2px;
+  }
+  .list-md {
+    margin: 10vh 0 60px;
+  }
+  .list-ios {
+    margin: 10vh 0 60px;
   }
 }

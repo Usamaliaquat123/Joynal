@@ -2,9 +2,9 @@
     <ion-navbar>
         <!-- Header -->
         <img width="250" height="150" src="../../../assets/imgs/icons/joynal-logo.png" alt="">
-        <!-- some clouds -->
-        <cloud></cloud>
     </ion-navbar>
+    <!-- some clouds -->
+    <cloud></cloud>
 </ion-header>
 
 <ion-content>
@@ -18,7 +18,7 @@
     <ion-item>
         <div class="otherEntries">
             <!-- User Uploaded photo -->
-            <div class="userUploadedPhoto" (click)="testImage()">
+            <div class="userUploadedPhoto" (click)="showImageFull()">
                 <img [src]="imageSource" alt="">
             </div>
             <!-- User Entry date -->
