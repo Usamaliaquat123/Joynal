@@ -15,25 +15,30 @@
   </div>
 
   <!-- Recent Entries List -->
-  <ion-list>
-      <div text-center class="recentEntryDateHeader">
-        <p>14th Aug 2018</p>
-        <ion-badge class="recentEntries-counter">02</ion-badge>
-      </div>
-      <ion-item class="recentEntries">
-        <ion-label>
-          <strong><h2>Recent Entries</h2></strong>
-          <p class="recentEntries-innertext" text-wrap>Listen, I've had a pretty messed up day...</p>
-        </ion-label>
-        <ion-avatar item-end>
-          <div class="recentEntries-emoji">
-            <img class="recentEntries-emoji-extra" src="../../../assets/imgs/icons/smile-emoji-recent-entries.png" alt="">
-            <ion-badge class="recentEntries-counter-emoji">02</ion-badge>
+  <div *ngFor="let entrie of entriesz">
+      <ion-list>
+          <div text-center class="recentEntryDateHeader">
+            <p>{{ entrie.date }}</p>
+            <ion-badge class="recentEntries-counter">02</ion-badge>
           </div>
-        </ion-avatar>
-      </ion-item>
-  </ion-list>
-
+          <div *ngFor="let entry of entrie.entries">
+              <ion-item class="recentEntries">
+                  <ion-label>
+                     <strong><h2>{{ entry.entry_title }}</h2></strong>
+                    <p class="recentEntries-innertext" text-wrap>{{ entry.entry_description }}</p> 
+                  </ion-label>
+                  <ion-avatar item-end>
+                     <div class="recentEntries-emoji">
+                      <img class="recentEntries-emoji-extra" src="../../../assets/imgs/icons/smile-emoji-recent-entries.png" alt="">
+                      <ion-badge class="recentEntries-counter-emoji">02</ion-badge>
+                    </div>
+                  </ion-avatar>
+                </ion-item>
+          </div>
+          
+      </ion-list>
+  </div>
+  
   <!-- Implementing Home footer component -->
   <home-footer></home-footer>
 </ion-content>

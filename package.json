@@ -20,6 +20,7 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/camera": "^4.12.0",
     "@ionic-native/core": "~4.11.0",
     "@ionic-native/deeplinks": "^4.11.0",
     "@ionic-native/facebook": "^4.11.0",
@@ -34,6 +35,7 @@
     "com-sarriaroman-photoviewer": "^1.1.18",
     "cordova-android": "6.3.0",
     "cordova-instagram-plugin": "^0.5.7",
+    "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^2.3.0",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -51,6 +53,7 @@
     "ionic2-zoom-area": "^1.0.16",
     "ionicons": "3.0.0",
     "jquery": "^3.3.1",
+    "moment": "^2.22.2",
     "ng2-cordova-oauth": "0.0.8",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
@@ -97,7 +100,8 @@
         "DEEPLINK_5_HOST": " "
       },
       "cordova-plugin-inappbrowser": {},
-      "com-sarriaroman-photoviewer": {}
+      "com-sarriaroman-photoviewer": {},
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "android"

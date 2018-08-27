@@ -1,4 +1,7 @@
-<ion-content padding>
+<ion-content class="no-scroll" padding>
+  <!-- <div ion-fixed>
+
+</div> -->
   <cloud></cloud>
   <form [formGroup]="authForm" (ngSubmit)="login(authForm.value)">
 
@@ -10,33 +13,41 @@
     </ion-row>
     <ion-row>
       <!--<ion-list>-->
-        <!-- <div class="error-box-main" >
-          Login failed; Invalid email or password
-        </div> -->
+        <div class="error-box-main" *ngIf="this.response" >
+         {{this.responseText}}
+        </div>
         <ion-col col-12>
           <ion-item no-lines>
               <ion-label><ion-icon name="ios-mail" item-start></ion-icon></ion-label>
             <ion-input [formControl]="authForm.controls['email']" type="text" placeholder= "Email"></ion-input>
           </ion-item>
+          <span *ngIf="authForm.get('email').dirty || formSubmitclicked">     
+              <small class="error" *ngIf="authForm.get('email').hasError('required')">* The Email field is required.</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* The Email field must contain a valid email address.</small>
+          </span>
         </ion-col>
+    </ion-row>
+        <ion-row>
         <ion-col col-12>
           <ion-item no-lines>
              <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
-            <ion-input [formControl]="authForm.controls['password']" type="password" placeholder="password" ></ion-input> 
+            <ion-input [formControl]="authForm.controls['password']"  [type]="passwordType"  placeholder="password" ></ion-input> 
+            <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
           </ion-item>
-          <br>
-    
-            <ion-row>
-                  <ion-col class="alligningRememberMeAndForgotPass">
-                      <ion-radio></ion-radio> <p>Remember me</p>
-                  </ion-col>
-                  <ion-col>
-                      <p class="forgotPass" (click)="forgotPage()" text-right>Forgot password ?</p>
-                  </ion-col>
-            </ion-row>
-  
+          <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
+              <small class="error"  *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">* Password is required!</small>
+              <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
+            </span> 
         </ion-col>
   </ion-row>
+  <ion-row>
+      <ion-col class="alligningRememberMeAndForgotPass" (click)="toogleRememberMe()">
+          <ion-radio [checked]="isChecked" (click)="toogleRememberMe()" ></ion-radio> <p>Remember me</p>
+      </ion-col>
+      <ion-col>
+          <p class="forgotPass" (click)="forgotPage()" text-right>Forgot password ?</p>
+      </ion-col>
+</ion-row>
    </ion-grid>
      <div >
           <button style="border-radius: 5px; text-transform:none; letter-spacing: 1px;" ion-button color="primary" type="submit" full>Sign In</button>
@@ -50,5 +61,5 @@
   <button  (click)="signUp()" type="button">SignUp</button>
 </div>
 <div class="clearfix"></div>
-<footerlogin [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta" ></footerlogin>
+<footerlogin class="footerResp" [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta" ></footerlogin>
 </ion-content>

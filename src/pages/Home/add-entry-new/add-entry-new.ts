@@ -1,3 +1,4 @@
+import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -6,10 +7,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-add-entry-new',
   templateUrl: 'add-entry-new.html',
+  providers : [JoynalApiProvider]
 })
 export class AddEntryNewPage {
   public imageSource : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams) {
     this.imageSource = "../../../assets/imgs/icons/camera-picture-dummy.jpg";
   }
 
@@ -21,4 +23,8 @@ export class AddEntryNewPage {
       imageSource:this.imageSource
     });
   }
+  ionViewWillEnter(){
+      
+  }
+
 }

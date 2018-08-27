@@ -1,6 +1,6 @@
 home-footer {
   .align-footer-bottom {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background: #01aef0;
     padding-bottom: 25px;
@@ -82,5 +82,8 @@ home-footer {
   }
   .grid{
     height: 50px;
+  }
+  home-footer .align-footer-bottom{
+    position: fixed;
   }
 }

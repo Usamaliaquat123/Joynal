@@ -1,39 +1,52 @@
 page-signup {
-    ion-grid.login-page {
-        margin-top: 15vh;
-      }
-    h1 {
-        text-align: center;
-        letter-spacing: 3px;
-        font-size: 18px;
-      }
-      .alligingItems{
-          margin-top: 4vh;
-      }
-      .custom-login-label input[type]{
-        margin-left: 20px;
+  ion-grid.login-page {
+      margin-top: 3vh;
     }
-    .item-md {
-        background-color: #CDEFFB;
-        border-radius: 8px;
-        height: 15%;
-      }
-      .error-box-main {
-        color: #D8000C;
-        background-color: rgba(255,255,255, 0.65);
-        margin: 10px 0;
-        padding: 12px;
-      }
-      ion-input{
-        font-size: 0.8em;
-      }
-      .alligningRememberMe ion-radio{
-        float: left;
-        margin-top: 13px;
-        margin-right: 5px;
-      }
+  h1 {
+      text-align: center;
+      letter-spacing: 3px;
+      font-size: 18px;
+    }
+    .alligingItems{
+        margin-top: 4vh;
+    }
+    .custom-login-label input[type]{
+      margin-left: 20px;
+  }
+  .item-md {
+      background-color: #CDEFFB;
+      border-radius: 8px;
+      height: 15%;
+    }
+    .error-box-main {
+      color: #D8000C;
+      background-color: rgba(255,255,255, 0.65);
+      margin: 10px 0;
+      text-align: center;
+    }
+    ion-input{
+      font-size: 0.8em;
+    }
+    .error{
+      color: #D8000C;
+      background-color: rgba(255,255,255, 0.65);
+      font-size: 12px;
+      letter-spacing: 0.2px;  
+    }
+    .alligningRememberMe ion-radio{
+      float: left;
+      margin-top: 13px;
+      margin-right: 5px;
+    }
 
-      .backbutton  {
-        z-index: 9999999;
+    .backbutton  {
+      z-index: 9999999;
+    }
+
+
+    @media (max-height: 522px) {
+      .footerResp {
+        visibility: hidden;
       }
+    }
 }

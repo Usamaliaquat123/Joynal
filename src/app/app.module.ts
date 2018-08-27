@@ -17,7 +17,6 @@ import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Deeplinks } from "@ionic-native/deeplinks";
 
 
 
@@ -49,7 +48,6 @@ import { Deeplinks } from "@ionic-native/deeplinks";
     // OauthCordova,
     SplashScreen,
     Geolocation,
-    Deeplinks,
     TwitterConnect,
     IonicImageViewerModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
