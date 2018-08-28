@@ -8,6 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -52,7 +54,8 @@ import { CameraMock } from "./camera.mock";
     IonicImageViewerModule,
     { provide: Camera, useClass: CameraMock },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    JoynalApiProvider
+    JoynalApiProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

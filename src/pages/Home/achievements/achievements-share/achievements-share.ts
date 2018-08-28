@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @IonicPage()
 @Component({
@@ -9,7 +10,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 export class AchievementsSharePage {
   public shareValue : string;
   public shareIcon : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private socialSharing: SocialSharing) {
     this.shareValue = this.navParams.get('shareValue');
     console.log(this.shareValue);
     if(this.shareValue == "fb"){
@@ -29,6 +30,9 @@ export class AchievementsSharePage {
   socialShare(){
     if(this.shareValue == "fb"){
       console.log("call fb share api here");
+      this.socialSharing.shareViaFacebook("hello").then(res =>{
+        console.log(res);
+      });
     }
     else if(this.shareValue == "insta"){
       console.log("call insta share api here");
