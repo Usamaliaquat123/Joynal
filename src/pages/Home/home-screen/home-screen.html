@@ -13,33 +13,37 @@
       <p style="margin-top: -8px;" (click)="addEntry()"><img width="50" height="50" src="../../../assets/imgs/icons/calenderAdd.png" alt=""><br>
       Add new entry</p>
   </div>
-  <!-- list of other entries -->
-  <ion-list>
-    <ion-item>
-        <div class="otherEntries">
-            <!-- User Uploaded photo -->
-            <div class="userUploadedPhoto" (click)="showImageFull()">
-                <img [src]="imageSource" alt="">
-            </div>
-            <!-- User Entry date -->
-            <h1 class="userEntryDate"> 29 <br>
-                May </h1>
-        </div>
-    </ion-item>
-    <ion-item>
-        <div class="userEntryHeading">
-            <strong><h1>Your Heading Goes Here</h1></strong>
-        </div>
-        <div class="userEntryText">
-            <p text-wrap>Lorem Ipsum is simply dummy text of the printing
-                and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-    </ion-item>
-  </ion-list>
+   <!-- list of other entries -->
+   <!-- <div *ngFor="let entry of entries">
+        <p>{{ entry }}</p>
+   </div> -->
 
-    <div id="popup1" class="overlay">
+   <div *ngFor="let entry of entries">
+        <ion-list>
+                <ion-item>
+                    <div class="otherEntries">
+                         <!-- User Uploaded photo -->
+                         <div class="userUploadedPhoto" (click)="showImageFull()">
+                            <img [src]="imageSource" alt="">
+                        </div>
+                         <!-- User Entry date  -->
+                         <h1 class="userEntryDate">{{ entry.entry_date | date: 'dd'  }}<br>
+                            May </h1>
+                    </div> 
+                 </ion-item>
+                    <ion-item>
+                        <div class="userEntryHeading">
+                            <strong><h1>{{ entry.entry_title }}</h1></strong>
+                        </div>
+                        <div class="userEntryText">
+                            <p text-wrap>{{ entry.entry_description }}</p>
+                        </div>
+                 </ion-item>
+              </ion-list> 
+    </div>
+ 
+
+    <!-- <div id="popup1" class="overlay">
         <div class="popup">
             <h2>Here i am</h2>
             <a class="close" href="#">&times;</a>
@@ -47,7 +51,7 @@
                 Thank to pop me out of that button, but now i'm done so you can close this window.
             </div>
         </div>
-    </div>
+    </div> -->
 </ion-content>
 <ion-footer>
     <!-- Implementing Home footer component -->

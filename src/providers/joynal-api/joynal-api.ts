@@ -25,12 +25,11 @@ export class JoynalApiProvider {
   checkingUserIfExists(userEmail){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/check-user', {userEmail : userEmail})
   }
-  creatingEntriesofUser(userId,entries){
-    return this.httpClient.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, { entries : entries  })
+  creatingEntriesofUser(userId,headers,entries){
+    const options = new RequestOptions({headers: headers});
+    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, { entries : entries  },options).map(res => res.json());
   }
   getListofEntriesOfUser(headers,userId){
-    console.log(userId);
-    console.log(headers);
     const options = new RequestOptions({headers: headers});
   return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, options).map(res => res.json());
   }
@@ -53,5 +52,16 @@ export class JoynalApiProvider {
   // creatingEntriesTest(userId,entries){
   //   return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/app/test-post/${userId}`, { entries : entries  })
   // }
+
+  getRandomUserPosts(headers , userId){
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/randomentry`, options).map(res => res.json());
+  } 
+
+  getUserAchievement(headers,userId){
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/achievement`, options).map(res => res.json());
+  }
+
 
 }

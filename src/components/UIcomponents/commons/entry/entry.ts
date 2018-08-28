@@ -5,6 +5,7 @@ import { AlertController, NavController } from 'ionic-angular';
 import { entry } from "../../../../models/entries";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from '@angular/common/http';
+import { Camera,CameraOptions } from "@ionic-native/camera";
 import moment from 'moment';
 @Component({
   selector: 'entry',
@@ -19,15 +20,19 @@ export class EntryComponent {
   date : any;
   mainEntry = [];
   entries = [];
+  base64Image : any;
+
   entry = {} as entry;
   title : any;
+  achievements : any;
   description : any;
-  constructor(private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
+  constructor(private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
     console.log('Hello EntryComponent Component');
     this.text = 'Hello World';
-  
+    this.date =  moment().format('Do MMMM YYYY');
   }
   didYouKnowAchievement(){
+    this.openCamera()
        this.entries.push(
          {
         title:this.title,
@@ -37,36 +42,84 @@ export class EntryComponent {
         city:"England",
         longitude:"England",
         latitude:"England",
-        entryImageUrl:"England",
-        entryImageType:"England",
+        entryImageUrl: "ashdg.jpg",
+        entryImageType:"jpg",
          }
        );
     console.log("entries>"+this.entries);
+    this.storage.ready().then(() => {
   this.storage.get('session.userId').then(res => {
+    this.storage.get('session.accessToken').then(accessToken => {
+   
+    var headers = {
+      user_id : res.toString(),
+      access_token: accessToken 
+    }
     console.log(res)
-   // console.log(this.entries);
-    
-    // is.mainEntry
-   this.joynalApi.creatingEntriesofUser(res,this.entries).subscribe(success => {
+   this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
     console.log(success);
-    this.navCtrl.push('AddEntryPage').then(() => {
-      let alert = this.alertCtrl.create({
-        title: '<h1 text-center>Did you know</h1>',
-        subTitle: '<p text-wrap text-center>Quote about user entry appears here</p>',
-        buttons: ['Dismiss']
-      }); 
-      alert.present();
-    })
+    if(success.data.achievements){
+      this.achievements = success.data.achievements;
+      console.log(this.achievements);
+      this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Did you know</h1>',
+          subTitle: success.data.post,
+          buttons: ['Dismiss']
+        }); 
+        alert.present();
+      })
+    }else{
+      this.navCtrl.push('AddEntryPage').then(() => {
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Did you know</h1>',
+          subTitle: success.data.post,
+          buttons: ['Dismiss']
+        }); 
+        alert.present();
+      })
+    }
+  
    })
-
+  })
 
 
 
   })
   
    
+})
+
+
+
   }
 
+
+  openCamera(){
+    console.log('openCamera');
+    // Camera options		
+    const options: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+  targetWidth: 150,
+  targetHeight: 100,
+  saveToPhotoAlbum: false,
+  allowEdit : false
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        this.base64Image = 'data:image/jpeg;base64,' + imageData;
+        // this.imageUpload = true;
+        console.log(this.base64Image)
+      }, (err) => {
+        // Handle error
+        console.log(err);
+      });
+  }
 
   getLocation(){
     // getting location using ionic capacitor
@@ -75,10 +128,6 @@ export class EntryComponent {
     // Action Sheet
   }
   againAddEntry(){
-    // for(let i = 0 ; i > this.entries.length; i++){
-      
-    // }
-  
     this.entries.push(
     {
      title:this.title,
@@ -91,12 +140,6 @@ export class EntryComponent {
      entryImageUrl:"England",
      entryImageType:"England",
     });
-    // this.storage.get('session.userId').then(res => {
-    //   this.joynalApi.creatingEntriesofUser(res,this.entries).subscribe(data => {
-
-    //   })
-    // });
-  
     this.description = '';
     this.title = '';
     console.log(this.entries);
@@ -104,7 +147,8 @@ export class EntryComponent {
   }
 
   ionViewCanEnter(){
-   this.date =  moment().format('Do MMMM YYYY');
+   this.date = moment().format('Do MMMM YYYY');
+   console.log(this.date);
   }
 
 }

@@ -12,12 +12,12 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TwitterConnect } from '@ionic-native/twitter-connect';
-
+import { Camera } from "@ionic-native/camera";
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CameraMock } from "./camera.mock";
 
 
 
@@ -50,7 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Geolocation,
     TwitterConnect,
     IonicImageViewerModule,
-    
+    { provide: Camera, useClass: CameraMock },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider
   ]

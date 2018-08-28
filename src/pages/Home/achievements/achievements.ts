@@ -9,14 +9,43 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AchievementsPage{
   trophyColor;
+  achievements : any;
   shareValue : string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer2) {
+    this.achievements = this.navParams.data;
+    console.log(this.achievements);
     // this.trophyColor = "'width.px':170,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3";
     //this.test = this.element.nativeElement.getElementsByClassName("st0");
     // console.log(this.test);
     // this.renderer.setElementStyle(this.test, 'fill', '#ff0000');
     //this.renderer.setStyle(this.test, 'webkitTransition', 'margin-top 500ms');
-    this.trophyColor = '#01AEF0';
+    if(this.achievements.combo.name == "Bronze Combo"){
+      console.log('Bronze Combo');
+      this.trophyColor = '#B47237';
+    }else if(this.achievements.name == "Bronze Streak"){
+      this.trophyColor = '#01AEF0';
+    }else if(this.achievements.name == "Silver Streak"){
+      this.trophyColor = '#01AEF0';
+    }else if(this.achievements.name == "Welcome Back"){
+      this.trophyColor = '#01AEF0';
+    }else if(this.achievements.name == "Just in Time"){
+      this.trophyColor = '#01AEF0';
+    }else if(this.achievements.name == "Thanks for Sharing!"){
+      this.trophyColor = '#01AEF0';
+    }else if(this.achievements.name == "Thanks for your Feedback!"){
+      this.trophyColor = '#01AEF0';
+    }else if(this.achievements.combo.name == "Silver Combo"){
+      console.log('Silver');
+      this.trophyColor = '#C0C0C0';
+    }else if(this.achievements.combo.name == "Gold Combo"){
+      console.log('Gold');
+      this.trophyColor = '#FED700';
+    }else if(this.achievements.name == "Gold Streak"){
+      this.trophyColor = '#01AEF0';
+    }else{
+      console.log('dafa ho !');
+    }
+    // this.trophyColor = '#01AEF0';
     // (this.test.querySelector("st0") as HTMLElement).style.top = '150px';
     //this.test.style = "fill:blue";
     //this.test = this.element.nativeElement.getElementsByTagName('path');

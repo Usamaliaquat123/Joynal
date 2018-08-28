@@ -19,18 +19,18 @@
       <ion-list>
           <div text-center class="recentEntryDateHeader">
             <p>{{ entrie.date }}</p>
-            <ion-badge class="recentEntries-counter">{{entrie.entries.length}}</ion-badge>
+            <ion-badge *ngIf="entrie.streak_number != 0" class="recentEntries-counter">{{entrie.streak_number}}</ion-badge>
           </div>
-          <div *ngFor="let entry of entrie.entries">
+          <div *ngFor="let entry of entrie.entries let i = index">
               <ion-item class="recentEntries">
                   <ion-label>
-                     <strong><h2>{{ entry.entry_title }}</h2></strong>
+                     <strong><h2>{{ entry.entry_title }}</h2></strong><br>
                     <p class="recentEntries-innertext" text-wrap>{{ entry.entry_description }}</p> 
                   </ion-label>
                   <ion-avatar item-end>
                      <div class="recentEntries-emoji">
                       <img class="recentEntries-emoji-extra" src="../../../assets/imgs/icons/smile-emoji-recent-entries.png" alt="">
-                      <ion-badge class="recentEntries-counter-emoji">02</ion-badge>
+                      <ion-badge class="recentEntries-counter-emoji">{{ i + 1 }}</ion-badge>
                     </div>
                   </ion-avatar>
                 </ion-item>
