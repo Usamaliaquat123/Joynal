@@ -1,5 +1,6 @@
+
 import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api';
-import { Component} from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
 import { entry } from "../../../../models/entries";
 import { Storage } from "@ionic/storage";
@@ -11,6 +12,8 @@ import moment from 'moment';
   providers : [JoynalApiProvider]
 })
 export class EntryComponent {
+  // output event
+  @Output() getEntries = new EventEmitter();
   userId : any;
   text: string;
   date : any;
@@ -19,7 +22,7 @@ export class EntryComponent {
   entry = {} as entry;
   title : any;
   description : any;
-  constructor( private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
+  constructor(private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
     console.log('Hello EntryComponent Component');
     this.text = 'Hello World';
   
@@ -72,10 +75,12 @@ export class EntryComponent {
     // Action Sheet
   }
   againAddEntry(){
-    // Save to backend and agin add entry
+    // for(let i = 0 ; i > this.entries.length; i++){
+      
+    // }
   
     this.entries.push(
-      {
+    {
      title:this.title,
      description:this.description,
      state:"England",
@@ -85,17 +90,20 @@ export class EntryComponent {
      latitude:"England",
      entryImageUrl:"England",
      entryImageType:"England",
-      }
-    );
-    this.storage.get('session.userId').then(res => {
-      this.joynalApi.creatingEntriesofUser(res,this.entries).subscribe(data => {
-
-      })
     });
+    // this.storage.get('session.userId').then(res => {
+    //   this.joynalApi.creatingEntriesofUser(res,this.entries).subscribe(data => {
 
+    //   })
+    // });
+  
+    this.description = '';
+    this.title = '';
+    console.log(this.entries);
+    this.getEntries.emit(this.entries);
   }
 
-  ionViewWillEnter(){
+  ionViewCanEnter(){
    this.date =  moment().format('Do MMMM YYYY');
   }
 

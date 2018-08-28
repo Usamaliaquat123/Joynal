@@ -50,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Geolocation,
     TwitterConnect,
     IonicImageViewerModule,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider
   ]

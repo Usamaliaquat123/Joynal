@@ -70,12 +70,13 @@ export class LoginPage {
               this.storage.set('session.userId',this.data.data.userId);
               this.storage.set('session.isNotificationAllowed',this.data.data.isNotificationAllowed);
               this.storage.set('session.isEntryVisible',this.data.data.isEntryVisible);
+              this.storage.set('session.reminderTime',this.data.data.reminderTime);
               console.log('Saving to local');
         
 
-             this.navCtrl.push('HomeScreenPage');
+             this.navCtrl.setRoot('HomeScreenPage');
           }else{
-            this.navCtrl.push('HomeScreenPage');
+            this.navCtrl.setRoot('HomeScreenPage');
           }
             // console.log(data);
             // console.log(data.json());
@@ -104,12 +105,12 @@ export class LoginPage {
   
     firebase.auth().onAuthStateChanged(socialUser => {
       if(socialUser) {
-        this.navCtrl.push('HomeScreenPage');
+        this.navCtrl.setRoot('HomeScreenPage');
       } else {
         this.storage.ready().then(() => {
           this.storage.get('session.accessToken').then(data => {
             if(data !==  '' && data !== null){
-              this.navCtrl.push('HomeScreenPage');
+              this.navCtrl.setRoot('HomeScreenPage');
             }
           })
         })

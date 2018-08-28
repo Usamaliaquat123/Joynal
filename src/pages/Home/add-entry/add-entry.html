@@ -7,7 +7,7 @@
 
 
 <ion-content>
-  <div text-center class="currentDateHeader">13th Aug 2018</div>
+  <div text-center class="currentDateHeader">{{ this.date }}</div>
   <!-- Create entry -->
   <div class="newEntry" text-center (click)="addNewEntry()">
       <p><img width="50" height="50" src="../../../assets/imgs/icons/calenderAdd.png" alt=""><br>
@@ -19,7 +19,7 @@
       <ion-list>
           <div text-center class="recentEntryDateHeader">
             <p>{{ entrie.date }}</p>
-            <ion-badge class="recentEntries-counter">02</ion-badge>
+            <ion-badge class="recentEntries-counter">{{entrie.entries.length}}</ion-badge>
           </div>
           <div *ngFor="let entry of entrie.entries">
               <ion-item class="recentEntries">

@@ -6,11 +6,12 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content >
   <ion-item>
     <ion-label>
-      John Doe<br>
-      <ion-label>
+      {{ this.userName }}     
+      <br>
+      <ion-label (click)="editName()">
           <ion-icon name="ios-create-outline" item-start></ion-icon>
           <p>Edit name</p>
       </ion-label> 
@@ -19,7 +20,7 @@
   <ion-item>
     <ion-label>
       .......<br>
-      <ion-label>
+      <ion-label (click)="editPass()">
           <ion-icon name="ios-create-outline" item-start></ion-icon>
           <p>Edit password</p>
       </ion-label> 
@@ -28,8 +29,8 @@
   <ion-item>
     <ion-label>
       Reminder Time <br>
-      <h1 style="margin-top: 10px;">09:30</h1>
-      <ion-label>
+      <h1 style="margin-top: 10px;"><ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="reminderTime" (ionChange)="changeDate()"></ion-datetime></h1>
+      <ion-label (click)="editTime()">
           <ion-icon name="ios-create-outline" item-start></ion-icon>
           <p>Edit</p>
       </ion-label> 

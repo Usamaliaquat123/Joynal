@@ -26,7 +26,6 @@ export class JoynalApiProvider {
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/check-user', {userEmail : userEmail})
   }
   creatingEntriesofUser(userId,entries){
-    
     return this.httpClient.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, { entries : entries  })
   }
   getListofEntriesOfUser(headers,userId){
@@ -34,24 +33,25 @@ export class JoynalApiProvider {
     console.log(headers);
     const options = new RequestOptions({headers: headers});
   return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, options).map(res => res.json());
-
-
-    
   }
-  updateUserSettings(userId, reminderTime , isEntryVisible, isNotificationAllowed){
-    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}/updatesettings`,{reminderTime : reminderTime, isEntryVisible: isEntryVisible, isNotificationAllowed: isNotificationAllowed}) 
+  updateUserSettings(headers,userId, reminderTime , isEntryVisible, isNotificationAllowed){
+    const options = new RequestOptions({headers: headers});
+    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}/updatesettings`,{reminderTime : reminderTime, isEntryVisible: isEntryVisible, isNotificationAllowed: isNotificationAllowed},options); 
   }
-  updateUserInformation(userId,userName){
-    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}`, { userName : userName });
+  updateUserName(userId,userName,headers){
+    const options = new RequestOptions({headers: headers});
+    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}`, { userName : userName }, options);
   }
-  userChangingPassword(userPassword, newPassword){
-    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/change-password `, { userPassword: userPassword , newPassword : newPassword})
+  userChangingPassword(headers,userPassword, newPassword){
+    const options = new RequestOptions({headers: headers});
+    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/change-password `, { userPassword: userPassword , newPassword : newPassword},options)
   }
-  getUsersInformation(userId){
-    return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}`)
+  getUsersInformation(headers,userId){
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}`, options).map(res => res.json());
   }
-  creatingEntriesTest(userId,entries){
-    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/app/test-post/${userId}`, { entries : entries  })
-  }
+  // creatingEntriesTest(userId,entries){
+  //   return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/app/test-post/${userId}`, { entries : entries  })
+  // }
 
 }

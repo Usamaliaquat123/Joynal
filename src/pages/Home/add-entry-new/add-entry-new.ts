@@ -10,6 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   providers : [JoynalApiProvider]
 })
 export class AddEntryNewPage {
+  entries = [];
   public imageSource : string;
   constructor(private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams) {
     this.imageSource = "../../../assets/imgs/icons/camera-picture-dummy.jpg";
@@ -25,6 +26,11 @@ export class AddEntryNewPage {
   }
   ionViewWillEnter(){
       
+  }
+
+  isEntryChange(entries){
+    console.log(entries);
+    this.entries = entries;
   }
 
 }

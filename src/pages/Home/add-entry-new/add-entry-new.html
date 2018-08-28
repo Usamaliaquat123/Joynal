@@ -4,40 +4,43 @@
     <ion-title>Add Entry</ion-title>
     <cloud></cloud>
   </ion-navbar>
-  <entry></entry>
+  <entry (getEntries)="isEntryChange($event)"></entry>
 </ion-header>
 
 <ion-content hide-header [header]="head">
     <!-- Random Entries -->
-    <ion-list>
-      <ion-item>
-          <div class="otherEntries">
-            <!-- User Uploaded photo -->
-            <div class="userUploadedPhoto" (click)="showImageFull()">
-                <img src="../../../assets/imgs/icons/camera-picture-dummy.jpg" alt="">
-            </div>
-            <!-- User Entry date -->
-            <h1 class="userEntryDate"> 29 <br>
-                May </h1>
-            <span class="userEntryLocation"> 
-                <ion-icon name="ios-pin"></ion-icon>
-                <h3>Karachi</h3>
-            </span>
-          </div>
-      </ion-item>
-      <ion-item>
-          <div class="userEntryHeading">
-              <strong><h1>Your Heading Goes Here</h1></strong>
-          </div>
-          <div class="userEntryText">
-              <p text-wrap>Lorem Ipsum is simply dummy text of the printing
-                  and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                  when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-          </div>
-      </ion-item>
-    </ion-list>
+    <div *ngIf="this.entries"> 
+        <ion-list>
+            <ion-item>
+                <div class="otherEntries">
+                  <!-- User Uploaded photo -->
+                  <div class="userUploadedPhoto" (click)="showImageFull()">
+                      <img src="../../../assets/imgs/icons/camera-picture-dummy.jpg" alt="">
+                  </div>
+                  <!-- User Entry date -->
+                  <h1 class="userEntryDate"> 29 <br>
+                      May </h1>
+                  <span class="userEntryLocation"> 
+                      <ion-icon name="ios-pin"></ion-icon>
+                      <h3>Karachi</h3>
+                  </span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="userEntryHeading">
+                    <strong><h1>Your Heading Goes Here</h1></strong>
+                </div>
+                <div class="userEntryText">
+                    <p text-wrap>Lorem Ipsum is simply dummy text of the printing
+                        and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                      </p>
+                </div>
+            </ion-item>
+          </ion-list>
+    </div>
+   
     <ion-list>
         <ion-item>
             <div class="otherEntries">

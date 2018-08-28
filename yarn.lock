@@ -236,6 +236,10 @@
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.7.tgz#0495fd7294348d9887abb182aa27432cb8936488"
 
+"@ionic-native/app-version@^4.12.0":
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-4.12.0.tgz#0a97a18dbac8ba23b469149c9d09eb44031f3cea"
+
 "@ionic-native/camera@^4.12.0":
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-4.12.0.tgz#d8ada1c217dac440249a82c0f892c3416ba3f91f"
@@ -1253,6 +1257,10 @@ cordova-instagram-plugin@^0.5.7:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/cordova-instagram-plugin/-/cordova-instagram-plugin-0.5.7.tgz#8584c6b02e235fd4d9bc26dbd9d5057127bbb9fa"
 
+cordova-plugin-app-version@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
+
 cordova-plugin-camera@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.0.3.tgz#7373a5938318c86ccfd84e3713e2382d10fe076b"
@@ -1277,9 +1285,9 @@ cordova-plugin-ionic-keyboard@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-keyboard/-/cordova-plugin-ionic-keyboard-2.1.2.tgz#6d91bac2b5aba578dcccfd63e61b0960c33f9e4a"
 
-cordova-plugin-ionic-webview@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-2.0.2.tgz#c46b0a7b7295efe4c3d7620f44c3a297b77bab5f"
+cordova-plugin-ionic-webview@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-2.1.0.tgz#0e3469472dc6115a84f064eceb0f28f56bb1496a"
 
 cordova-plugin-splashscreen@^5.0.2:
   version "5.0.2"
@@ -1297,9 +1305,9 @@ cordova-sqlite-storage-dependencies@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cordova-sqlite-storage-dependencies/-/cordova-sqlite-storage-dependencies-1.2.0.tgz#2eb6b2fb84e813306b44639ac804a5c63bed7bcb"
 
-cordova-sqlite-storage@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/cordova-sqlite-storage/-/cordova-sqlite-storage-2.3.3.tgz#6efa8450291a0387df4d31c72313836f563f9d45"
+cordova-sqlite-storage@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/cordova-sqlite-storage/-/cordova-sqlite-storage-2.4.0.tgz#904f6bc3a6236fd802ac055c9418ae07b34020a2"
   dependencies:
     cordova-sqlite-storage-dependencies "1.2.0"
 
