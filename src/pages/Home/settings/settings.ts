@@ -46,10 +46,7 @@ export class SettingsPage {
                     user_id : userid.toString(),
                     access_token: access_Token }
                   this.joynalApi.updateUserName(userid,data.userName,headers).subscribe(response => {
-                    this.navCtrl.push('SettingsPage').then(() => {
-                      const index = this.navCtrl.getActive().index;
-                      this.navCtrl.remove(0,index);
-                    })
+                    this.ionViewDidLoad();
                   })
                   
                 })
@@ -86,10 +83,7 @@ export class SettingsPage {
                       user_id : userid.toString(),
                       access_token: access_Token }
                     this.joynalApi.userChangingPassword(headers,userPassw,data.userPass).subscribe(response => {
-                       this.navCtrl.push('SettingsPage').then(() => {
-                         const index = this.navCtrl.getActive().index;
-                         this.navCtrl.remove(0,index);
-                       })
+                      this.ionViewDidLoad();
                    })
                   })
                 })

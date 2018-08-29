@@ -8,10 +8,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Toast } from '@ionic-native/toast';
 
 
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { Camera } from "@ionic-native/camera";
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
@@ -48,10 +48,11 @@ import { CameraMock } from "./camera.mock";
     SplashScreen,
     Geolocation,
   { provide: Camera, useClass: CameraMock },
-  Camera,
+     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider,
-    SocialSharing
+    SocialSharing,
+    Toast
   ]
 })
 export class AppModule {}

@@ -14,13 +14,13 @@ export class AchievementsSharePage {
     this.shareValue = this.navParams.get('shareValue');
     console.log(this.shareValue);
     if(this.shareValue == "fb"){
-      this.shareIcon = "../../../assets/icon/fbshare.svg";
+      this.shareIcon = "./assets/icon/fbshare.svg";
     }
     else if(this.shareValue == "insta"){
-      this.shareIcon = "../../../assets/icon/instashare.svg";
+      this.shareIcon = "./assets/icon/instashare.svg";
     }
     else{
-      this.shareIcon = "../../../assets/icon/twittershare.svg";
+      this.shareIcon = "./assets/icon/twittershare.svg";
     }
   }
 

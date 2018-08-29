@@ -31,7 +31,6 @@ export class EntryComponent {
     this.date =  moment().format('Do MMMM YYYY');
   }
   didYouKnowAchievement(){
-    this.openCamera()
        this.entries.push(
          {
         title:this.title,
@@ -67,6 +66,7 @@ export class EntryComponent {
           buttons: ['Dismiss']
         }); 
         alert.present();
+        this.entries = [];
       })
     }else{
       this.navCtrl.push('AddEntryPage').then(() => {
@@ -76,8 +76,13 @@ export class EntryComponent {
           buttons: ['Dismiss']
         }); 
         alert.present();
+        this.entries = [];
       })
     }
+    
+   },err => {
+     console.log(err),
+     this.entries = [];
    })
   })
   })
@@ -113,23 +118,44 @@ export class EntryComponent {
   }
   // Create an array of entries 
 againAddEntry(){
+  // Checking if user uploaded an image 
+  if(this.base64Image == null || this.base64Image == undefined){
     this.entries.push(
-    {
-     title:this.title,
-     description:this.description,
-     state:"England",
-     country: "England",
-     city:"England",
-     longitude:"England",
-     latitude:"England",
-     entryImageUrl:"England",
-     entryImageType:"England",
-    });
-    this.description = '';
-    this.title = '';
-    
+      {
+       title:this.title,
+       description:this.description,
+       state:"England",
+       country: "England",
+       city:"England",
+       longitude:"England",
+       latitude:"England",
+       entryImageUrl: 'notUploadedByUser',
+       entryImageType:".jpg",
+      });
+      this.description = '';
+      this.title = '';
+      console.log(this.entries);
+      this.getEntries.emit(this.entries);
+  }else{
+    this.entries.push(
+      {
+       title:this.title,
+       description:this.description,
+       state:"England",
+       country: "England",
+       city:"England",
+       longitude:"England",
+       latitude:"England",
+       entryImageUrl: this.base64Image,
+       entryImageType:".jpg",
+      });
+      this.description = '';
+      this.title = '';
+      this.base64Image = ''
     console.log(this.entries);
     this.getEntries.emit(this.entries);
+  }
+  
   }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

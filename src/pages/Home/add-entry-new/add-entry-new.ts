@@ -14,21 +14,18 @@ export class AddEntryNewPage {
   date : any;
   public imageSource : string;
   constructor(private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams) {
-    this.imageSource = "../../../assets/imgs/icons/camera-picture-dummy.jpg";
+    this.imageSource = "./assets/imgs/icons/camera-picture-dummy.jpg";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddEntryNewPage');
-    console.log('asdasdasd');
   }
   showImageFull(){
     this.navCtrl.push("ImageviewerPage",{
       imageSource:this.imageSource
     });
   }
-  ionViewWillEnter(){
-   
-  }
+
 
   isEntryChange(entries){
     console.log(entries);

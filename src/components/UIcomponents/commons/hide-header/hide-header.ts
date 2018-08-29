@@ -18,13 +18,14 @@ export class HideHeaderDirective implements OnInit {
 
   ngOnInit(){
     this.headerHeight = this.header.clientHeight;
-    this.renderer.setElementStyle(this.header, 'webkitTransition', 'top 500ms');
+    this.renderer.setElementStyle(this.header, 'webkitTransition', 'top 700ms');
     this.scrollContent = this.element.nativeElement.getElementsByClassName("scroll-content")[0];
-    this.renderer.setElementStyle(this.scrollContent, 'webkitTransition', 'margin-top 500ms');
+    this.renderer.setElementStyle(this.scrollContent, 'webkitTransition', 'margin-top 700ms');
   }
 
   onContentScroll(event){
-    if(event.scrollTop > 50){
+
+    if(event.scrollTop > 90){
       this.renderer.setElementStyle(this.header, "top", "-450px")
       this.renderer.setElementStyle(this.scrollContent, "margin-top", "0px")
     } else {
