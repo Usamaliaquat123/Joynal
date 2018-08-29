@@ -1,12 +1,12 @@
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/Authentications/login/login";
 import firebase from 'firebase'
 import { firebaseKeys } from "../config/keys";
-import { Deeplinks } from "@ionic-native/deeplinks";
-// import { HomePage } from '../pages/home/home';
+
+
 @Component({
   templateUrl: 'app.html'
 })  

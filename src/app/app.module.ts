@@ -12,7 +12,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { Camera } from "@ionic-native/camera";
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
@@ -48,8 +47,8 @@ import { CameraMock } from "./camera.mock";
     // OauthCordova,
     SplashScreen,
     Geolocation,
-    TwitterConnect,
   { provide: Camera, useClass: CameraMock },
+  Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider,
     SocialSharing

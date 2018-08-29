@@ -1,7 +1,7 @@
 
 import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api';
 import { Component, Output, EventEmitter } from '@angular/core';
-import { AlertController, NavController } from 'ionic-angular';
+import { AlertController, NavController, ActionSheetController } from 'ionic-angular';
 import { entry } from "../../../../models/entries";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from '@angular/common/http';
@@ -21,14 +21,13 @@ export class EntryComponent {
   mainEntry = [];
   entries = [];
   base64Image : any;
-
+  imageUpload : boolean;
   entry = {} as entry;
   title : any;
   achievements : any;
   description : any;
-  constructor(private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
-    console.log('Hello EntryComponent Component');
-    this.text = 'Hello World';
+  constructor(private actionSheet : ActionSheetController,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
+    this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
   }
   didYouKnowAchievement(){
@@ -42,7 +41,7 @@ export class EntryComponent {
         city:"England",
         longitude:"England",
         latitude:"England",
-        entryImageUrl: "ashdg.jpg",
+        entryImageUrl: this.base64Image,
         entryImageType:"jpg",
          }
        );
@@ -53,7 +52,7 @@ export class EntryComponent {
    
     var headers = {
       user_id : res.toString(),
-      access_token: accessToken 
+      access_token: accessToken
     }
     console.log(res)
    this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
@@ -79,55 +78,41 @@ export class EntryComponent {
         alert.present();
       })
     }
-  
    })
   })
-
-
-
   })
-  
-   
 })
 
-
-
-  }
-
-
-  openCamera(){
-    console.log('openCamera');
-    // Camera options		
-    const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-  targetWidth: 150,
-  targetHeight: 100,
-  saveToPhotoAlbum: false,
-  allowEdit : false
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        this.base64Image = 'data:image/jpeg;base64,' + imageData;
-        // this.imageUpload = true;
-        console.log(this.base64Image)
-      }, (err) => {
-        // Handle error
-        console.log(err);
-      });
-  }
-
+}
   getLocation(){
     // getting location using ionic capacitor
   }
   addingImage(){
     // Action Sheet
+    let actionSheet = this.actionSheet.create({
+      title: 'SET PICTURE',
+      buttons: [
+        {
+          text: 'choose from albums',
+          handler: () => {
+            this.openGallery();
+          }
+        },
+        {
+          text: 'take a photo',
+          handler: () => {
+            this.openCamera();
+          }
+        },
+        {
+          text: 'cancel',
+          role: 'cancel'
+        }
+      ]});
+      actionSheet.present();
   }
-  againAddEntry(){
+  // Create an array of entries 
+againAddEntry(){
     this.entries.push(
     {
      title:this.title,
@@ -142,14 +127,56 @@ export class EntryComponent {
     });
     this.description = '';
     this.title = '';
+    
     console.log(this.entries);
     this.getEntries.emit(this.entries);
   }
 
-  ionViewCanEnter(){
-   this.date = moment().format('Do MMMM YYYY');
-   console.log(this.date);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                   C  A  M  E  R  A    S  E  T  U  P
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Gallery openGallery for image upload
+async openGallery(): Promise<any>{
+  const options: CameraOptions = {
+    quality: 50,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+		targetWidth: 150,
+		targetHeight: 100,
+		saveToPhotoAlbum: false,
+		allowEdit : false
   }
+  try{ this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
+}   
+// Camera openCamera for image upload
+async openCamera(): Promise<any>{
+  const options: CameraOptions = {
+    quality: 50,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+  try{ this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
+}
+
+
 
 }
 
