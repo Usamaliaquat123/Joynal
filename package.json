@@ -20,7 +20,6 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/app-version": "^4.12.0",
     "@ionic-native/camera": "^4.12.0",
     "@ionic-native/core": "~4.11.0",
     "@ionic-native/deeplinks": "^4.11.0",
@@ -37,7 +36,6 @@
     "com-sarriaroman-photoviewer": "^1.1.18",
     "cordova-android": "6.3.0",
     "cordova-instagram-plugin": "^0.5.7",
-    "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^2.3.0",
@@ -50,11 +48,10 @@
     "cordova-plugin-x-socialsharing": "^5.4.1",
     "cordova-sqlite-storage": "^2.4.0",
     "cordova-universal-clipboard": "git+https://github.com/Visigo/CordovaClipboard.git",
+    "es6-promise-plugin": "^4.2.2",
     "firebase": "4.12.1",
     "ionic-angular": "3.9.2",
-    "ionic-img-viewer": "^2.9.0",
     "ionic-plugin-deeplinks": "^1.0.17",
-    "ionic2-zoom-area": "^1.0.16",
     "ionicons": "3.0.0",
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
@@ -104,9 +101,7 @@
         "DEEPLINK_5_HOST": " "
       },
       "cordova-plugin-inappbrowser": {},
-      "com-sarriaroman-photoviewer": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-app-version": {},
       "cordova-plugin-x-socialsharing": {}
     },
     "platforms": [

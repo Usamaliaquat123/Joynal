@@ -236,10 +236,6 @@
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.7.tgz#0495fd7294348d9887abb182aa27432cb8936488"
 
-"@ionic-native/app-version@^4.12.0":
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-4.12.0.tgz#0a97a18dbac8ba23b469149c9d09eb44031f3cea"
-
 "@ionic-native/camera@^4.12.0":
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-4.12.0.tgz#d8ada1c217dac440249a82c0f892c3416ba3f91f"
@@ -1261,10 +1257,6 @@ cordova-instagram-plugin@^0.5.7:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/cordova-instagram-plugin/-/cordova-instagram-plugin-0.5.7.tgz#8584c6b02e235fd4d9bc26dbd9d5057127bbb9fa"
 
-cordova-plugin-app-version@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
-
 cordova-plugin-camera@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.0.3.tgz#7373a5938318c86ccfd84e3713e2382d10fe076b"
@@ -1647,6 +1639,10 @@ es6-map@^0.1.3:
     es6-set "~0.1.5"
     es6-symbol "~3.1.1"
     event-emitter "~0.3.5"
+
+es6-promise-plugin@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/es6-promise-plugin/-/es6-promise-plugin-4.2.2.tgz#cfa0cc1383d91f999a62a2bbf4bd97bec305e0ac"
 
 es6-set@~0.1.5:
   version "0.1.5"

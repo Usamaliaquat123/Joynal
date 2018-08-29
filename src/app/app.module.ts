@@ -7,7 +7,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
-import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 
@@ -32,7 +31,6 @@ import { CameraMock } from "./camera.mock";
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
-    IonicImageViewerModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
@@ -51,8 +49,7 @@ import { CameraMock } from "./camera.mock";
     SplashScreen,
     Geolocation,
     TwitterConnect,
-    IonicImageViewerModule,
-    { provide: Camera, useClass: CameraMock },
+  { provide: Camera, useClass: CameraMock },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider,
     SocialSharing

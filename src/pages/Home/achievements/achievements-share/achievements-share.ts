@@ -36,6 +36,9 @@ export class AchievementsSharePage {
     }
     else if(this.shareValue == "insta"){
       console.log("call insta share api here");
+      this.socialSharing.shareViaInstagram("This is instagram share test","http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg").then(res =>{
+        console.log("this is instagram share response "+res);
+      });
     }
     else{
       console.log("call twitter share api here");

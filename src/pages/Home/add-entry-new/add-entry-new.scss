@@ -118,4 +118,9 @@ page-add-entry-new {
         font-size: 1.8rem;
         font-weight: 700;
     }
+    @media (max-height: 522px) {
+        .footerResp {
+          visibility: hidden;
+        }
+    }
 }
