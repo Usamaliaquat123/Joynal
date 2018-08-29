@@ -1,7 +1,6 @@
 
 import { Component , Input , Output, EventEmitter} from '@angular/core';
-import { TwitterConnect } from "@ionic-native/twitter-connect";
-import { Facebook ,FacebookLoginResponse} from "@ionic-native/facebook";
+
 import firebase from "firebase";
 import { Storage } from '@ionic/storage';
 import { user } from "../../../../models/users";
@@ -24,7 +23,7 @@ export class FooterComponent {
  @Input() authInstagram : any;
  
  user = {} as user;
-  constructor(public storage : Storage ,public twitter : TwitterConnect ,public fb : Facebook ) {
+  constructor(public storage : Storage ) {
   }
 
 
@@ -48,7 +47,7 @@ export class FooterComponent {
     // todo : Requesting for twiter developer account the application is under reviewing
     // Twitter Authentication
     twiterAuth(){
-      this.twitter.login();
+     
     }
     // todo : Implementing instagram authentication tomorrow
     // Instagram Authentication

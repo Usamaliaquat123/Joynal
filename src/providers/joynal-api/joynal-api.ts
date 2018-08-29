@@ -49,15 +49,10 @@ export class JoynalApiProvider {
     const options = new RequestOptions({headers: headers});
     return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}`, options).map(res => res.json());
   }
-  // creatingEntriesTest(userId,entries){
-  //   return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/app/test-post/${userId}`, { entries : entries  })
-  // }
-
   getRandomUserPosts(headers , userId){
     const options = new RequestOptions({headers: headers});
     return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/randomentry`, options).map(res => res.json());
   } 
-
   getUserAchievement(headers,userId){
     const options = new RequestOptions({headers: headers});
     return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/achievement`, options).map(res => res.json());

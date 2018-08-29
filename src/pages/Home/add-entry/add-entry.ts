@@ -42,8 +42,8 @@ export class AddEntryPage {
         console.log(userId);
         console.log(accessToken);
         this.joynalApi.getListofEntriesOfUser(headers,userId).subscribe(entries => {
-         this.entriesz  = entries.data;
-          console.log(entries);
+        //  this.entriesz  = entries.data;
+        //   console.log(entries);
         })
       })
     })
