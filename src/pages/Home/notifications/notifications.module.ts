@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { NotificationsPage } from './notifications';
 import { ComponentsModule } from './../../../components/components.module';
 
+
 @NgModule({
   declarations: [
     NotificationsPage,

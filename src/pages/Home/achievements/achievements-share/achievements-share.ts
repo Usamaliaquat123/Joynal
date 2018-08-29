@@ -14,13 +14,13 @@ export class AchievementsSharePage {
     this.shareValue = this.navParams.get('shareValue');
     console.log(this.shareValue);
     if(this.shareValue == "fb"){
-      this.shareIcon = "../../../assets/icon/fbshare.svg";
+      this.shareIcon = "./assets/icon/fbshare.svg";
     }
     else if(this.shareValue == "insta"){
-      this.shareIcon = "../../../assets/icon/instashare.svg";
+      this.shareIcon = "./assets/icon/instashare.svg";
     }
     else{
-      this.shareIcon = "../../../assets/icon/twittershare.svg";
+      this.shareIcon = "./assets/icon/twittershare.svg";
     }
   }
 
@@ -36,6 +36,9 @@ export class AchievementsSharePage {
     }
     else if(this.shareValue == "insta"){
       console.log("call insta share api here");
+      this.socialSharing.shareViaInstagram("This is instagram share test","http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg").then(res =>{
+        console.log("this is instagram share response "+res);
+      });
     }
     else{
       console.log("call twitter share api here");

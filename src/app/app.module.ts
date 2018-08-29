@@ -1,18 +1,17 @@
-
+import { Geolocation } from "@ionic-native/geolocation";
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
-// import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Toast } from '@ionic-native/toast';
 
 
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { Camera } from "@ionic-native/camera";
 import { JoynalApiProvider } from '../providers/joynal-api/joynal-api';
 import { HttpModule } from "@angular/http";
@@ -31,7 +30,6 @@ import { CameraMock } from "./camera.mock";
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
- 
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
@@ -44,16 +42,16 @@ import { CameraMock } from "./camera.mock";
   ],
   providers: [
     StatusBar,
-   
+    Facebook,
     //  Instagram,
     // OauthCordova,
     SplashScreen,
-  
-    // IonicImageViewerModule,
-    { provide: Camera, useClass: CameraMock },
+    Geolocation,
+  { provide: Camera, useClass: CameraMock },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider,
-    SocialSharing
+    SocialSharing,
+    Toast
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
+import { Toast } from '@ionic-native/toast';
 @IonicPage()
 @Component({
   selector: 'page-notifications',
@@ -11,7 +12,7 @@ import { Storage } from "@ionic/storage";
 export class NotificationsPage {
   public notificationToggle:boolean;
 
-  constructor(private joynalApi : JoynalApiProvider,private storage : Storage ,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private joynalApi : JoynalApiProvider,private storage : Storage ,public navCtrl: NavController, public navParams: NavParams,private toast: Toast) {
 
   }
 
@@ -28,6 +29,20 @@ export class NotificationsPage {
                 var headers = {user_id : userid.toString(),access_token: accessToken }
                 console.log(this.notificationToggle.toString());
                 this.joynalApi.updateUserSettings(headers,userid,reminderTime,isEntryVisible,this.notificationToggle.toString()).subscribe(resp => {
+                  if(this.notificationToggle.toString()=="true"){
+                    this.toast.show(`Notifications has been turned on`, '5000', 'bottom').subscribe(
+                      toast => {
+                        console.log(toast);
+                      }
+                    );
+                  }
+                  else{
+                    this.toast.show(`Notifications has been turned off`, '5000', 'bottom').subscribe(
+                      toast => {
+                        console.log(toast);
+                      }
+                    );
+                  }
                   console.log(resp);
                 })   
             })

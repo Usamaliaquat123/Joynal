@@ -81,9 +81,24 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
+        <variable name="APP_ID" value="309827406430552" />
+        <variable name="APP_NAME" value="Joynal" />
+    </plugin>
+    <plugin name="cordova-instagram-plugin" spec="^0.5.7" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
+    <plugin name="ionic-plugin-deeplinks" spec="^1.0.17">
+        <variable name="URL_SCHEME" value="joynal" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_HOST" value="5stardesigners.com" />
+        <variable name="ANDROID_PATH_PREFIX" value="/" />
+    </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
-    <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
+    <plugin name="cordova-plugin-x-toast" spec="^2.7.0" />
     <engine name="android" spec="7.0.0" />
 </widget>
