@@ -54,7 +54,10 @@
     "moment": "^2.22.2",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "cordova-plugin-facebook4": "^2.2.0",
+    "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-inappbrowser": "^3.0.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.0",
@@ -94,7 +97,11 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-x-toast": {}
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "309827406430552",
+        "APP_NAME": "Joynal"
+      }
     },
     "platforms": [
       "android"

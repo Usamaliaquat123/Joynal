@@ -12,31 +12,66 @@
     <div *ngIf="this.entries"> 
         <ion-list>
             <div *ngFor="let entry of entries">
-                    <ion-item>
-                            <div class="otherEntries">
-                              <!-- User Uploaded photo -->
-                              <div class="userUploadedPhoto" (click)="showImageFull()">
-                                  <img [src]="imageSource" alt="">
-                              </div>
-                              <!-- User Entry date -->
-                              <h1 class="userEntryDate">{{ entry.entry_date | date: 'dd'  }}</h1>
-                              <span class="userEntryLocation"> 
-                                  <ion-icon name="ios-pin"></ion-icon>
-                                  <h3>{{ entry.city }}</h3>
-                              </span>
-                            </div>
-                        </ion-item>
+                <div *ngFor="let singleEntry of entry">
                         <ion-item>
-                            <div class="userEntryHeading">
-                                <strong><h1>{{ entry.title }}</h1></strong>
-                            </div>
-                            <div class="userEntryText">
-                                <p text-wrap>{{ entry.description }}</p>
-                            </div>
-                        </ion-item>
-            </div>
+                                <div class="otherEntries">
+                                  <!-- User Uploaded photo -->
+                                  <div class="userUploadedPhoto" (click)="showImageFull()">
+                                      <img [src]="imageSource" alt="">
+                                  </div>
+                                  <!-- User Entry date -->
+                                  <h1 class="userEntryDate" text-center>{{ singleEntry.todayDate }} <br> {{ singleEntry.dateMonth}}</h1>
+                                  <span class="userEntryLocation"> 
+                                      <ion-icon name="ios-pin"></ion-icon>
+                                      <h3>{{ singleEntry.state }}</h3>
+                                  </span>
+                                </div>
+                            </ion-item>
+                            <ion-item>
+                                <div class="userEntryHeading">
+                                    <strong><h1>{{ singleEntry.titleStuck }}</h1></strong>
+                                </div>
+                                <div class="userEntryText">
+                                    <p text-wrap>{{ singleEntry.descriptionStuck }}</p>
+                                </div>
+                            </ion-item>
+                </div>
+                </div>
+                  
            
           </ion-list>
+    </div>
+    <div *ngIf="!this.entries">
+            <div *ngFor="let recent of recentEntery">
+                <div *ngFor="let recentEntries of recent.entries">
+                        <ion-list>
+                                <ion-item>
+                                    <div class="otherEntries">
+                                         <!-- User Uploaded photo -->
+                                         <div class="userUploadedPhoto" (click)="showImageFull()">
+                                            <img [src]="imageSource" alt="">
+                                        </div>
+                                         <!-- User Entry date  -->
+                                         <h1 class="userEntryDate">{{ recentEntries.date | date: 'dd'  }}<br>
+                                            May </h1>
+                                            <span class="userEntryLocation"> 
+                                                    <ion-icon name="ios-pin">{{ recentEntries.state }}</ion-icon>
+                                                    <h3></h3>
+                                                </span>
+                                    </div> 
+                                 </ion-item>
+                                    <ion-item>
+                                        <div class="userEntryHeading">
+                                            <strong><h1>{{ recentEntries.entry_description }}</h1></strong>
+                                        </div>
+                                        <div class="userEntryText">
+                                            <p text-wrap>{{ recentEntries.entry_title }}</p>
+                                        </div>
+                                 </ion-item>
+                              </ion-list> 
+                </div>
+                   
+        </div>
     </div>
 </ion-content>
 

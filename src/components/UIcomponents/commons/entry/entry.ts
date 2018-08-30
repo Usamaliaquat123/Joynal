@@ -26,6 +26,11 @@ export class EntryComponent {
   title : any;
   achievements : any;
   description : any;
+  singleEntry = [];
+  allEntry = [];
+  image : any;
+  descriptionStuck : any;
+  titleStuck : any;
   constructor(private actionSheet : ActionSheetController,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController ) {
     this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
@@ -120,6 +125,17 @@ export class EntryComponent {
 againAddEntry(){
   // Checking if user uploaded an image 
   if(this.base64Image == null || this.base64Image == undefined){
+ 
+    this.singleEntry.push(
+      {
+        descriptionStuck  : this.description,
+        titleStuck : this.title,
+        image : this.base64Image,
+        todayDate : moment().format('DD'),
+        dateMonth : moment().format('MMMM'),
+        state:"England",
+      }
+  )
     this.entries.push(
       {
        title:this.title,
@@ -132,11 +148,28 @@ againAddEntry(){
        entryImageUrl: 'notUploadedByUser',
        entryImageType:".jpg",
       });
+
       this.description = '';
       this.title = '';
       console.log(this.entries);
-      this.getEntries.emit(this.entries);
+      this.allEntry.push(
+        // this.entries,
+        this.singleEntry
+      )
+      this.getEntries.emit(this.allEntry);
+      this.singleEntry = [];
+       this.allEntry = [];
   }else{
+    this.singleEntry.push(
+      {
+        descriptionStuck  : this.description,
+        titleStuck : this.title,
+        image : this.base64Image,
+        todayDate : moment().format('DD'),
+        dateMonth : moment().format('MMMM'),
+        state:"England",
+      }
+  )
     this.entries.push(
       {
        title:this.title,
@@ -153,7 +186,13 @@ againAddEntry(){
       this.title = '';
       this.base64Image = ''
     console.log(this.entries);
-    this.getEntries.emit(this.entries);
+    this.allEntry.push(
+      // this.entries,
+      this.singleEntry
+    )
+    this.getEntries.emit(this.allEntry);
+    this.singleEntry = [];
+    this.allEntry = [];
   }
   
   }
