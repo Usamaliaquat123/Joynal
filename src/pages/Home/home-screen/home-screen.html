@@ -1,16 +1,16 @@
 <ion-header text-center>
+    <!-- some clouds -->
+    <cloud></cloud>
     <ion-navbar>
         <!-- Header -->
         <img width="250" height="150" src="./assets/imgs/icons/joynal-logo.png" alt="">
     </ion-navbar>
-    <!-- some clouds -->
-    <cloud></cloud>
 </ion-header>
 
 <ion-content>
   <!-- Create entry -->
-  <div class="newEntry" text-center>
-      <p style="margin-top: -8px;" (click)="addEntry()"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
+  <div class="newEntry" text-center (click)="addEntry()">
+      <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
       Add new entry</p>
   </div>
    <!-- list of other entries -->
@@ -24,11 +24,11 @@
                     <div class="otherEntries">
                          <!-- User Uploaded photo -->
                          <div class="userUploadedPhoto" (click)="showImageFull()">
-                            <img [src]="imageSource" alt="">
+                            <img [src]="entry.entry_image_url" alt="">
                         </div>
                          <!-- User Entry date  -->
-                         <h1 class="userEntryDate">{{ entry.entry_date | date: 'dd'  }}<br>
-                            May </h1>
+                         <h1 class="userEntryDate" text-center>{{ entry.entry_date | date: 'dd'  }}<br>
+                            {{ entry.entry_date | date: 'MMMM'  }} </h1>
                     </div> 
                  </ion-item>
                     <ion-item>

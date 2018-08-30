@@ -2,7 +2,7 @@
 import { Storage } from '@ionic/storage';
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { entry } from '../../../models/entries';
 import moment from 'moment';
 import 'rxjs/add/operator/map';
@@ -16,7 +16,7 @@ export class AddEntryPage {
   date : any;
   entriesz = [];
   entrix = [];
-  constructor(private storage: Storage ,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private  loadCtrl: LoadingController,private storage: Storage ,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -31,6 +31,10 @@ export class AddEntryPage {
   ionViewCanEnter(){
     this.date =  moment().format('Do MMMM YYYY');
     console.log(this.date);
+    let loading = this.loadCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.storage.ready().then(() => {
       this.storage.get('session.userId').then(userId => {
         this.storage.get('session.accessToken').then(accessToken => {
@@ -42,6 +46,7 @@ export class AddEntryPage {
         console.log(userId);
         console.log(accessToken);
         this.joynalApi.getListofEntriesOfUser(headers,userId).subscribe(entries => {
+          loading.dismiss();
          this.entriesz  = entries.data;
           console.log(entries);
         })

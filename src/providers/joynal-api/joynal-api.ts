@@ -31,7 +31,7 @@ export class JoynalApiProvider {
   }
   getListofEntriesOfUser(headers,userId){
     const options = new RequestOptions({headers: headers});
-  return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, options).map(res => res.json());
+  return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`,options).map(res => res.json());
   }
   updateUserSettings(headers,userId, reminderTime , isEntryVisible, isNotificationAllowed){
     const options = new RequestOptions({headers: headers});

@@ -1,4 +1,7 @@
 page-signup {
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
   ion-grid.login-page {
       margin-top: 3vh;
     }

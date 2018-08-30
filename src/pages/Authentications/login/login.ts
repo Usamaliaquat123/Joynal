@@ -5,6 +5,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 import  firebase from "firebase";
+import { Toast } from '@ionic-native/toast';
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -25,7 +27,7 @@ export class LoginPage {
   passwordShown : boolean = false;
   response : boolean;
   responseText : any;
-  constructor(public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast) {
    
       this.response = false;
       // Implementing form validations
@@ -76,6 +78,8 @@ export class LoginPage {
 
              this.navCtrl.setRoot('HomeScreenPage');
           }else{
+            this.storage.set('session.userId',this.data.data.userId);
+            this.storage.set('session.accessToken',this.data.data.token);
             this.navCtrl.setRoot('HomeScreenPage');
           }
             // console.log(data);
@@ -85,17 +89,32 @@ export class LoginPage {
           // console.log(err.json());
           if(err.json().error.status  = '400'){
             this.response = true;
-           this.responseText = "This email address is not found. please register and try again";
+            this.toast.show(`This email address is not found. please register and try again`, '3000', 'bottom').subscribe(
+              toast => {
+                console.log(toast);
+              }
+            );
+           //this.responseText = "This email address is not found. please register and try again";
           }
         });  
       }else{
-        this.responseText = "Please check credentials and try again"
+        //this.responseText = "Please check credentials and try again"
         this.response = true;
+        this.toast.show(`Please check credentials and try again`, '3000', 'bottom').subscribe(
+          toast => {
+            console.log(toast);
+          }
+        );
 
       }
       
     }catch{
       console.log('not connected to the internet!!');
+      this.toast.show(`Please check your internet connection and try again`, '3000', 'bottom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
     }
     
   }

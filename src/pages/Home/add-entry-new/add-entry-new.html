@@ -1,5 +1,5 @@
 
-<ion-header text-center #head>
+<ion-header text-center>
   <ion-navbar>
     <ion-title>Add Entry</ion-title>
     <cloud></cloud>
@@ -7,7 +7,7 @@
   <entry (getEntries)="isEntryChange($event)"></entry>
 </ion-header>
 
-<ion-content hide-header [header]="head">
+<ion-content>
     <!-- Random Entries -->
     <div *ngIf="this.entries"> 
         <ion-list>
@@ -17,7 +17,7 @@
                                 <div class="otherEntries">
                                   <!-- User Uploaded photo -->
                                   <div class="userUploadedPhoto" (click)="showImageFull()">
-                                      <img [src]="imageSource" alt="">
+                                      <img [src]="singleEntry.image" alt="">
                                   </div>
                                   <!-- User Entry date -->
                                   <h1 class="userEntryDate" text-center>{{ singleEntry.todayDate }} <br> {{ singleEntry.dateMonth}}</h1>
@@ -41,35 +41,33 @@
            
           </ion-list>
     </div>
-    <div *ngIf="!this.entries">
-            <div *ngFor="let recent of recentEntery">
-                <div *ngFor="let recentEntries of recent.entries">
+    <div *ngIf="this.entries == '' || this.entries == null || this.entries == undefined">
+            <div *ngFor="let recent of recentEntery.data">
                         <ion-list>
                                 <ion-item>
                                     <div class="otherEntries">
                                          <!-- User Uploaded photo -->
                                          <div class="userUploadedPhoto" (click)="showImageFull()">
-                                            <img [src]="imageSource" alt="">
+                                            <img [src]= "recent.entry_image_url"  alt="">
                                         </div>
                                          <!-- User Entry date  -->
-                                         <h1 class="userEntryDate">{{ recentEntries.date | date: 'dd'  }}<br>
-                                            May </h1>
+                                         <h1 class="userEntryDate" text-center>{{ recent.entry_date | date: 'dd'  }}<br>
+                                            {{ recent.entry_date | date: 'MMMM'  }} </h1>
                                             <span class="userEntryLocation"> 
-                                                    <ion-icon name="ios-pin">{{ recentEntries.state }}</ion-icon>
-                                                    <h3></h3>
+                                                    <ion-icon name="ios-pin"></ion-icon>
+                                                    <h3>{{ recent.country }}</h3>
                                                 </span>
                                     </div> 
                                  </ion-item>
                                     <ion-item>
                                         <div class="userEntryHeading">
-                                            <strong><h1>{{ recentEntries.entry_description }}</h1></strong>
+                                            <strong><h1>{{ recent.entry_description }}</h1></strong>
                                         </div>
                                         <div class="userEntryText">
-                                            <p text-wrap>{{ recentEntries.entry_title }}</p>
+                                            <p text-wrap>{{ recent.entry_title }}</p>
                                         </div>
                                  </ion-item>
                               </ion-list> 
-                </div>
                    
         </div>
     </div>

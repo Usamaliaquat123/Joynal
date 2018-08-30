@@ -11,6 +11,7 @@ export class AchievementsPage{
   trophyColor;
   achievements : any;
   shareValue : string;
+  value : string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer2) {
     this.achievements = this.navParams.data;
     console.log(this.achievements);
@@ -20,6 +21,7 @@ export class AchievementsPage{
     // this.renderer.setElementStyle(this.test, 'fill', '#ff0000');
     //this.renderer.setStyle(this.test, 'webkitTransition', 'margin-top 500ms');
     if(this.achievements.combo.name == "Bronze Combo"){
+    this.value = '3';
       console.log('Bronze Combo');
       this.trophyColor = '#B47237';
     }else if(this.achievements.name == "Bronze Streak"){
@@ -35,10 +37,10 @@ export class AchievementsPage{
     }else if(this.achievements.name == "Thanks for your Feedback!"){
       this.trophyColor = '#01AEF0';
     }else if(this.achievements.combo.name == "Silver Combo"){
-      console.log('Silver');
+      this.value = '5';
       this.trophyColor = '#C0C0C0';
     }else if(this.achievements.combo.name == "Gold Combo"){
-      console.log('Gold');
+      this.value = '10';
       this.trophyColor = '#FED700';
     }else if(this.achievements.name == "Gold Streak"){
       this.trophyColor = '#01AEF0';
