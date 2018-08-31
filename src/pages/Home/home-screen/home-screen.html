@@ -1,50 +1,44 @@
 <ion-header text-center>
-    <!-- some clouds -->
-    <cloud></cloud>
     <ion-navbar>
         <!-- Header -->
         <img width="250" height="150" src="./assets/imgs/icons/joynal-logo.png" alt="">
+        <!-- some clouds -->
+        <cloud></cloud>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <!-- Create entry -->
-  <div class="newEntry" text-center (click)="addEntry()">
-      <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
-      Add new entry</p>
-  </div>
-   <!-- list of other entries -->
-   <!-- <div *ngFor="let entry of entries">
-        <p>{{ entry }}</p>
-   </div> -->
+    <button ion-button (click)="testWelcome()"></button>
+    <!-- Create entry -->
+    <div class="newEntry" text-center (click)="addEntry()">
+        <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
+        Add new entry</p>
+    </div>
 
    <div *ngFor="let entry of entries">
         <ion-list>
-                <ion-item>
-                    <div class="otherEntries">
-                         <!-- User Uploaded photo -->
-                         <div class="userUploadedPhoto" (click)="showImageFull()">
-                            <img [src]="entry.entry_image_url" alt="">
-                        </div>
-                         <!-- User Entry date  -->
-                         <h1 class="userEntryDate" text-center>{{ entry.entry_date | date: 'dd'  }}<br>
-                            {{ entry.entry_date | date: 'MMMM'  }} </h1>
-                    </div> 
-                 </ion-item>
-                    <ion-item>
-                        <div class="userEntryHeading">
-                            <strong><h1>{{ entry.entry_title }}</h1></strong>
-                        </div>
-                        <div class="userEntryText">
-                            <p text-wrap>{{ entry.entry_description }}</p>
-                        </div>
-                 </ion-item>
-              </ion-list> 
+            <ion-item>
+                <div class="otherEntries">
+                    <!-- User Uploaded photo -->
+                    <div class="userUploadedPhoto" (click)="showImageFull()">
+                        <img [src]="entry.entry_image_url" alt="">
+                    </div>
+                    <!-- User Entry date  -->
+                    <h1 class="userEntryDate" text-center>{{ entry.entry_date | date: 'dd'  }}<br>
+                            {{ entry.entry_date | date: 'MMM'  }} </h1>
+                </div> 
+            </ion-item>
+            <ion-item>
+                <div class="userEntryHeading">
+                    <strong><h1>{{ entry.entry_title }}</h1></strong>
+                </div>
+                <div class="userEntryText">
+                    <p text-wrap>{{ entry.entry_description }}</p>
+                </div>
+            </ion-item>
+        </ion-list> 
     </div>
- 
-
 </ion-content>
 <ion-footer>
-    
     <home-footer></home-footer>
 </ion-footer>

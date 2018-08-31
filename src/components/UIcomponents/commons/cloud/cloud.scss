@@ -1,12 +1,13 @@
 cloud {
   .clouds-set {
-    width: 100%;
+    width: 90%;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 0;
   }
   img {
-    width: 500px;
+    width: 400px;
     -webkit-animation: slideInSmooth ease-in-out 1;
     animation: slideInSmooth ease-in-out 1;
     -webkit-animation-fill-mode: forwards;
@@ -20,11 +21,13 @@ cloud {
   img:nth-child(1){
     margin-left: -10vw;
     margin-top: -3%;
+    z-index: 0;
   }
   img:nth-child(1n+2){
     margin-left: 15vw;
     margin-top: 0%;
     position: absolute;
+    z-index: 0;
   }
   img:nth-child(2n+2){
     margin-left: 14vw;
@@ -32,12 +35,14 @@ cloud {
     left:0;
     position: absolute;
     width: 250px;
+    z-index: 0;
   }
   img:nth-child(3n+2){
     margin-left: -40vw;
     margin-top: -1%;
     position: absolute;
     right:0;
+z-index: 0;
   }
 
   @-webkit-keyframes slideInSmooth {

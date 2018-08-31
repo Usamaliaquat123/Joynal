@@ -77,6 +77,7 @@ export class LoginPage {
         
 
              this.navCtrl.setRoot('HomeScreenPage');
+             
           }else{
             this.storage.set('session.userId',this.data.data.userId);
             this.storage.set('session.accessToken',this.data.data.token);

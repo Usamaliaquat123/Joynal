@@ -13,7 +13,6 @@ export class AddEntryNewPage {
   entries = [];
   date : any;
   recentEntery = [];
-  public imageSource : string;
   laoding : any;
   constructor(public loadCtrl : LoadingController,private storage : Storage ,private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams) {
     // this.imageSource = "./assets/imgs/icons/camera-picture-dummy.jpg";
@@ -24,9 +23,9 @@ export class AddEntryNewPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddEntryNewPage');
   }
-  showImageFull(){
+  showImageFull(imageSource:string){
     this.navCtrl.push("ImageviewerPage",{
-      imageSource:this.imageSource
+      imageSource:imageSource
     });
   }
 

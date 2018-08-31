@@ -1,7 +1,6 @@
 import { Toast } from '@ionic-native/toast';
-
 import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { AlertController, NavController, ActionSheetController, LoadingController } from 'ionic-angular';
 import { entry } from "../../../../models/entries";
 import { Storage } from "@ionic/storage";
@@ -9,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Camera,CameraOptions } from "@ionic-native/camera";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import moment from 'moment';
+
 @Component({
   selector: 'entry',
   templateUrl: 'entry.html',
@@ -119,27 +119,27 @@ export class EntryComponent {
 
 }
   getLocation(){
-    // getting location using ionic capacitor
+    
   }
   addingImage(){
     // Action Sheet
     let actionSheet = this.actionSheet.create({
-      title: 'SET PICTURE',
+      title: 'Upload Picture',
       buttons: [
         {
-          text: 'choose from albums',
+          text: 'Choose from Gallery',
           handler: () => {
             this.openGallery();
           }
         },
         {
-          text: 'take a photo',
+          text: 'Take a Photo',
           handler: () => {
             this.openCamera();
           }
         },
         {
-          text: 'cancel',
+          text: 'Cancel',
           role: 'cancel'
         }
       ]});
@@ -252,13 +252,11 @@ againAddEntry(){
 // Gallery openGallery for image upload
 async openGallery(): Promise<any>{
   const options: CameraOptions = {
-    quality: 50,
+    quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-		targetWidth: 150,
-		targetHeight: 100,
 		saveToPhotoAlbum: false,
 		allowEdit : false
   }
@@ -267,7 +265,7 @@ async openGallery(): Promise<any>{
 // Camera openCamera for image upload
 async openCamera(): Promise<any>{
   const options: CameraOptions = {
-    quality: 50,
+    quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE

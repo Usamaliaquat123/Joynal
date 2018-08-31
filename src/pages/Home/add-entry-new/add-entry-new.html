@@ -47,12 +47,12 @@
                                 <ion-item>
                                     <div class="otherEntries">
                                          <!-- User Uploaded photo -->
-                                         <div class="userUploadedPhoto" (click)="showImageFull()">
+                                         <div class="userUploadedPhoto" (click)="showImageFull(recent.entry_image_url)">
                                             <img [src]= "recent.entry_image_url"  alt="">
                                         </div>
                                          <!-- User Entry date  -->
                                          <h1 class="userEntryDate" text-center>{{ recent.entry_date | date: 'dd'  }}<br>
-                                            {{ recent.entry_date | date: 'MMMM'  }} </h1>
+                                            {{ recent.entry_date | date: 'MMM'  }} </h1>
                                             <span class="userEntryLocation"> 
                                                     <ion-icon name="ios-pin"></ion-icon>
                                                     <h3>{{ recent.country }}</h3>

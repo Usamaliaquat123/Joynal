@@ -58,6 +58,9 @@ export class HomeScreenPage{
     }
 
   }
+  testWelcome(){
+    this.navCtrl.push('WelcomeScreenPage');
+  }
 
 }
 

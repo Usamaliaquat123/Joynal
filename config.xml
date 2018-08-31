@@ -102,5 +102,5 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <plugin name="cordova-plugin-x-toast" spec="^2.7.0" />
-    <engine name="android" spec="6.3.0" />
+    <engine name="android" spec="~6.3.0" />
 </widget>
