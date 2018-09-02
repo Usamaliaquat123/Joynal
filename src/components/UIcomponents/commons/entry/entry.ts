@@ -8,6 +8,9 @@ import { HttpClient } from '@angular/common/http';
 import { Camera,CameraOptions } from "@ionic-native/camera";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import moment from 'moment';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+
 
 @Component({
   selector: 'entry',
@@ -34,8 +37,10 @@ export class EntryComponent {
   image : any;
   descriptionStuck : any;
   titleStuck : any;
+  locationCity : string;
+  locationCountry : string;
  
-  constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast ) {
+  constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder ) {
     this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
     this.authForm = formBuilder.group({
@@ -70,17 +75,16 @@ export class EntryComponent {
         );
      console.log("entries>"+this.entries);
      this.storage.ready().then(() => {
-   this.storage.get('session.userId').then(res => {
-     this.storage.get('session.accessToken').then(accessToken => {
-    
-     var headers = {
-       user_id : res.toString(),
-       access_token: accessToken
-     }
-     console.log(res)
-    this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
-      loading.dismiss();
-     console.log(success);
+       this.storage.get('session.userId').then(res => {
+         this.storage.get('session.accessToken').then(accessToken => {
+           var headers = {
+             user_id : res.toString(),
+             access_token: accessToken
+            }
+            console.log(res)
+            this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
+              loading.dismiss();
+              console.log(success);
      if(success.data.achievements){
        this.achievements = success.data.achievements;
        console.log(this.achievements);
@@ -106,20 +110,68 @@ export class EntryComponent {
          alert.present();
          this.entries = [];
        })
-     }
+      }
      
     },err => {
       console.log(err),
       this.entries = [];
     })
-   })
+  })
    })
  })
       }
-
-}
+    }
   getLocation(){
-    
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+    };
+    let loading = this.loadCtrl.create({
+      content: 'Locating you, Please wait...'
+    });
+    loading.present();
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      console.log('latitude : '+resp.coords.latitude);
+      // resp.coords.longitude
+      console.log('longitude : '+resp.coords.longitude);
+
+      //getting device pin point location using the obtained lat and long values
+      this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
+      .then((result: NativeGeocoderReverseResult[]) => this.confirmLocation(JSON.stringify(result[0].locality),JSON.stringify(result[0].countryName)))
+      .catch((error: any) => console.log(error));
+      
+      // console.log('this is device city'+this.locationCity);
+      loading.dismiss();
+
+
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+  confirmLocation(city:string,country:string){
+    city = city.replace(/['"]+/g, '');
+    country = country.replace(/['"]+/g, '');
+    let alert = this.alertCtrl.create({
+      title: 'Confirm your location',
+      message: city+', '+country,
+      buttons: [
+        {
+          text: 'Retry',
+          role: 'cancel',
+          handler: () => {
+            this.getLocation();
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Save location data to database');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
   addingImage(){
     // Action Sheet
@@ -146,16 +198,16 @@ export class EntryComponent {
       actionSheet.present();
   }
   // Create an array of entries 
-againAddEntry(){
-  if(this.description == '' || this.title == '' || this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
-    this.toast.show(`Cannot post invalid entry! Please submit all required entries`, '3000', 'bottom').subscribe(
+  againAddEntry(){
+    if(this.description == '' || this.title == '' || this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+      this.toast.show(`Cannot post invalid entry! Please submit all required entries`, '3000', 'bottom').subscribe(
       toast => {
         console.log(toast);
       }
     );
-  }else{
+  }
+  else{
     if(this.base64Image == null || this.base64Image == undefined){
- 
       this.singleEntry.push(
         {
           descriptionStuck  : this.description,
@@ -166,8 +218,8 @@ againAddEntry(){
           state:"England",
         }
     )
-      this.entries.push(
-        {
+    this.entries.push(
+      {
          title:this.title,
          description:this.description,
          state:"England",
@@ -225,53 +277,53 @@ againAddEntry(){
       this.allEntry = [];
     
       }
-  }
- // Checking if user uploaded an image 
+    }
+  // Checking if user uploaded an image 
 
  
   }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                   C  A  M  E  R  A    S  E  T  U  P
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Gallery openGallery for image upload
-async openGallery(): Promise<any>{
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE,
-    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-		saveToPhotoAlbum: false,
-		allowEdit : false
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //                                   C  A  M  E  R  A    S  E  T  U  P
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Gallery openGallery for image upload
+  async openGallery(): Promise<any>{
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false,
+      allowEdit : false
+    }
+    try{ this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
+  }   
+  // Camera openCamera for image upload
+  async openCamera(): Promise<any>{
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    try{ this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
   }
-  try{ this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
-}   
-// Camera openCamera for image upload
-async openCamera(): Promise<any>{
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
-  try{ this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
-}
 
 
 

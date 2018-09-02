@@ -1,4 +1,6 @@
 import { Geolocation } from "@ionic-native/geolocation";
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,6 +49,7 @@ import { CameraMock } from "./camera.mock";
     // OauthCordova,
     SplashScreen,
     Geolocation,
+    NativeGeocoder,
   { provide: Camera, useClass: CameraMock },
      Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
