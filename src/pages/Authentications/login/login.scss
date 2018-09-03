@@ -27,7 +27,7 @@ page-login {
     height: 15%;
   }
   ion-input{
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 .ion-label{
   padding: 5px;
@@ -48,22 +48,29 @@ page-login {
 
   .createAnAccount  p{
     letter-spacing: 1px;
-    font-size:14px;
+    font-size:0.8em;
+    margin-top: 10%;
   }
 .alligningRememberMeAndForgotPass ion-radio{
   float: left;
-  margin-top: 13px;
+  margin-top: 10px;
   margin-right: 5px;
-}
 
+}
+ion-icon{
+  color: black;
+}
 
   .rememberMe .forgotPass{
     clear: left;
   }
+  .forgotPass{
+    font-size: 0.8em;
+  }
 
   .signupButton  button{
     display: inline-block;
-    width: 200px;
+    width: 150px;
     padding: 8px;
     color:  #01AEF0;
     background-color: transparent;
@@ -71,7 +78,9 @@ page-login {
     text-align: center;
     outline: none;
     text-decoration: none;
-  }
+    font-size: 0.9em;
+    border-radius: 8px;
+}
 
   .clearfix {
     clear:both;

@@ -1,3 +1,4 @@
+import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api';
 
 import { Component , Input , Output, EventEmitter} from '@angular/core';
 
@@ -14,7 +15,7 @@ import { user } from "../../../../models/users";
 @Component({
   selector: 'footerlogin',
   templateUrl: 'footer.html',
-  // inputs : ['authFacebook','authTwitter','authInstagram']
+  providers : [JoynalApiProvider]
 })
 export class FooterComponent {
   // Getting inputs from pages
@@ -23,7 +24,7 @@ export class FooterComponent {
  @Input() authInstagram : any;
  
  user = {} as user;
-  constructor(public storage : Storage ) {
+  constructor(private joynalApi : JoynalApiProvider,public storage : Storage ) {
   }
 
 
@@ -34,7 +35,9 @@ export class FooterComponent {
       const fbProvider = firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(userData => {
         console.log(userData);
-        
+        this.joynalApi.authenticationLoginSocial(userData.user.email,userData.user.displayName,userData.user.uid).subscribe(resp => {
+          
+        })
           // Saving data in local
           this.user.fbUid = userData.user.uid;
           this.user.name = userData.user.displayName;
