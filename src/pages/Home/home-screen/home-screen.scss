@@ -1,4 +1,9 @@
 page-home-screen {
+  @font-face{
+    font-family: 'joynal-fonts-quicksand';
+    src: url('../assets/fonts/Quicksand-Regular.ttf') format('ttf');
+    font-weight: normal;
+  }
   ion-navbar{
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.25);
     border-bottom-left-radius: 10px;
