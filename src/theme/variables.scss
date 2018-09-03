@@ -10,7 +10,8 @@ $font-path: "../assets/fonts";
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
-
+$text-input-placeholder-color : #222;
+$button-md-text-transform: none;
 
 @import "ionic.globals";
 
@@ -86,6 +87,6 @@ $background-md-color: #E5F6FD;
 
 @import "roboto";
 @import "noto-sans";
-$font-family-md-base: "joynal-fonts-quicksand";
-$font-family-ios-base: "joynal-fonts-quicksand";
-$font-family-wp-base: "joynal-fonts-quicksand";
+// $font-family-md-base: "joynal-fonts-quicksand";
+// $font-family-ios-base: "joynal-fonts-quicksand";
+// $font-family-wp-base: "joynal-fonts-quicksand";

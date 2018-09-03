@@ -1,4 +1,8 @@
 page-signup {
+
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
   ion-grid.login-page {
       margin-top: 3vh;
     }
@@ -20,16 +24,16 @@ page-signup {
     }
     .error-box-main {
       color: #D8000C;
-      background-color: rgba(255,255,255, 0.65);
       margin: 10px 0;
       text-align: center;
     }
     ion-input{
-      font-size: 0.8em;
+      font-size: 0.7em;
+      
     }
+  
     .error{
       color: #D8000C;
-      background-color: rgba(255,255,255, 0.65);
       font-size: 12px;
       letter-spacing: 0.2px;  
     }

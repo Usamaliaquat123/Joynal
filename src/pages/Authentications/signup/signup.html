@@ -8,7 +8,7 @@
     </ion-title>
   </ion-navbar>
 </ion-header> -->
-<ion-content padding>
+<ion-content class="no-scroll">
   <button clear class="backbutton" ion-button icon-only  (click)="goBack()">
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
@@ -34,8 +34,8 @@
 
              </ion-item>
              <span *ngIf="authForm.get('name').dirty || formSubmitclicked">
-                <!-- <small class="error" *ngIf="authForm.get('email').hasError('isEmailUnique')">This email has been registered already</small> -->
-                <small class="error" *ngIf="authForm.get('name').hasError('required')">* The Email field is required.</small>
+              <small class="error" *ngIf="authForm.get('name').hasError('pattern')">* The name must contain a valid Name</small>
+                <small class="error" *ngIf="authForm.get('name').hasError('required')">* Name is required.</small>
             </span>
             </ion-col>
         <ion-col col-12>
@@ -66,8 +66,6 @@
              </ion-item>  
              <span *ngIf="authForm.get('confirmPass').dirty || formSubmitclicked">
                 <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Passwords do not match</small>
-                <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
-                <small class="error"  *ngIf="authForm.controls['confirmPass'].hasError('required') && authForm.controls['confirmPass'].touched">* Confirm Password is required!</small>
             </span>
         </ion-col>
 
@@ -76,7 +74,7 @@
   </ion-row>
    </ion-grid>
      <div padding>
-        <button ion-button type="submit" full>Sign Up</button>
+        <button ion-button type="submit" style="letter-spacing: 2px; font-size:0.9em;" full>Sign up</button>
       </div>
 </form>
 

@@ -1,6 +1,6 @@
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 
@@ -28,10 +28,10 @@ export class SignupPage {
     passwordShown : boolean = false;
     confirmPassType : boolean  = false;
     passwordTypeConfirm : String = 'password';
-  constructor(public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alrtCtrl : AlertController,public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
     this.response = false;
     this.authForm = formBuilder.group({
-      'name' : [null, Validators.compose([Validators.required])],
+      'name' : [null, Validators.compose([null, Validators.compose([Validators.required,Validators.pattern('[A-Za-z ]+$')])])],
       'email' : [null, Validators.compose([null, Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')])
      ])],
       'password':  [null, Validators.compose([Validators.required, Validators.minLength(8) ])],
@@ -84,30 +84,21 @@ export class SignupPage {
 
    try{
     if(this.authForm.valid){
-      await this.apiJoynal.authenticationSignup(value.name,value.email,value.password).subscribe(data => {
-    
-        // this.data = data.json();
-        
-      
-        // // if email is allready exists
-        // if(this.data.errors.status = '400'){    
-        //   this.response = true;
-        //   this.emailIfExists = this.data.errors.message;
-        // }
-        this.navCtrl.push('LoginPage');
-      },err => {
-        this.response = true; this.userEmailChecking="errors"
-      });
+      await this.apiJoynal.authenticationSignup(value.name,value.email,value.password).subscribe(() => {
+        this.navCtrl.setRoot('LoginPage');
+        this.alrtCtrl.create({
+          title : 'Registered Successfully',
+          message : 'A verification link has sent to your email, please check your email and verify your email for complete the registration process',
+          buttons : [
+            {
+              text : 'Ok!'
+            }
+          ]
+        }).present();
+      },err => {this.response = true; this.userEmailChecking="errors"});
     }
-    else{
-      this.response = true;
-      this.userEmailChecking = "Something missing please check and try again..!";
-    }
-    
-   }catch{
-    this.response = true;
-    this.userEmailChecking = "Please check your connection and try again";
-   }
+    else{this.response = true;this.userEmailChecking = "Something missing please check and try again..!";}
+   }catch{this.response = true;this.userEmailChecking = "Please check your connection and try again";}
     
 
   }
