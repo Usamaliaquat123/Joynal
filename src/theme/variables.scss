@@ -1,4 +1,5 @@
 // Ionic Variables and Theming. For more info, please see:
+
 // http://ionicframework.com/docs/theming/
 
 // Font path is used to include ionicons,
@@ -12,7 +13,6 @@ $font-path: "../assets/fonts";
 $app-direction: ltr;
 $text-input-placeholder-color : #222;
 $button-md-text-transform: none;
-
 @import "ionic.globals";
 
 
@@ -87,6 +87,3 @@ $background-md-color: #E5F6FD;
 
 @import "roboto";
 @import "noto-sans";
-// $font-family-md-base: "joynal-fonts-quicksand";
-// $font-family-ios-base: "joynal-fonts-quicksand";
-// $font-family-wp-base: "joynal-fonts-quicksand";

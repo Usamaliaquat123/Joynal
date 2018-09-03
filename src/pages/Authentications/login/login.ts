@@ -57,7 +57,7 @@ export class LoginPage {
     try{
       if(this.authForm.valid){
           await this.joynalApi.authenticationLogin(value.email,value.password).subscribe(data => {
-            const that = this;
+         
             // console.log(data.json());
             if(this.isChecked == true){
               this.data = data.json();
@@ -82,7 +82,7 @@ export class LoginPage {
               this.storage.set('session.isNotificationAllowed',this.data.data.isNotificationAllowed);
               this.storage.set('session.isEntryVisible',this.data.data.isEntryVisible);
               this.storage.set('session.reminderTime',this.data.data.reminderTime);
-              this.navCtrl.setRoot('HomeScreenPage');
+             this.navCtrl.setRoot('HomeScreenPage');
           }
         },err => {
           // console.log(err.json());

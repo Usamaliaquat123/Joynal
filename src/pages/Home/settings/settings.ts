@@ -46,6 +46,7 @@ export class SettingsPage {
                     user_id : userid.toString(),
                     access_token: access_Token }
                   this.joynalApi.updateUserName(userid,data.userName,headers).subscribe(response => {
+                    this.storage.set('session.name',userid)
                     this.ionViewDidLoad();
                   })
                   
@@ -83,7 +84,7 @@ export class SettingsPage {
                       user_id : userid.toString(),
                       access_token: access_Token }
                     this.joynalApi.userChangingPassword(headers,userPassw,data.userPass).subscribe(response => {
-                      this.ionViewDidLoad();
+                      this.storage.set('session.userPass',userPassw);
                    })
                   })
                 })
@@ -106,10 +107,10 @@ export class SettingsPage {
               var headers = {user_id : userid.toString(),access_token: accessToken }
               console.log(this.entryVisibilityToggle);
               this.joynalApi.updateUserSettings(headers,userid,this.reminderTime,this.entryVisibilityToggle.toString(),isNotificationAllowed).subscribe(resp => {
+                this.storage.set('session.isNotificationAllowed',this.entryVisibilityToggle.toString());
                 console.log(resp);
               })
-            })
-        
+            })        
         }) 
       })
     })
@@ -122,7 +123,7 @@ export class SettingsPage {
             this.storage.get('session.isNotificationAllowed').then(isNotificationAllowed => {
               var headers = {user_id : userid.toString(),access_token: accessToken }
               this.joynalApi.updateUserSettings(headers,userid,this.reminderTime,isEntryVisible,isNotificationAllowed).subscribe(resp => {
-                console.log(resp);
+                this.storage.set('session.reminderTime',this.reminderTime);
               })
             })
           })

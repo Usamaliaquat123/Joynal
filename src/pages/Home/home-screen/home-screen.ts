@@ -42,6 +42,8 @@ export class HomeScreenPage{
     loading.present();
     this.storage.get('session.accessToken').then(accessToken => {
       this.storage.get('session.userId').then(userid => {
+        console.log(userid);
+        console.log(accessToken);
         var headers = {
           user_id : userid.toString(),
           access_token: accessToken 
@@ -51,6 +53,11 @@ export class HomeScreenPage{
           this.entries = resp.data;
           console.log(this.entries);
           
+        },err => {
+          if(err.status == 400){
+            console.log('clear');
+            this.entries = null;
+          }
         })
       })
     })
@@ -59,9 +66,7 @@ export class HomeScreenPage{
     }
 
   }
-  testWelcome(){
-    this.navCtrl.push('WelcomeScreenPage');
-  }
+
 
 }
 
