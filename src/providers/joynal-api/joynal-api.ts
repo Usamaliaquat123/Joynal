@@ -57,6 +57,8 @@ export class JoynalApiProvider {
     const options = new RequestOptions({headers: headers});
     return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/achievement`, options).map(res => res.json());
   }
-
+  authenticationLoginSocial(userEmail,username , userPassword){
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/socialmedialogin',{ userName : username ,userEmail : userEmail, userPassword : userPassword })
+  }
 
 }

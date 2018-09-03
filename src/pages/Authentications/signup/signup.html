@@ -8,7 +8,7 @@
     </ion-title>
   </ion-navbar>
 </ion-header> -->
-<ion-content class="no-scroll">
+<ion-content padding>
   <button clear class="backbutton" ion-button icon-only  (click)="goBack()">
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
@@ -66,8 +66,8 @@
              </ion-item>  
              <span *ngIf="authForm.get('confirmPass').dirty || formSubmitclicked">
                 <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Passwords do not match</small>
-                <!-- <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
-                <small class="error"  *ngIf="authForm.controls['confirmPass'].hasError('required') && authForm.controls['confirmPass'].touched">* Confirm Password is required!</small> -->
+                <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
+                <small class="error"  *ngIf="authForm.controls['confirmPass'].hasError('required') && authForm.controls['confirmPass'].touched">* Confirm Password is required!</small>
             </span>
         </ion-col>
 
