@@ -138,7 +138,7 @@ export class EntryComponent {
 
       //getting device pin point location using the obtained lat and long values
       this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
-      .then((result: NativeGeocoderReverseResult[]) => this.confirmLocation(JSON.stringify(result[0].locality),JSON.stringify(result[0].countryName)))
+      .then((result: NativeGeocoderReverseResult[]) => this.confirmLocation(JSON.stringify(result[0].locality),JSON.stringify(result[0].countryName),JSON.stringify(result[0].administrativeArea)))
       .catch((error: any) => console.log(error));
       
       // console.log('this is device city'+this.locationCity);
@@ -149,7 +149,9 @@ export class EntryComponent {
        console.log('Error getting location', error);
      });
   }
-  confirmLocation(city:string,country:string){
+  confirmLocation(city:string,country:string,state:string){
+    state = state.replace(/['"]+/g, '');
+    console.log(state);
     city = city.replace(/['"]+/g, '');
     country = country.replace(/['"]+/g, '');
     let alert = this.alertCtrl.create({
@@ -248,7 +250,7 @@ export class EntryComponent {
           titleStuck : this.title,
           image : 'data:image/png;base64,' + this.base64Image,
           todayDate : moment().format('DD'),
-          dateMonth : moment().format('MMMM'),
+          dateMonth : moment().format('MMM'),
           state:"England",
         }
     )
@@ -304,7 +306,7 @@ export class EntryComponent {
   // Gallery openGallery for image upload
   async openGallery(): Promise<any>{
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -317,7 +319,7 @@ export class EntryComponent {
   // Camera openCamera for image upload
   async openCamera(): Promise<any>{
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE

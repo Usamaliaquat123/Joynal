@@ -14,26 +14,26 @@
         <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
         Add new entry</p>
     </div>
-
-   <div *ngFor="let entry of entries">
+    <!-- <div *ngFor="let entry of entries.data"></div> -->
+    <div>
         <ion-list>
             <ion-item>
                 <div class="otherEntries">
                     <!-- User Uploaded photo -->
                     <div class="userUploadedPhoto" (click)="showImageFull()">
-                        <img [src]="entry.entry_image_url" alt="">
+                        <img [src]="entries.entry_image_url" alt="">
                     </div>
                     <!-- User Entry date  -->
-                    <h1 class="userEntryDate" text-center>{{ entry.entry_date | date: 'dd'  }}<br>
-                            {{ entry.entry_date | date: 'MMM'  }} </h1>
+                    <h1 class="userEntryDate" text-center>{{ entries.entry_date | date: 'dd'  }}<br>
+                            {{ entries.entry_date | date: 'MMM'  }} </h1>
                 </div> 
             </ion-item>
             <ion-item>
                 <div class="userEntryHeading">
-                    <strong><h1>{{ entry.entry_title }}</h1></strong>
+                    <strong><h1>{{ entries.entry_title }}</h1></strong>
                 </div>
                 <div class="userEntryText">
-                    <p text-wrap>{{ entry.entry_description }}</p>
+                    <p text-wrap>{{ entries.entry_description }}</p>
                 </div>
             </ion-item>
         </ion-list> 

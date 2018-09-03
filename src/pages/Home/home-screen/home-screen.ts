@@ -47,8 +47,9 @@ export class HomeScreenPage{
           access_token: accessToken 
         }
         this.apiJoynal.getRandomUserPosts(headers,userid).subscribe(resp => { 
-          console.log(resp.data);
+          console.log(resp);
           this.entries = resp.data;
+          console.log(this.entries);
           
         })
       })
