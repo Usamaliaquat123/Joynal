@@ -2,12 +2,8 @@ import { NavController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import firebase from "firebase";
 import { Storage } from "@ionic/storage";
-/**
- * Generated class for the HomeFooterComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 @Component({
   selector: 'home-footer',
   templateUrl: 'home-footer.html'

@@ -33,6 +33,10 @@ export class JoynalApiProvider {
     const options = new RequestOptions({headers: headers});
   return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`,options).map(res => res.json());
   }
+  updateUserEntryVisibility(headers,userId, isEntryVisible){
+    const options = new RequestOptions({headers: headers});
+    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}/updatesettings`,{isEntryVisible: isEntryVisible},options); 
+  }
   updateUserSettings(headers,userId, reminderTime , isEntryVisible, isNotificationAllowed){
     const options = new RequestOptions({headers: headers});
     return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/users/${userId}/updatesettings`,{reminderTime : reminderTime, isEntryVisible: isEntryVisible, isNotificationAllowed: isNotificationAllowed},options); 

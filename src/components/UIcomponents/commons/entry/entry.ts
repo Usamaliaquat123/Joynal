@@ -56,69 +56,159 @@ export class EntryComponent {
           }
         );
       }else{
-        let loading = this.loadCtrl.create({
-          content: 'Please wait..',
-        });
-        loading.present();
-        this.entries.push(
-          {
-         title:this.title,
-         description:this.description,
-         state:"England",
-         country: "England",
-         city:"England",
-         longitude:"England",
-         latitude:"England",
-         entryImageUrl: this.base64Image,
-         entryImageType:"jpg",
-          }
-        );
-     console.log("entries>"+this.entries);
-     this.storage.ready().then(() => {
-       this.storage.get('session.userId').then(res => {
-         this.storage.get('session.accessToken').then(accessToken => {
-           var headers = {
-             user_id : res.toString(),
-             access_token: accessToken
+        let alert = this.alertCtrl.create({
+          title: 'Share Entries',
+          message: 'Do you want your diary entries to anonymously appear to others? Your entries will be uploaded to a moderated database which only stores your entry and your general location. Your personal information won’t ever be shown.',
+          buttons: [
+            {
+              text: 'No Thanks',
+              role: 'cancel',
+              handler: () => {
+                this.storage.get('session.userId').then(userId=>{
+                  this.storage.get('session.accessToken').then(accessToken=>{
+                    console.log(userId+'   '+accessToken);
+                    var headers = {user_id : userId.toString(),access_token: accessToken }
+                    this.joynalApi.updateUserEntryVisibility(headers,userId,"False").subscribe(resp => {
+                      console.log(resp);
+                    })
+                  });
+                });
+                let loading = this.loadCtrl.create({
+                  content: 'Please wait..',
+                });
+                loading.present();
+                this.entries.push(
+                  {
+                    title:this.title,
+                    description:this.description,
+                    state:"England",
+                    country: "England",
+                    city:"England",
+                    longitude:"England",
+                    latitude:"England",
+                    entryImageUrl: this.base64Image,
+                    entryImageType:"jpg",
+                  }
+                );
+                console.log("entries>"+this.entries);
+                this.storage.ready().then(() => {
+                  this.storage.get('session.userId').then(res => {
+                    this.storage.get('session.accessToken').then(accessToken => {
+                      var headers = {
+                        user_id : res.toString(),
+                        access_token: accessToken
+                        }
+                        console.log(res)
+                        this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
+                          loading.dismiss();
+                          console.log(success);
+                          if(success.data.achievements){
+                            this.achievements = success.data.achievements;
+                            console.log(this.achievements);
+                            this.navCtrl.push('AddEntryPage').then(() => {
+                              this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
+                                let alert = this.alertCtrl.create({
+                                  title: '<h1 text-center>Did you know</h1>',
+                                  subTitle: success.data.post,
+                                  buttons: ['Dismiss']
+                                }); 
+                                alert.present();
+                                this.entries = [];
+                              })
+                            })
+                            
+                          }
+                          else{
+                            this.navCtrl.push('AddEntryPage').then(() => {
+                              let alert = this.alertCtrl.create({
+                                title: '<h1 text-center>Did you know</h1>',
+                                subTitle: success.data.post,
+                                buttons: ['Dismiss']
+                              }); 
+                              alert.present();
+                              this.entries = [];
+                          })
+                        }
+                    },err => {
+                  console.log(err),
+                  this.entries = [];
+                })
+                })
+                })
+              })
+              }
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                  let loading = this.loadCtrl.create({
+                    content: 'Please wait..',
+                  });
+                  loading.present();
+                  this.entries.push(
+                    {
+                      title:this.title,
+                      description:this.description,
+                      state:"England",
+                      country: "England",
+                      city:"England",
+                      longitude:"England",
+                      latitude:"England",
+                      entryImageUrl: this.base64Image,
+                      entryImageType:"jpg",
+                    }
+                  );
+                  console.log("entries>"+this.entries);
+                  this.storage.ready().then(() => {
+                    this.storage.get('session.userId').then(res => {
+                      this.storage.get('session.accessToken').then(accessToken => {
+                        var headers = {
+                          user_id : res.toString(),
+                          access_token: accessToken
+                          }
+                          console.log(res)
+                          this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
+                            loading.dismiss();
+                            console.log(success);
+                            if(success.data.achievements){
+                              this.achievements = success.data.achievements;
+                              console.log(this.achievements);
+                              this.navCtrl.push('AddEntryPage').then(() => {
+                                this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
+                                  let alert = this.alertCtrl.create({
+                                    title: '<h1 text-center>Did you know</h1>',
+                                    subTitle: success.data.post,
+                                    buttons: ['Dismiss']
+                                  }); 
+                                  alert.present();
+                                  this.entries = [];
+                                })
+                              })
+                              
+                            }
+                            else{
+                              this.navCtrl.push('AddEntryPage').then(() => {
+                                let alert = this.alertCtrl.create({
+                                  title: '<h1 text-center>Did you know</h1>',
+                                  subTitle: success.data.post,
+                                  buttons: ['Dismiss']
+                                }); 
+                                alert.present();
+                                this.entries = [];
+                            })
+                          }
+                      },err => {
+                    console.log(err),
+                    this.entries = [];
+                  })
+                  })
+                  })
+                })
+              }
             }
-            console.log(res)
-            this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
-              loading.dismiss();
-              console.log(success);
-     if(success.data.achievements){
-       this.achievements = success.data.achievements;
-       console.log(this.achievements);
-       this.navCtrl.push('AddEntryPage').then(() => {
-        this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
-          let alert = this.alertCtrl.create({
-            title: '<h1 text-center>Did you know</h1>',
-            subTitle: success.data.post,
-            buttons: ['Dismiss']
-          }); 
-          alert.present();
-          this.entries = [];
-        })
-       })
-      
-     }else{
-       this.navCtrl.push('AddEntryPage').then(() => {
-         let alert = this.alertCtrl.create({
-           title: '<h1 text-center>Did you know</h1>',
-           subTitle: success.data.post,
-           buttons: ['Dismiss']
-         }); 
-         alert.present();
-         this.entries = [];
-       })
-      }
-     
-    },err => {
-      console.log(err),
-      this.entries = [];
-    })
-  })
-   })
- })
+          ]
+        });
+        alert.present();
       }
     }
   getLocation(){

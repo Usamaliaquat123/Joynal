@@ -12,7 +12,6 @@ import { Storage } from "@ionic/storage";
 })
 
 export class HomeScreenPage{ 
-  public imageSource : string;
   public test : string;
   entries = [];
   title : any;
@@ -28,13 +27,11 @@ export class HomeScreenPage{
   addEntry(){
     this.navCtrl.push("AddEntryPage");
   }
-  showImageFull(){
+  showImageFull(imageSource:string){
     this.navCtrl.push("ImageviewerPage",{
-      imageSource:this.imageSource
+      imageSource:imageSource
     });
   }
-
-
   ionViewCanEnter(){
   let loading  = this.loadCtrl.create({
     content: 'Please wait..',
@@ -59,9 +56,5 @@ export class HomeScreenPage{
     }
 
   }
-  testWelcome(){
-    this.navCtrl.push('WelcomeScreenPage');
-  }
-
 }
 

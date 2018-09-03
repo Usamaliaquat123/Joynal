@@ -8,7 +8,6 @@
 </ion-header>
 
 <ion-content>
-    <button ion-button (click)="testWelcome()"></button>
     <!-- Create entry -->
     <div class="newEntry" text-center (click)="addEntry()">
         <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
@@ -20,11 +19,11 @@
             <ion-item>
                 <div class="otherEntries">
                     <!-- User Uploaded photo -->
-                    <div class="userUploadedPhoto" (click)="showImageFull()">
+                    <div class="userUploadedPhoto" (click)="showImageFull(entries.entry_image_url)">
                         <img [src]="entries.entry_image_url" alt="">
                     </div>
                     <!-- User Entry date  -->
-                    <h1 class="userEntryDate" text-center>{{ entries.entry_date | date: 'dd'  }}<br>
+                    <h1 class="userEntryDate" text-center><h3>{{ entries.entry_date | date: 'dd'  }}</h3><br>
                             {{ entries.entry_date | date: 'MMM'  }} </h1>
                 </div> 
             </ion-item>
