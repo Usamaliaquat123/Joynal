@@ -4,7 +4,7 @@
     <ion-title>Add Entry</ion-title>
     <cloud></cloud>
   </ion-navbar>
-  <entry (getEntries)="isEntryChange($event)"></entry>
+  <entry (getEntries)="isEntryChange($event)" (EntryImage)="gettingImageTest($event)"></entry>
 </ion-header>
 
 <ion-content>
@@ -16,11 +16,11 @@
                         <ion-item>
                                 <div class="otherEntries">
                                   <!-- User Uploaded photo -->
-                                  <div class="userUploadedPhoto" (click)="showImageFull()">
-                                      <img [src]="singleEntry.image" alt="">
-                                  </div>
+                                  <div class="userUploadedPhoto" (click)="showImageFull(entryImageTest)">
+                                      <img [src]="entryImageTest" alt="">
+                                  </div>    
                                   <!-- User Entry date -->
-                                  <h1 class="userEntryDate" text-center>{{ singleEntry.todayDate }} <br> {{ singleEntry.dateMonth}}</h1>
+                                  <h1 class="userEntryDate" text-center><h3>{{ singleEntry.todayDate }}</h3> <br> {{ singleEntry.dateMonth}}</h1>
                                   <span class="userEntryLocation"> 
                                       <ion-icon name="ios-pin"></ion-icon>
                                       <h3>{{ singleEntry.state }}</h3>
@@ -47,11 +47,12 @@
                                 <ion-item>
                                     <div class="otherEntries">
                                          <!-- User Uploaded photo -->
-                                         <div class="userUploadedPhoto" (click)="showImageFull(recentEntery.entry_image_url)">
-                                            <img [src]= "recentEntery.entry_image_url"  alt="">
+                                         <div class="userUploadedPhoto">
+                                            <img *ngIf="!recentEntery.entryImageType==none" [src]= "recentEntery.entry_image_url"  alt="" (click)="showImageFull(recentEntery.entry_image_url)">
+                                            <img *ngIf="recentEntery.entryImageType==none" [src]= "noImageThumbnail"  alt="" (click)="showImageFull(noImageThumbnail)">
                                         </div>
                                          <!-- User Entry date  -->
-                                         <h1 class="userEntryDate" text-center>{{ recentEntery.entry_date | date: 'dd'  }}<br>
+                                         <h1 class="userEntryDate" text-center><h3>{{ recentEntery.entry_date | date: 'dd'  }}</h3><br>
                                             {{ recentEntery.entry_date | date: 'MMM'  }} </h1>
                                             <span class="userEntryLocation"> 
                                                     <ion-icon name="ios-pin"></ion-icon>

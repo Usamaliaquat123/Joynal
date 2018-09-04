@@ -11,7 +11,26 @@ page-add-entry {
     .toolbar-background-md, .toolbar-background-ios {
         background: rgba(248, 248, 248, 0.5);
     }
-    .currentDateHeader, .recentEntryDateHeader{
+    .recentEntryDateHeader{
+        margin-top: -20%;
+        font-size: 1.6rem;
+        color: #424242d6;
+        background-color: transparent;
+        text-align: center;
+        outline: none;
+        text-decoration: none;
+        justify-content: center;
+        display: flex;
+        p{
+            margin: 0;
+        }
+        .badge-md {
+            border-radius: 15px;
+            color: #fff;
+            background-color: #01AEF0;
+        }
+    }
+    .currentDateHeader{
         margin-top: 5%;
         font-size: 1.6rem;
         color: #424242d6;
@@ -31,7 +50,8 @@ page-add-entry {
         }
     }
     .newEntry{
-        margin-top: 8%;
+        margin-top: 5%;
+        margin-bottom: 25%;
         border: 1px solid;
         box-shadow: inset 0px 0px rgba(0,0,0,0.5);
         // box-shadow: -2px -1px 14px black;
@@ -41,7 +61,7 @@ page-add-entry {
         letter-spacing: 1px;
     }
     .recentEntries{
-        margin-top: 8%;
+        margin-top: 5%;
         box-shadow: inset 0px 0px rgba(0,0,0,0.5);
         background-color: #D7F0FB;
         font-size: 12px;

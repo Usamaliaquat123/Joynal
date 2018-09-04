@@ -1,4 +1,3 @@
-import { NavController } from 'ionic-angular';
 import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api';
 
 import { Component , Input , Output, EventEmitter} from '@angular/core';
@@ -23,9 +22,9 @@ export class FooterComponent {
  @Input() authFacebook : any;
  @Input() authTwitter : any;
  @Input() authInstagram : any;
- data : any;
+ 
  user = {} as user;
-  constructor(private joynalApi : JoynalApiProvider,public storage : Storage,public navCtrl  :NavController) {
+  constructor(private joynalApi : JoynalApiProvider,public storage : Storage ) {
   }
 
 
@@ -37,24 +36,15 @@ export class FooterComponent {
       .then(userData => {
         console.log(userData);
         this.joynalApi.authenticationLoginSocial(userData.user.email,userData.user.displayName,userData.user.uid).subscribe(resp => {
-          this.data = resp; 
-          console.log(resp);        
-     
-            this.storage.set('session.rememberme', true);
-            this.storage.set('session.accessToken',resp.data.token);
-            this.storage.set('session.name',resp.data.userName);
-            this.storage.set('session.email',resp.data.userEmail);   
-            this.storage.set('session.userId',resp.data.userId);
-            this.storage.set('session.isNotificationAllowed',resp.data.isNotificationAllowed);
-            this.storage.set('session.isEntryVisible',resp.data.isEntryVisible);
-            this.storage.set('session.reminderTime',resp.data.reminderTime);
-            this.navCtrl.setRoot('HomeScreenPage');
           
-
-       
-      
-        })  
-      
+        })
+          // Saving data in local
+          this.user.fbUid = userData.user.uid;
+          this.user.name = userData.user.displayName;
+          this.user.email = userData.user.email;
+        this.storage.set('userName', this.user.name);
+        this.storage.set('userEmail', this.user.email);
+        this.storage.set('FBuserId', this.user.fbUid);
       })
     }
     // todo : Requesting for twiter developer account the application is under reviewing

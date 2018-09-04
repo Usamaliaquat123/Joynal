@@ -20,7 +20,7 @@ import { HttpModule } from "@angular/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CameraMock } from "./camera.mock";
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 @NgModule({
@@ -49,6 +49,7 @@ import { CameraMock } from "./camera.mock";
     // OauthCordova,
     SplashScreen,
     Geolocation,
+    LocalNotifications,
     NativeGeocoder,
   { provide: Camera, useClass: CameraMock },
      Camera,

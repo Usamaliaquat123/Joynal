@@ -14,8 +14,11 @@ export class AddEntryNewPage {
   date : any;
   recentEntery = [];
   laoding : any;
+  entryImageTest: string;
+  noImageThumbnail : string;
   constructor(public loadCtrl : LoadingController,private storage : Storage ,private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams) {
     // this.imageSource = "./assets/imgs/icons/camera-picture-dummy.jpg";
+    this.noImageThumbnail = './assets/imgs/placeholder-image.png';
   }
 
 
@@ -54,10 +57,14 @@ export class AddEntryNewPage {
     })
   }
 
-
+  gettingImageTest(singeEntryImage){
+    console.log(singeEntryImage);
+    this.entryImageTest = singeEntryImage;
+  }
   isEntryChange(entries){
     console.log(entries);
     this.entries = entries;
+    
     this.ionViewDidLoad();
   }
 

@@ -2,12 +2,8 @@ import { NavController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import firebase from "firebase";
 import { Storage } from "@ionic/storage";
-/**
- * Generated class for the HomeFooterComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 @Component({
   selector: 'home-footer',
   templateUrl: 'home-footer.html'
@@ -40,24 +36,17 @@ export class HomeFooterComponent {
               if(user){
                 console.log(user);
                 // destroying all sessions
-                  this.storage.remove('session.accessToken');
-                  this.storage.remove('session.name');
-                  this.storage.remove('session.email');
-                  this.storage.remove('session.userId');
-                  this.storage.remove('session.isNotificationAllowed');
-                  this.storage.remove('session.isEntryVisible');
-                  this.storage.remove('session.userPass');
-                  this.storage.remove('session.email');
-                  this.storage.remove('session.rememberme');
-                  this.navCtrl.setRoot('LoginPage');
+                  this.storage.remove('userName');
+                  this.storage.remove('userEmail');
+                  this.storage.remove('FBuserId');
                 // signout from firebase
                 firebase.auth().signOut().then(() => {this.navCtrl.setRoot('LoginPage');});
                
               }else{
                 // destroying all sessions
                 this.storage.remove('session.accessToken');
-                this.storage.remove('session.name');
                 this.storage.remove('session.rememberme');
+                this.storage.remove('session.name');
                 this.storage.remove('session.email');
                 this.storage.remove('session.userId');
                 this.storage.remove('session.isNotificationAllowed');

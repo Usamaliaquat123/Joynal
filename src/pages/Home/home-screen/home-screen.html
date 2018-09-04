@@ -8,29 +8,26 @@
 </ion-header>
 
 <ion-content>
-
     <!-- Create entry -->
     <div class="newEntry" text-center (click)="addEntry()">
         <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
         Add new entry</p>
     </div>
     <!-- <div *ngFor="let entry of entries.data"></div> -->
-    <div *ngIf="this.entries == null">
-        <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
-    </div>
-    <div *ngIf="this.entries">
+    <div>
         <ion-list>
             <ion-item>
                 <div class="otherEntries">
                     <!-- User Uploaded photo -->
-                    <div class="userUploadedPhoto" (click)="showImageFull()">
-                        <img [src]="entries.entry_image_url" alt="">
+                    <div class="userUploadedPhoto">
+                        <img *ngIf="!entries.entryImageType==none" [src]="entries.entry_image_url" alt="" (click)="showImageFull(entries.entry_image_url)">
+                        <img *ngIf="entries.entryImageType==none" [src]="noImageThumbnail" alt="" (click)="showImageFull(noImageThumbnail)">
                     </div>
                     <!-- User Entry date  -->
-                <h1 class="userEntryDate" text-center>{{ entries.entry_date | date: 'dd'  }}<br>
+                    <h1 class="userEntryDate" text-center><h3>{{ entries.entry_date | date: 'dd'  }}</h3><br>
                             {{ entries.entry_date | date: 'MMM'  }} </h1>
-                </div>  
-             </ion-item>
+                </div> 
+            </ion-item>
             <ion-item>
                 <div class="userEntryHeading">
                     <strong><h1>{{ entries.entry_title }}</h1></strong>
@@ -40,7 +37,7 @@
                 </div>
             </ion-item>
         </ion-list> 
-    </div> 
+    </div>
 </ion-content>
 <ion-footer>
     <home-footer></home-footer>

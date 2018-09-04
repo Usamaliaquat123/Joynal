@@ -14,7 +14,7 @@ home-footer {
       color: #ffffff;
       position: relative;
       background: #01aef0;
-      border: 3px solid #ffffff;
+      border: 3px solid rgba(255, 255, 255, 0.6);
       border-radius: 50%;
       padding: 8px 10px;
       margin: 5px;
@@ -31,8 +31,6 @@ home-footer {
       border-radius: 50%;
     }
   }
-
-
   .row {
     margin-top: -18px;
     display: -webkit-box;
@@ -75,7 +73,7 @@ home-footer {
     color: #ffffff;
     position: relative;
     background: #01aef0;
-    border: 3px solid #ffffff;
+    border: 3px solid rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     padding: 8px 10px;
     margin: 5px;

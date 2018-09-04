@@ -1,3 +1,4 @@
+import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -8,21 +9,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment : 'forgotPass'
+})
 @Component({
   selector: 'page-forgot-password',
   templateUrl: 'forgot-password.html',
+  providers : [JoynalApiProvider]
 })
 export class ForgotPasswordPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  email:any;
+  constructor(private joynalApi : JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ForgotPasswordPage');
-  }
+
 
   goBack(){
     this.navCtrl.pop();
+  }
+  submitEmail(){
+    console.log('todo')
+    this.joynalApi.forgotPassword(this.email).subscribe(resp => {
+     
+    })
   }
 }

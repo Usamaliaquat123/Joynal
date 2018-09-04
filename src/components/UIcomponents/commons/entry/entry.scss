@@ -55,7 +55,8 @@ entry {
         border-radius: 10px;
         color: white;
         height: 65px;
-        overflow: scroll;
+        overflow: auto;
+        resize: none;
         width: 100%;
         padding: 10px;
         text-input{
@@ -70,10 +71,13 @@ entry {
             padding: 0px;
             width: calc(100% - 8px - 8px);
         }
-        border-color: #4DC6F5;
+        border: 2px solid #4DC6F5;
     }
     textarea::placeholder{
         color: white;
+    }
+    textarea:focus{
+        border: 2px solid #4DC6F5;
     }
     .geo-location-position {
         background-color: #4DC6F5;
@@ -167,7 +171,7 @@ entry {
         border-radius: 10px;
         color: white;
         width: 100%;
-        border: 1px solid #4DC6F5;
+        border: 2px solid #4DC6F5;
         margin-bottom: 0px;
         padding: 12px;
         margin-right: 8px;

@@ -20,6 +20,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 export class EntryComponent {
   // output event
   @Output() getEntries = new EventEmitter();
+  @Output() EntryImage = new EventEmitter();
   userId : any;
   text: string;
   date : any;
@@ -39,6 +40,7 @@ export class EntryComponent {
   titleStuck : any;
   locationCity : string;
   locationCountry : string;
+  singleEntryImage : string;
  
   constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder ) {
     this.imageUpload = false;
@@ -49,76 +51,202 @@ export class EntryComponent {
     })
   }
   didYouKnowAchievement(){
-      if(this.description == '' || this.title == '' || this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+      if(this.description == '' || this.title == ''){
         this.toast.show(`Cannot post empty entry`, '3000', 'bottom').subscribe(
           toast => {
             console.log(toast);
           }
         );
       }else{
-        let loading = this.loadCtrl.create({
-          content: 'Please wait..',
-        });
-        loading.present();
-        this.entries.push(
-          {
-         title:this.title,
-         description:this.description,
-         state:"England",
-         country: "England",
-         city:"England",
-         longitude:"England",
-         latitude:"England",
-         entryImageUrl: this.base64Image,
-         entryImageType:"jpg",
-          }
-        );
-     console.log("entries>"+this.entries);
-     this.storage.ready().then(() => {
-       this.storage.get('session.userId').then(res => {
-         this.storage.get('session.accessToken').then(accessToken => {
-           var headers = {
-             user_id : res.toString(),
-             access_token: accessToken
+        let alert = this.alertCtrl.create({
+          title: 'Share Entries',
+          message: 'Do you want your diary entries to anonymously appear to others? Your entries will be uploaded to a moderated database which only stores your entry and your general location. Your personal information won’t ever be shown.',
+          buttons: [
+            {
+              text: 'No Thanks',
+              role: 'cancel',
+              handler: () => {
+                this.storage.get('session.userId').then(userId=>{
+                  this.storage.get('session.accessToken').then(accessToken=>{
+                    console.log(userId+'   '+accessToken);
+                    var headers = {user_id : userId.toString(),access_token: accessToken }
+                    this.joynalApi.updateUserEntryVisibility(headers,userId,"False").subscribe(resp => {
+                      console.log(resp);
+                    })
+                  });
+                });
+                let loading = this.loadCtrl.create({
+                  content: 'Please wait..',
+                });
+                loading.present();
+                if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+                  this.entries.push(
+                    {
+                      title:this.title,
+                      description:this.description,
+                      state:"England",
+                      country: "England",
+                      city:"England",
+                      longitude:"England",
+                      latitude:"England",
+                      entryImageUrl: "",
+                      entryImageType:"none",
+                    }
+                  );
+                  console.log("entries>"+this.entries);
+                }
+                else{
+                  this.entries.push(
+                    {
+                      title:this.title,
+                      description:this.description,
+                      state:"England",
+                      country: "England",
+                      city:"England",
+                      longitude:"England",
+                      latitude:"England",
+                      entryImageUrl: this.base64Image,
+                      entryImageType: "jpg",
+                    }
+                  );
+                  console.log("entries"+this.entries);
+                }
+                this.storage.ready().then(() => {
+                  this.storage.get('session.userId').then(res => {
+                    this.storage.get('session.accessToken').then(accessToken => {
+                      var headers = {
+                        user_id : res.toString(),
+                        access_token: accessToken
+                        }
+                        console.log(res)
+                        this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
+                          loading.dismiss();
+                          console.log(success);
+                          if(success.data.achievements){
+                            this.achievements = success.data.achievements;
+                            console.log(this.achievements);
+                            this.navCtrl.push('AddEntryPage').then(() => {
+                              this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
+                                let alert = this.alertCtrl.create({
+                                  title: '<h1 text-center>Did you know</h1>',
+                                  subTitle: success.data.post,
+                                  buttons: ['Dismiss']
+                                }); 
+                                alert.present();
+                                this.entries = [];
+                              })
+                            })
+                            
+                          }
+                          else{
+                            this.navCtrl.push('AddEntryPage').then(() => {
+                              let alert = this.alertCtrl.create({
+                                title: '<h1 text-center>Did you know</h1>',
+                                subTitle: success.data.post,
+                                buttons: ['Dismiss']
+                              }); 
+                              alert.present();
+                              this.entries = [];
+                          })
+                        }
+                    },err => {
+                  console.log(err),
+                  this.entries = [];
+                })
+                })
+                })
+              })
+              }
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                  let loading = this.loadCtrl.create({
+                    content: 'Please wait..',
+                  });
+                  loading.present();
+                  if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+                    this.entries.push(
+                      {
+                        title:this.title,
+                        description:this.description,
+                        state:"England",
+                        country: "England",
+                        city:"England",
+                        longitude:"England",
+                        latitude:"England",
+                        entryImageUrl: "",
+                        entryImageType:"none",
+                      }
+                    );
+                    console.log("entries>"+this.entries);
+                  }
+                  else{
+                    this.entries.push(
+                      {
+                        title:this.title,
+                        description:this.description,
+                        state:"England",
+                        country: "England",
+                        city:"England",
+                        longitude:"England",
+                        latitude:"England",
+                        entryImageUrl: this.base64Image,
+                        entryImageType: "jpg",
+                      }
+                    );
+                    console.log("entries"+this.entries);
+                  }
+                  this.storage.ready().then(() => {
+                    this.storage.get('session.userId').then(res => {
+                      this.storage.get('session.accessToken').then(accessToken => {
+                        var headers = {
+                          user_id : res.toString(),
+                          access_token: accessToken
+                          }
+                          console.log(res)
+                          this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
+                            loading.dismiss();
+                            console.log(success);
+                            if(success.data.achievements){
+                              this.achievements = success.data.achievements;
+                              console.log(this.achievements);
+                              this.navCtrl.push('AddEntryPage').then(() => {
+                                this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
+                                  let alert = this.alertCtrl.create({
+                                    title: '<h1 text-center>Did you know</h1>',
+                                    subTitle: success.data.post,
+                                    buttons: ['Dismiss']
+                                  }); 
+                                  alert.present();
+                                  this.entries = [];
+                                })
+                              })
+                              
+                            }
+                            else{
+                              this.navCtrl.push('AddEntryPage').then(() => {
+                                let alert = this.alertCtrl.create({
+                                  title: '<h1 text-center>Did you know</h1>',
+                                  subTitle: success.data.post,
+                                  buttons: ['Dismiss']
+                                }); 
+                                alert.present();
+                                this.entries = [];
+                            })
+                          }
+                      },err => {
+                    console.log(err),
+                    this.entries = [];
+                  })
+                  })
+                  })
+                })
+              }
             }
-            console.log(res)
-            this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
-              loading.dismiss();
-              console.log(success);
-     if(success.data.achievements){
-       this.achievements = success.data.achievements;
-       console.log(this.achievements);
-       this.navCtrl.push('AddEntryPage').then(() => {
-        this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
-          let alert = this.alertCtrl.create({
-            title: '<h1 text-center>Did you know</h1>',
-            subTitle: success.data.post,
-            buttons: ['Dismiss']
-          }); 
-          alert.present();
-          this.entries = [];
-        })
-       })
-      
-     }else{
-       this.navCtrl.push('AddEntryPage').then(() => {
-         let alert = this.alertCtrl.create({
-           title: '<h1 text-center>Did you know</h1>',
-           subTitle: success.data.post,
-           buttons: ['Dismiss']
-         }); 
-         alert.present();
-         this.entries = [];
-       })
-      }
-     
-    },err => {
-      console.log(err),
-      this.entries = [];
-    })
-  })
-   })
- })
+          ]
+        });
+        alert.present();
       }
     }
   getLocation(){
@@ -201,7 +329,7 @@ export class EntryComponent {
   }
   // Create an array of entries 
   againAddEntry(){
-    if(this.description == '' || this.title == '' || this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+  if(this.description == '' || this.title == ''){
       this.toast.show(`Cannot post invalid entry! Please submit all required entries`, '3000', 'bottom').subscribe(
       toast => {
         console.log(toast);
@@ -210,13 +338,14 @@ export class EntryComponent {
   }
   else{
     if(this.base64Image == null || this.base64Image == undefined){
+      this.singleEntryImage = './assets/imgs/placeholder-image.png';
       this.singleEntry.push(
         {
           descriptionStuck  : this.description,
           titleStuck : this.title,
-          image : 'data:image/png;base64,' + this.base64Image,
+          image : "false",
           todayDate : moment().format('DD'),
-          dateMonth : moment().format('MMMM'),
+          dateMonth : moment().format('MMM'),
           state:"England",
         }
     )
@@ -229,8 +358,8 @@ export class EntryComponent {
          city:"England",
          longitude:"England",
          latitude:"England",
-         entryImageUrl: 'notUploadedByUser',
-         entryImageType:".jpg",
+         entryImageUrl: "false",
+         entryImageType:"none",
         });
     
         this.description = '';
@@ -241,9 +370,11 @@ export class EntryComponent {
           this.singleEntry
         )
         this.getEntries.emit(this.allEntry);
+        this.EntryImage.emit(this.singleEntryImage);
         this.singleEntry = [];
-         this.allEntry = [];
+        this.allEntry = [];
     }else{
+      this.singleEntryImage = this.base64Image;
       this.singleEntry.push(
         {
           descriptionStuck  : this.description,
@@ -272,9 +403,11 @@ export class EntryComponent {
       console.log(this.entries);
       this.allEntry.push(
         // this.entries,
-        this.singleEntry
+        this.singleEntry,
+        this.singleEntryImage
       )
       this.getEntries.emit(this.allEntry);
+      this.EntryImage.emit(this.singleEntryImage);
       this.singleEntry = [];
       this.allEntry = [];
     

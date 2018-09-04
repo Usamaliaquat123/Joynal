@@ -49,6 +49,10 @@ export class AddEntryPage {
           loading.dismiss();
          this.entriesz  = entries.data;
           console.log(entries);
+        }, err=>{
+          if(err.status==400){
+            loading.dismiss();
+          }
         })
       })
     })
