@@ -1,3 +1,4 @@
+import { StatusBar } from '@ionic-native/status-bar';
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
@@ -51,6 +52,10 @@ export class AddEntryNewPage {
           this.recentEntery  = recentEntery.data;
           console.log(recentEntery);
           loading.dismiss();
+        }, err=>{
+          if(err.status == 400){
+            loading.dismiss();
+          }
         })
       })
     })
