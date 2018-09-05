@@ -33,7 +33,5 @@ export class ForgotPasswordPage {
      
     })
   }
-  resetPasswordTest(){
-    this.navCtrl.push("NewPassSetupPage");
-  }
+  
 }

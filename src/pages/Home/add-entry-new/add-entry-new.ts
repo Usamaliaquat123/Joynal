@@ -51,6 +51,11 @@ export class AddEntryNewPage {
           this.recentEntery  = recentEntery.data;
           console.log(recentEntery);
           loading.dismiss();
+        },err => {
+          if(err.status == 400){
+            loading.dismiss();
+            this.recentEntery = null;
+          }
         })
       })
     })

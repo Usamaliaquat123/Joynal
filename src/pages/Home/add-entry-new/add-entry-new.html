@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+    <div *ngIf="this.recentEntery == null"> 
+            <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
+    </div>
     <!-- Random Entries -->
     <div *ngIf="this.entries"> 
         <ion-list>

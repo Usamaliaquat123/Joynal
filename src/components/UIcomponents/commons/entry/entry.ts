@@ -134,13 +134,7 @@ export class EntryComponent {
                           }
                           else{
                             this.navCtrl.push('AddEntryPage').then(() => {
-                              // let alert = this.alertCtrl.create({
-                              //   title: '<h1 text-center>Did you know</h1>',
-                              //   subTitle: success.data.post,
-                              //   buttons: ['Dismiss']
-                              // }); 
-                              // alert.present();
-                              // this.entries = [];
+                             
                           })
                         }
                     },err => {
