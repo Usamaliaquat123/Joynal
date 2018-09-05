@@ -70,7 +70,7 @@ export class AddEntryNewPage {
     this.entryImageTest = singeEntryImage;
   }
   isEntryChange(entries){
-    console.log(entries);
+    console.log("hello "+entries);
     this.entries = entries;
     
     this.ionViewDidLoad();
