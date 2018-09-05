@@ -1,4 +1,4 @@
-<ion-content class="no-scroll">
+<ion-content class="no-scroll" (swipeleft)="swipeLeft($event)">
   <cloud></cloud>
 
   <ion-grid style="height: 100%">
@@ -14,7 +14,11 @@
     </ion-row>
     <ion-row justify-content-center align-items-center style="height: 20%">
         <div text-center>
+<<<<<<< HEAD
          <p  style="color: #222222c9;  margin: 0px 20px;" >This app will help induce a positive minset by recording things that have made you happy today.</p>
+=======
+          <strong><p text-wrap style="color: #222222c9">This app will help induce a positive mindset by recording things that have made you happy today.</p></strong>
+>>>>>>> ce1f38609e90183d3a52970dbaa6a823f4d65d43
         </div>
     </ion-row>
     <ion-row justify-content-center align-items-center style="height: 10%;">
@@ -27,9 +31,15 @@
          <h3  style="color: #222222c9; ">Let's try it out.</h3>
         </div>
     </ion-row>
+<<<<<<< HEAD
     <ion-row justify-content-center align-items-center style="height: 30%">
         <div text-center (swipeleft)="swipeLeft($event)">
           <strong><p style="color: #BEBEBE; font-weight: 400;">Swipe left to continue</p></strong>
+=======
+    <ion-row justify-content-center align-items-center style="height: 20%">
+        <div text-center>
+          <strong><p text-wrap style="color: #BEBEBE; font-weight: 400;">Swipe left to continue</p></strong>
+>>>>>>> ce1f38609e90183d3a52970dbaa6a823f4d65d43
         </div>
     </ion-row>
   </ion-grid>

@@ -19,7 +19,7 @@ export class HomeFooterComponent {
   logout(){
 
     let alert = this.alertCtrl.create({
-      title: 'Confirm signout',
+      title: 'Confirm sign out',
       message: 'Are you sure you want to sign out?',
       buttons: [
         {
