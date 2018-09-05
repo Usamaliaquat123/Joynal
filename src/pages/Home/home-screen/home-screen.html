@@ -23,8 +23,7 @@
                 <div class="otherEntries">
                     <!-- User Uploaded photo -->
                     <div class="userUploadedPhoto">
-                        <img *ngIf="!entries.entryImageType==none" [src]="entries.entry_image_url" alt="" (click)="showImageFull(entries.entry_image_url)">
-                        <img *ngIf="entries.entryImageType==none" [src]="noImageThumbnail" alt="" (click)="showImageFull(noImageThumbnail)">
+                        <img [src]="entries.entry_image_url" alt="" (click)="showImageFull(entries.entry_image_url)">
                     </div>
                     <!-- User Entry date  -->
                     <h1 class="userEntryDate" text-center><h3>{{ entries.entry_date | date: 'dd'  }}</h3><br>
