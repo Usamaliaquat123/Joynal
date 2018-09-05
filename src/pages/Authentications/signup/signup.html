@@ -30,7 +30,7 @@
           </div>
         <ion-col col-12>
             <ion-item no-lines>
-               <ion-input [formControl]="authForm.controls['name']" type="name" placeholder="Name" ></ion-input>
+               <ion-input [formControl]="authForm.controls['name']" type="name" placeholder="Enter your name" ></ion-input>
 
              </ion-item>
              <span *ngIf="authForm.get('name').dirty || formSubmitclicked">
@@ -40,7 +40,7 @@
             </ion-col>
         <ion-col col-12>
               <ion-item no-lines>
-                 <ion-input [formControl]="authForm.controls['email']" type="email" placeholder="Email" ></ion-input> 
+                 <ion-input [formControl]="authForm.controls['email']" type="email" placeholder="Enter an email" ></ion-input> 
                </ion-item>
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">
             <!-- <small class="error" *ngIf="this.checkingEmailIfExists">{{}}</small> -->
@@ -61,11 +61,11 @@
         </ion-col>
         <ion-col col-12>
             <ion-item no-lines>
-               <ion-input [formControl]="authForm.controls['confirmPass']" [type]="passwordTypeConfirm"  placeholder="Confirm Password" ></ion-input> 
+               <ion-input [formControl]="authForm.controls['confirmPass']" [type]="passwordTypeConfirm"  placeholder="Confirm your password" ></ion-input> 
                <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePasswordConfirm()" item-end></ion-icon> 
              </ion-item>  
              <span *ngIf="authForm.get('confirmPass').dirty || formSubmitclicked">
-                <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Passwords do not match</small>
+                <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Password does not match</small>
             </span>
         </ion-col>
 

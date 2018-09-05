@@ -19,7 +19,7 @@
         <ion-col col-12>
           <ion-item no-lines>
               <ion-label><ion-icon name="ios-mail-outline" item-start></ion-icon></ion-label>
-            <ion-input [formControl]="authForm.controls['email']" type="text" placeholder= "Email"></ion-input>
+            <ion-input [formControl]="authForm.controls['email']" type="text" placeholder= "Enter an email"></ion-input>
           </ion-item>
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">     
               <small class="error" *ngIf="authForm.get('email').hasError('required')">* The Email field is required.</small>
@@ -36,7 +36,7 @@
           </ion-item>
           <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
               <small class="error"  *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">* Password is required!</small>
-              <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
+              <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Enter a password that contains at least 8 characters</small>
             </span> 
         </ion-col>
   </ion-row>
