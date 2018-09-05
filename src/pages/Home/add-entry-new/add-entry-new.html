@@ -16,12 +16,12 @@
                         <ion-item>
                                 <div class="otherEntries">
                                   <!-- User Uploaded photo -->
-                                  <div class="userUploadedPhoto" (click)="showImageFull(entryImageTest)">
-                                      <img [src]="entryImageTest" alt="">
+                                  <div class="userUploadedPhoto" (click)="showImageFull(singleEntry.image)">
+                                      <img [src]="singleEntry.image" alt="">
                                   </div>    
                                   <!-- User Entry date -->
                                   <h1 class="userEntryDate" text-center><h3>{{ singleEntry.todayDate }}</h3> <br> {{ singleEntry.dateMonth}}</h1>
-                                  <span class="userEntryLocation"> 
+                                  <span *ngIf="singleEntry.state" class="userEntryLocation"> 
                                       <ion-icon name="ios-pin"></ion-icon>
                                       <h3>{{ singleEntry.state }}</h3>
                                   </span>

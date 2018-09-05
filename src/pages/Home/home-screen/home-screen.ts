@@ -1,7 +1,7 @@
-import { HttpHeaders } from '@angular/common/http';
+
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController, LoadingController, Platform } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { LocalNotifications } from "@ionic-native/local-notifications";
 import moment from 'moment';
@@ -21,7 +21,7 @@ export class HomeScreenPage{
   moment : any;
   noImageThumbnail : string;
 
-  constructor(private localNotify: LocalNotifications,public loadCtrl : LoadingController ,private apiJoynal : JoynalApiProvider,private storage: Storage,public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(private platfrm  : Platform,private localNotify: LocalNotifications,public loadCtrl : LoadingController ,private apiJoynal : JoynalApiProvider,private storage: Storage,public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.noImageThumbnail = './assets/imgs/placeholder-image.png';
    
     console.log( new Date(new Date().getTime()));
@@ -35,6 +35,18 @@ export class HomeScreenPage{
     });
   }
   ionViewCanEnter(){
+    this.platfrm.ready().then(() => {
+       this.localNotify.on('click').subscribe(notification => {
+          let json = JSON.parse(notification.data);
+     
+           let alert = this.alertCtrl.create({
+           title: notification.title,
+            subTitle: json.mydata
+         });
+          alert.present();
+        })
+    })
+    
     this.storage.get('session.isNotificationAllowed').then(isNotificationAllowed => {
       if(isNotificationAllowed.toString() == 'true'){
         this.storage.get('session.reminderTime').then(reminderTime => {
@@ -48,8 +60,6 @@ export class HomeScreenPage{
               trigger: { at:  date},
             })
          })
-      }else{
-        
       }
      
     })

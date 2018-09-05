@@ -9,5 +9,8 @@ import { NewPassSetupPage } from './new-pass-setup';
   imports: [
     IonicPageModule.forChild(NewPassSetupPage),
   ],
+  exports : [
+    NewPassSetupPage
+  ]
 })
 export class NewPassSetupPageModule {}

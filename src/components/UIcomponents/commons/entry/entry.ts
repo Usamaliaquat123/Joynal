@@ -41,7 +41,8 @@ export class EntryComponent {
   locationCity : string;
   locationCountry : string;
   singleEntryImage : string;
- 
+  lat : any;
+  Lng : any;
   constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder ) {
     this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
@@ -58,6 +59,14 @@ export class EntryComponent {
           }
         );
       }else{
+        if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+          this.toast.show(`Upload Image is required!`, '3000', 'bottom').subscribe(
+            toast => {
+              console.log(toast);
+            }
+          );
+        
+       }else{
         let alert = this.alertCtrl.create({
           title: 'Share Entries',
           message: 'Do you want your diary entries to anonymously appear to others? Your entries will be uploaded to a moderated database which only stores your entry and your general location. Your personal information won’t ever be shown.',
@@ -79,38 +88,23 @@ export class EntryComponent {
                   content: 'Please wait..',
                 });
                 loading.present();
-                if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+               
+              
                   this.entries.push(
                     {
                       title:this.title,
                       description:this.description,
-                      state:"England",
-                      country: "England",
-                      city:"England",
-                      longitude:"England",
-                      latitude:"England",
-                      entryImageUrl: "",
-                      entryImageType:"none",
-                    }
-                  );
-                  console.log("entries>"+this.entries);
-                }
-                else{
-                  this.entries.push(
-                    {
-                      title:this.title,
-                      description:this.description,
-                      state:"England",
-                      country: "England",
-                      city:"England",
-                      longitude:"England",
-                      latitude:"England",
+                      state: this.locationCity,
+                      country: this.locationCountry,
+                      city:this.locationCity,
+                      longitude:this.lat.toString(),
+                      latitude:this.Lng.toString(),
                       entryImageUrl: this.base64Image,
                       entryImageType: "jpg",
                     }
                   );
                   console.log("entries"+this.entries);
-                }
+                
                 this.storage.ready().then(() => {
                   this.storage.get('session.userId').then(res => {
                     this.storage.get('session.accessToken').then(accessToken => {
@@ -140,13 +134,13 @@ export class EntryComponent {
                           }
                           else{
                             this.navCtrl.push('AddEntryPage').then(() => {
-                              let alert = this.alertCtrl.create({
-                                title: '<h1 text-center>Did you know</h1>',
-                                subTitle: success.data.post,
-                                buttons: ['Dismiss']
-                              }); 
-                              alert.present();
-                              this.entries = [];
+                              // let alert = this.alertCtrl.create({
+                              //   title: '<h1 text-center>Did you know</h1>',
+                              //   subTitle: success.data.post,
+                              //   buttons: ['Dismiss']
+                              // }); 
+                              // alert.present();
+                              // this.entries = [];
                           })
                         }
                     },err => {
@@ -156,6 +150,8 @@ export class EntryComponent {
                 })
                 })
               })
+            
+              // todo
               }
             },
             {
@@ -165,38 +161,22 @@ export class EntryComponent {
                     content: 'Please wait..',
                   });
                   loading.present();
-                  if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
+                  
                     this.entries.push(
                       {
                         title:this.title,
                         description:this.description,
-                        state:"England",
-                        country: "England",
-                        city:"England",
-                        longitude:"England",
-                        latitude:"England",
-                        entryImageUrl: "",
-                        entryImageType:"none",
-                      }
-                    );
-                    console.log("entries>"+this.entries);
-                  }
-                  else{
-                    this.entries.push(
-                      {
-                        title:this.title,
-                        description:this.description,
-                        state:"England",
-                        country: "England",
-                        city:"England",
-                        longitude:"England",
-                        latitude:"England",
+                        state:this.locationCity,
+                        country: this.locationCountry,
+                        city:this.locationCity,
+                        longitude:this.lat.toString(),
+                        latitude:this.Lng.toString(),
                         entryImageUrl: this.base64Image,
                         entryImageType: "jpg",
                       }
                     );
                     console.log("entries"+this.entries);
-                  }
+                  
                   this.storage.ready().then(() => {
                     this.storage.get('session.userId').then(res => {
                       this.storage.get('session.accessToken').then(accessToken => {
@@ -225,15 +205,7 @@ export class EntryComponent {
                               
                             }
                             else{
-                              this.navCtrl.push('AddEntryPage').then(() => {
-                                let alert = this.alertCtrl.create({
-                                  title: '<h1 text-center>Did you know</h1>',
-                                  subTitle: success.data.post,
-                                  buttons: ['Dismiss']
-                                }); 
-                                alert.present();
-                                this.entries = [];
-                            })
+                              this.navCtrl.push('AddEntryPage');
                           }
                       },err => {
                     console.log(err),
@@ -242,11 +214,15 @@ export class EntryComponent {
                   })
                   })
                 })
+
+              
+                // todo
               }
             }
           ]
         });
         alert.present();
+       }
       }
     }
   getLocation(){
@@ -263,7 +239,9 @@ export class EntryComponent {
       console.log('latitude : '+resp.coords.latitude);
       // resp.coords.longitude
       console.log('longitude : '+resp.coords.longitude);
-
+      // Saving data lat lng
+      this.lat = resp.coords.latitude;
+      this.Lng = resp.coords.longitude;
       //getting device pin point location using the obtained lat and long values
       this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => this.confirmLocation(JSON.stringify(result[0].locality),JSON.stringify(result[0].countryName),JSON.stringify(result[0].administrativeArea)))
@@ -297,6 +275,8 @@ export class EntryComponent {
           text: 'Confirm',
           handler: () => {
             console.log('Save location data to database');
+            this.locationCity = city;
+            this.locationCountry = country;
           }
         }
       ]
@@ -338,42 +318,14 @@ export class EntryComponent {
   }
   else{
     if(this.base64Image == null || this.base64Image == undefined){
-      this.singleEntryImage = './assets/imgs/placeholder-image.png';
-      this.singleEntry.push(
-        {
-          descriptionStuck  : this.description,
-          titleStuck : this.title,
-          image : "false",
-          todayDate : moment().format('DD'),
-          dateMonth : moment().format('MMM'),
-          state:"England",
+      this.toast.show(`Upload Image is required!`, '3000', 'bottom').subscribe(
+        toast => {
+          console.log(toast);
         }
-    )
-    this.entries.push(
-      {
-         title:this.title,
-         description:this.description,
-         state:"England",
-         country: "England",
-         city:"England",
-         longitude:"England",
-         latitude:"England",
-         entryImageUrl: "false",
-         entryImageType:"none",
-        });
-    
-        this.description = '';
-        this.title = '';
-        console.log(this.entries);
-        this.allEntry.push(
-          // this.entries,
-          this.singleEntry
-        )
-        this.getEntries.emit(this.allEntry);
-        this.EntryImage.emit(this.singleEntryImage);
-        this.singleEntry = [];
-        this.allEntry = [];
+      );
     }else{
+     
+    if(this.locationCity == null || this.locationCity == undefined){
       this.singleEntryImage = this.base64Image;
       this.singleEntry.push(
         {
@@ -382,24 +334,25 @@ export class EntryComponent {
           image : 'data:image/png;base64,' + this.base64Image,
           todayDate : moment().format('DD'),
           dateMonth : moment().format('MMM'),
-          state:"England",
+          state: '',
         }
     )
       this.entries.push(
         {
          title:this.title,
          description:this.description,
-         state:"England",
-         country: "England",
-         city:"England",
-         longitude:"England",
-         latitude:"England",
+         state: '',
+         country: '',
+         city:'',
+         longitude:'',
+         latitude:'',
          entryImageUrl: this.base64Image,
          entryImageType:".jpg",
         });
         this.description = '';
         this.title = '';
-        this.base64Image = ''
+        this.base64Image = null;
+        this.locationCity = null;
       console.log(this.entries);
       this.allEntry.push(
         // this.entries,
@@ -410,6 +363,46 @@ export class EntryComponent {
       this.EntryImage.emit(this.singleEntryImage);
       this.singleEntry = [];
       this.allEntry = [];
+    }else{
+      this.singleEntryImage = this.base64Image;
+      this.singleEntry.push(
+        {
+          descriptionStuck  : this.description,
+          titleStuck : this.title,
+          image : 'data:image/png;base64,' + this.base64Image,
+          todayDate : moment().format('DD'),
+          dateMonth : moment().format('MMM'),
+          state: this.locationCity,
+        }
+    )
+      this.entries.push(
+        {
+         title:this.title,
+         description:this.description,
+         state: this.locationCity,
+         country: this.locationCountry,
+         city:this.locationCity,
+         longitude:this.lat.toString(),
+         latitude:this.Lng.toString(),
+         entryImageUrl: this.base64Image,
+         entryImageType:".jpg",
+        });
+        this.description = '';
+        this.title = '';
+        this.base64Image = null;
+        this.locationCity = null;
+      console.log(this.entries);
+      this.allEntry.push(
+        // this.entries,
+        this.singleEntry,
+        this.singleEntryImage
+      )
+      this.getEntries.emit(this.allEntry);
+      this.EntryImage.emit(this.singleEntryImage);
+      this.singleEntry = [];
+      this.allEntry = [];
+    }
+     
     
       }
     }

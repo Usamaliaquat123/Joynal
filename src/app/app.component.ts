@@ -17,15 +17,7 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-    localNotify.on('click').subscribe(notification => {
-      let json = JSON.parse(notification.data);
- 
-      let alert = alertCtrl.create({
-        title: notification.title,
-        subTitle: json.mydata
-      });
-      alert.present();
-    })
+    
       statusBar.styleDefault();
       splashScreen.hide();
     });
