@@ -21,6 +21,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CameraMock } from "./camera.mock";
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Deeplinks } from "../../node_modules/@ionic-native/deeplinks";
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     Facebook,
     //  Instagram,
     // OauthCordova,
+    Deeplinks,
     SplashScreen,
     Geolocation,
     LocalNotifications,

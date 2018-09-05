@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/camera": "^4.12.0",
     "@ionic-native/core": "~4.12.0",
-    "@ionic-native/deeplinks": "^4.11.0",
+    "@ionic-native/deeplinks": "^4.12.2",
     "@ionic-native/facebook": "^4.11.0",
     "@ionic-native/geolocation": "^4.12.2",
     "@ionic-native/instagram": "^4.11.0",

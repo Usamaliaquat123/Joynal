@@ -13,7 +13,9 @@
       <p><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
       Add Entry</p>
   </div>
-
+  <div *ngIf="this.entriesz == null">
+    <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
+  </div>
   <!-- Recent Entries List -->
   <div *ngFor="let entrie of entriesz" style="margin-bottom: 30%;">
       <ion-list>

@@ -51,6 +51,7 @@ export class AddEntryPage {
           console.log(entries);
         }, err=>{
           if(err.status==400){
+             this.entriesz = null 
             loading.dismiss();
           }
         })

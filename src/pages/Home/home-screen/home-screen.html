@@ -14,7 +14,10 @@
         Add new entry</p>
     </div>
     <!-- <div *ngFor="let entry of entries.data"></div> -->
-    <div>
+    <div *ngIf="this.entries == null">
+        <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
+    </div>
+    <div *ngIf="this.entries">
         <ion-list>
             <ion-item>
                 <div class="otherEntries">

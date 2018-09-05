@@ -78,6 +78,12 @@ export class HomeScreenPage{
           this.entries = resp.data;
           console.log(this.entries);
           
+        },err => {
+          if(err.status == 400){
+            loading.dismiss();
+            console.log('clear');
+            this.entries = null;
+          }
         })
       })
     })
