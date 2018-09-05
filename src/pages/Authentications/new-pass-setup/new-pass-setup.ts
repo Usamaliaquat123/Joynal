@@ -11,7 +11,10 @@ export class NewPassSetupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-
-
+  submitResetPassword(){
+    console.log("reset password button has been clicked, reset the user pass here.");
+  }
+  goBack(){
+    this.navCtrl.pop();
+  }
 }

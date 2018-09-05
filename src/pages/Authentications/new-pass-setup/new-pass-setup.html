@@ -1,13 +1,32 @@
+<ion-content>
+  <button clear class="backbutton" ion-button icon-only (click)="goBack()">
+    <ion-icon name="md-arrow-back"></ion-icon>
+  </button>
+<cloud></cloud>
+<div class="boxOfAlligment">
+    <div class="forgotPasswordText">
+        <p>Reset Password</p>
+    </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+              <ion-item no-lines>
+                  <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
+                 <ion-input [(ngModel)]="newPass"  type="password" placeholder="New Password" ></ion-input> 
+               </ion-item><br>
+               <ion-item no-lines>
+                  <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
+                 <ion-input [(ngModel)]="newPassConfirm"  type="password" placeholder="Confirm Password" ></ion-input> 
+               </ion-item><br>
+               <br>
+               <button (click)="submitResetPassword()" style="border-radius: 5px; text-transform:none; letter-spacing: 1px;" ion-button color="primary" full>Reset Password</button>
+          </ion-col>
+        </ion-row>
+      
+      </ion-grid>
+     
+</div>
 
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Reset Password</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content >
-
+<footerlogin  class="footerResp"></footerlogin>
 </ion-content>
+

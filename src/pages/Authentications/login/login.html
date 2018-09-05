@@ -31,7 +31,7 @@
         <ion-col col-12>
           <ion-item no-lines>
              <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
-            <ion-input [formControl]="authForm.controls['password']"  [type]="passwordType"  placeholder="password" ></ion-input> 
+            <ion-input [formControl]="authForm.controls['password']"  [type]="passwordType"  placeholder="Password" ></ion-input> 
             <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
           </ion-item>
           <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
