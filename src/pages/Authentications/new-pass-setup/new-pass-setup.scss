@@ -1,3 +1,27 @@
 page-new-pass-setup {
-
+    .ion-label{
+        padding: 5px;
+    }
+    .item-md {
+        background-color: #CDEFFB;
+        border-radius: 8px;
+        height: 15%;
+      }
+      .forgotPasswordText p{
+        font-size: 25px;
+        text-align: center;
+        color: black;
+        letter-spacing: 1px;    
+      }
+      .boxOfAlligment{
+          margin-top: 20vh;
+      }
+      .backbutton{
+        z-index: 9999999;
+      }
+      @media (max-height: 522px) {
+        .footerResp {
+          visibility: hidden;
+        }
+    }
 }
