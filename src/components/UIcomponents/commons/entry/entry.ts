@@ -78,7 +78,7 @@ export class EntryComponent {
                 this.storage.get('session.userId').then(userId=>{
                   this.storage.get('session.accessToken').then(accessToken=>{
                     console.log(userId+'   '+accessToken);
-                    var headers = {user_id : userId.toString(),access_token: accessToken }
+                    var headers = {user_id : ""+userId,access_token: accessToken }
                     this.joynalApi.updateUserEntryVisibility(headers,userId,"False").subscribe(resp => {
                       console.log(resp);
                     })
@@ -97,8 +97,8 @@ export class EntryComponent {
                       state: this.locationCity,
                       country: this.locationCountry,
                       city:this.locationCity,
-                      longitude:this.lat.toString(),
-                      latitude:this.Lng.toString(),
+                      longitude:this.lat,
+                      latitude:this.Lng,
                       entryImageUrl: this.base64Image,
                       entryImageType: "jpg",
                     }
@@ -109,9 +109,10 @@ export class EntryComponent {
                   this.storage.get('session.userId').then(res => {
                     this.storage.get('session.accessToken').then(accessToken => {
                       var headers = {
-                        user_id : res.toString(),
+                        user_id : ""+res,
                         access_token: accessToken
                         }
+                        console.log(headers);
                         console.log(res)
                         this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
                           loading.dismiss();
@@ -163,22 +164,25 @@ export class EntryComponent {
                         state:this.locationCity,
                         country: this.locationCountry,
                         city:this.locationCity,
-                        longitude:this.lat.toString(),
-                        latitude:this.Lng.toString(),
+                        longitude:this.lat,
+                        latitude:this.Lng,
                         entryImageUrl: this.base64Image,
                         entryImageType: "jpg",
                       }
                     );
                     console.log("entries"+this.entries);
                   
+               
                   this.storage.ready().then(() => {
                     this.storage.get('session.userId').then(res => {
                       this.storage.get('session.accessToken').then(accessToken => {
                         var headers = {
-                          user_id : res.toString(),
+                          user_id : ""+res,
                           access_token: accessToken
                           }
-                          console.log(res)
+                          console.log(res);
+                          console.log(headers);
+                          //console.log(res.toString());
                           this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
                             loading.dismiss();
                             console.log(success);
@@ -186,13 +190,7 @@ export class EntryComponent {
                               this.achievements = success.data.achievements;
                               console.log(this.achievements);
                               this.navCtrl.push('AddEntryPage').then(() => {
-                                this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
-                                  let alert = this.alertCtrl.create({
-                                    title: '<h1 text-center>Did you know</h1>',
-                                    subTitle: success.data.post,
-                                    buttons: ['Dismiss']
-                                  }); 
-                                  alert.present();
+                                this.navCtrl.push('AchievementsPage', success).then(() => {
                                   this.entries = [];
                                 })
                               })
@@ -234,8 +232,8 @@ export class EntryComponent {
       // resp.coords.longitude
       console.log('longitude : '+resp.coords.longitude);
       // Saving data lat lng
-      this.lat = resp.coords.latitude;
-      this.Lng = resp.coords.longitude;
+      this.lat = (resp.coords.latitude).toString();
+      this.Lng = (resp.coords.longitude).toString();
       //getting device pin point location using the obtained lat and long values
       this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => this.confirmLocation(JSON.stringify(result[0].locality),JSON.stringify(result[0].countryName),JSON.stringify(result[0].administrativeArea)))
@@ -376,8 +374,8 @@ export class EntryComponent {
          state: this.locationCity,
          country: this.locationCountry,
          city:this.locationCity,
-         longitude:this.lat.toString(),
-         latitude:this.Lng.toString(),
+         longitude:this.lat,
+         latitude:this.Lng,
          entryImageUrl: this.base64Image,
          entryImageType:".jpg",
         });
@@ -448,6 +446,10 @@ export class EntryComponent {
   }
 
 
+
+  ionViewCanEnter(){
+    this.getLocation();
+  }
 
 }
 

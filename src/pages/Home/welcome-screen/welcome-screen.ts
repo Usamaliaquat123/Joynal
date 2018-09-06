@@ -16,7 +16,7 @@ export class WelcomeScreenPage {
     console.log('ionViewDidLoad WelcomeScreenPage');
   }
   swipeLeft(event: any): any {
-    this.navCtrl.setRoot('HomeScreenPage');
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }

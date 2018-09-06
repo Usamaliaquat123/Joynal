@@ -48,11 +48,13 @@ export class AddEntryNewPage {
         }
         console.log(userId);
         console.log(accessToken);
+        
         this.joynalApi.getRandomUserPostsAddEntry(headers,userId).subscribe(recentEntery => {
           this.recentEntery  = recentEntery.data;
           console.log(recentEntery);
           loading.dismiss();
         },err => {
+          console.log(err);
           if(err.status == 400){
             loading.dismiss();
             console.log(err);
