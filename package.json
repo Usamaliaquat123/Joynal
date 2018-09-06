@@ -23,8 +23,10 @@
     "@ionic-native/camera": "^4.12.0",
     "@ionic-native/core": "~4.12.0",
     "@ionic-native/deeplinks": "^4.12.2",
+    "@ionic-native/email-composer": "^4.12.2",
     "@ionic-native/facebook": "^4.11.0",
     "@ionic-native/geolocation": "^4.12.2",
+    "@ionic-native/in-app-browser": "^4.12.2",
     "@ionic-native/instagram": "^4.11.0",
     "@ionic-native/local-notifications": "^4.12.2",
     "@ionic-native/native-geocoder": "^4.12.2",
@@ -40,6 +42,7 @@
     "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-email-composer": "^0.8.15",
     "cordova-plugin-facebook4": "^2.3.0",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-inappbrowser": "^3.0.0",
@@ -109,7 +112,8 @@
         "ANDROID_SDK_VERSION": "4.+"
       },
       "cordova-plugin-nativegeocoder": {},
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-email-composer": {}
     },
     "platforms": [
       "android"

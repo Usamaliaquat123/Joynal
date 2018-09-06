@@ -1,0 +1,42 @@
+<ion-header text-center>
+  <ion-navbar>
+    <ion-title>Email Verification</ion-title>
+    <cloud></cloud>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="margin-top: 30%;">
+      <div text-center>
+        <h2 text-wrap style="color: #222222c9">Enter the verification code sent to your email</h2>
+      </div>
+    </ion-row>
+    <ion-row justify-content-center align-items-center style="height: 30%">
+      <ion-col col-2>
+        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel" maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+      </ion-col>
+      <ion-col col-2>
+        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+      </ion-col>
+      <ion-col col-2>
+        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+      </ion-col>
+      <ion-col col-2>
+        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+      </ion-col>
+      <ion-col col-2>
+        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+      </ion-col>
+      <ion-col col-2>
+        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button style="width: 100%;">Verify</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

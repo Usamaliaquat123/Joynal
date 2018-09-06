@@ -13,7 +13,9 @@
     </ion-row>
     <ion-row>
       <!--<ion-list>-->
-  
+        <div class="error-box-main" *ngIf="this.response" >
+         {{this.responseText}}
+        </div>
         <ion-col col-12>
           <ion-item no-lines>
               <ion-label><ion-icon name="ios-mail-outline" item-start></ion-icon></ion-label>

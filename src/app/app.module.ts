@@ -11,6 +11,7 @@ import { Facebook } from "@ionic-native/facebook";
 import { MyApp } from './app.component';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Toast } from '@ionic-native/toast';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CameraMock } from "./camera.mock";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Deeplinks } from "../../node_modules/@ionic-native/deeplinks";
+import { EmailComposer } from '@ionic-native/email-composer';
+
 
 
 @NgModule({
@@ -58,7 +61,9 @@ import { Deeplinks } from "../../node_modules/@ionic-native/deeplinks";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     JoynalApiProvider,
     SocialSharing,
-    Toast
+    Toast,
+    InAppBrowser,
+    EmailComposer
   ]
 })
 export class AppModule {}

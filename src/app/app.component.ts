@@ -28,7 +28,14 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
- 
+      // deeplinks.route({
+      //     '/' : 'age-new-pass-setup'
+      // }).subscribe((match) => {
+      //   alert(JSON.stringify(match))
+      //   this.rootPage  = 'page-new-pass-setup';
+      // },(nomatch) => {
+      //   alert(JSON.stringify(nomatch));
+      // })
     });
     firebase.initializeApp(firebaseKeys.firebaseKeys);
   }

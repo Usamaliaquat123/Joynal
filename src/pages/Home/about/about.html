@@ -28,10 +28,11 @@
   <ion-item text-wrap>
     <ion-label>
       Legal Information
-      <p (click)="termsofuse()">
+      <p (click)="termsofuse()" style="color: dodgerblue;">
         Terms of use
       </p>
-      <p (click)="privacypolicy()">
+      <br>
+      <p (click)="privacypolicy()" style="color: dodgerblue;">
         Privacy policy
       </p>
     </ion-label>
@@ -39,7 +40,7 @@
   <ion-item text-wrap>
     <ion-label>
       Contact Us
-      <p>
+      <p (click)="openEmail()" style="color: blue">
         abcd@gmail.com
       </p>
     </ion-label>

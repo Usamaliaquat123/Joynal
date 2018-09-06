@@ -33,3 +33,25 @@
 .alert-md .alert-button{
     text-transform: none;
 }
+.alert-md .alert-input {
+    margin: 6px 0;
+    border-bottom: 1px solid #dedede;
+    color: #000;
+}
+
+.custom6DigitAlert .alert-input {
+    padding: 7px 5px;
+    background: inherit;
+    width: 60%;
+}
+.custom6DigitAlert .alert-md .alert-message,.custom6DigitAlert .alert-md .alert-input-group {
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0 43px 27px;
+    float: left;
+    display: inline-flex;
+}
+.custom6DigitAlert .alert-input-wrapper {
+    width: 16.66666666666667%;
+    float: left;
+}
+    

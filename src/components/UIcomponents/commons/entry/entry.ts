@@ -112,7 +112,6 @@ export class EntryComponent {
                         user_id : ""+res,
                         access_token: accessToken
                         }
-                        console.log(headers);
                         console.log(res)
                         this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
                           loading.dismiss();
@@ -156,7 +155,6 @@ export class EntryComponent {
                     content: 'Please wait..',
                   });
                   loading.present();
-                  
                     this.entries.push(
                       {
                         title:this.title,
@@ -167,12 +165,11 @@ export class EntryComponent {
                         longitude:this.lat,
                         latitude:this.Lng,
                         entryImageUrl: this.base64Image,
-                        entryImageType: "jpg",
+                        entryImageType: ".jpg",
                       }
                     );
                     console.log("entries"+this.entries);
                   
-               
                   this.storage.ready().then(() => {
                     this.storage.get('session.userId').then(res => {
                       this.storage.get('session.accessToken').then(accessToken => {
@@ -180,9 +177,7 @@ export class EntryComponent {
                           user_id : ""+res,
                           access_token: accessToken
                           }
-                          console.log(res);
-                          console.log(headers);
-                          //console.log(res.toString());
+                          console.log(res)
                           this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
                             loading.dismiss();
                             console.log(success);
@@ -190,7 +185,13 @@ export class EntryComponent {
                               this.achievements = success.data.achievements;
                               console.log(this.achievements);
                               this.navCtrl.push('AddEntryPage').then(() => {
-                                this.navCtrl.push('AchievementsPage', success).then(() => {
+                                this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
+                                  let alert = this.alertCtrl.create({
+                                    title: '<h1 text-center>Did you know</h1>',
+                                    subTitle: success.data.post,
+                                    buttons: ['Dismiss']
+                                  }); 
+                                  alert.present();
                                   this.entries = [];
                                 })
                               })
@@ -446,10 +447,6 @@ export class EntryComponent {
   }
 
 
-
-  ionViewCanEnter(){
-    this.getLocation();
-  }
 
 }
 

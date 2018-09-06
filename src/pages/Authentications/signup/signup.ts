@@ -1,5 +1,5 @@
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
-import { Component } from '@angular/core';
+import { Component, Renderer, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -14,8 +14,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class SignupPage {
   // Importiong social inputs
   authfb : any;
-  authtweet : any;
+  // authtweet : any;
   authInsta : any;
+  testTest: any;
     emailIfExists : any;
     // authfoem intgration
     authForm : FormGroup;
@@ -28,7 +29,7 @@ export class SignupPage {
     passwordShown : boolean = false;
     confirmPassType : boolean  = false;
     passwordTypeConfirm : String = 'password';
-  constructor(private alrtCtrl : AlertController,public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alrtCtrl : AlertController,public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams,public element: ElementRef, public renderer: Renderer) {
     this.response = false;
     this.authForm = formBuilder.group({
       'name' : [null, Validators.compose([null, Validators.compose([Validators.required,Validators.pattern('[A-Za-z ]+$')])])],
@@ -85,7 +86,7 @@ export class SignupPage {
    try{
     if(this.authForm.valid){
       await this.apiJoynal.authenticationSignup(value.name,value.email,value.password).subscribe(() => {
-        this.navCtrl.setRoot('LoginPage');
+        //this.navCtrl.setRoot('LoginPage');
         this.alrtCtrl.create({
           title : 'Registered Successfully',
           message : 'A verification link has sent to your email, please check your email and verify your email for complete the registration process',
@@ -96,10 +97,72 @@ export class SignupPage {
           ]
         }).present();
       },err => {this.response = true; this.userEmailChecking="errors"});
+      //this.presentVerificationPrompt();
     }
     else{this.response = true;this.userEmailChecking = "Something missing please check and try again..!";}
    }catch{this.response = true;this.userEmailChecking = "Please check your connection and try again";}
     
 
   }
+  testVerify(){
+    this.navCtrl.push("AuthenticationsVerifyemailPage");
+  }
+  // presentVerificationPrompt() {
+
+  //   let alert = this.alrtCtrl.create({
+  //     title: 'Enter the 6 digit code sent to your email',
+  //     inputs: [
+  //       {
+  //         name: 'code1',
+  //         placeholder: '',
+  //         max: 1,
+  //         type: 'value'
+  //       },
+  //       {
+  //         name: 'code2',
+  //         placeholder: '',
+  //         max: 1,
+  //         type: 'value'
+  //       }
+  //       ,
+  //       {
+  //         name: 'code3',
+  //         placeholder: '',
+  //         max: 1,
+  //         type: 'value'
+  //       },
+  //       {
+  //         name: 'code4',
+  //         placeholder: '',
+  //         max: 1,
+  //         type: 'value'
+  //       },
+  //       {
+  //         name: 'code5',
+  //         placeholder: '',
+  //         max: 1,
+  //         type: 'value'
+  //       },
+  //       {
+  //         name: 'code6',
+  //         placeholder: '',
+  //         max: 1,
+  //         type: 'value'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Confirm',
+  //         handler: data => {
+
+  //         }
+  //       }
+  //     ],
+  //     cssClass : 'custom6DigitAlert',
+  //     enableBackdropDismiss: false
+  //   });
+  //   alert.present();
+  //   this.testTest = this.element.nativeElement.getElementsByTagName("alert-input-wrapper");
+  //   console.log(this.testTest);
+  // }
 }

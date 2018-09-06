@@ -1,5 +1,5 @@
 import { ElementRef, Renderer2, Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 @IonicPage()
@@ -9,22 +9,12 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class AchievementsPage{
   trophyColor;
-  post : any;
   achievements : any;
   shareValue : string;
   value : string;
-  constructor(public alertCtrl : AlertController,public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer2) {
-    
-    this.post = this.navParams.data;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer2) {
+    this.achievements = this.navParams.data;
     console.log(this.achievements);
-    let alert = this.alertCtrl.create({
-      title: '<h1 text-center>Did you know</h1>',
-      subTitle: this.post.data.post,
-      buttons: ['Dismiss']
-    }); 
-    alert.present();
-
-    this.achievements = this.post.data.achievements;
     // this.trophyColor = "'width.px':170,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3";
     //this.test = this.element.nativeElement.getElementsByClassName("st0");
     // console.log(this.test);

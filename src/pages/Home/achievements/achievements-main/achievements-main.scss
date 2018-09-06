@@ -33,7 +33,7 @@ page-achievements-main {
         z-index: 1;
         display: block;
         overflow-x: auto;
-        overflow-y: hidden;
+        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
         contain: size style layout;

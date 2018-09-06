@@ -1,20 +1,7 @@
-
-  
-<!-- <ion-header style="opacity: .10">
-
-  <ion-navbar>
-    <ion-title>
-      Helllo
-    </ion-title>
-  </ion-navbar>
-</ion-header> -->
 <ion-content class="no-scroll">
   <button clear class="backbutton" ion-button icon-only  (click)="goBack()">
       <ion-icon name="md-arrow-back"></ion-icon>
-    </button>
-<!-- <div   (click)="goBack()">
-  <ion-icon (click)="goBack()" style="font-size:25px;" name="md-arrow-back"></ion-icon>
-</div> -->
+  </button>
   <cloud></cloud>
 <div class="alligingItems">
 <form [formGroup]="authForm" (ngSubmit)="signUp(authForm.value)">
@@ -68,16 +55,13 @@
                 <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Password does not match</small>
             </span>
         </ion-col>
-
-    
-
   </ion-row>
    </ion-grid>
      <div padding>
         <button ion-button type="submit" style="letter-spacing: 2px; font-size:0.9em;" full>Sign up</button>
       </div>
 </form>
-
+<button ion-button (click)="testVerify()"></button>
 </div>
 
 <footerlogin class="footerResp" [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>
