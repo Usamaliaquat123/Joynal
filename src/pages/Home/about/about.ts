@@ -19,12 +19,14 @@ export class AboutPage {
     console.log('ionViewDidLoad AboutPage');
   }
   termsofuse(){
-    const browser = this.iab.create('https://ionicframework.com/');
-    browser.show();
+    // const browser = this.iab.create('https://ionicframework.com/');
+    // browser.show();
+    this.navCtrl.push("TermsPage");
   }
   privacypolicy(){
-    const browser = this.iab.create('https://ionicframework.com/');
-    browser.show();
+    // const browser = this.iab.create('https://ionicframework.com/');
+    // browser.show();
+    this.navCtrl.push("PrivacyPage");
   }
   openEmail(){
     let email = {

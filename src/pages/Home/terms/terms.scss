@@ -1,0 +1,27 @@
+page-terms {
+    .content-md {
+        color: #000;
+        background-color: white;
+    }
+    ion-header{
+        position: relative;
+    }
+    .back-button.show-back-button {
+        display: block;
+        position: absolute;
+        left: 5px;
+        z-index: 999999999;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+        background: rgba(248, 248, 248, 0.5);
+    }
+    h3{
+        color: #222222c9;
+    }
+    [col-12] {
+        padding: 0px;
+    }
+    p{
+        text-align: justify;
+    }
+}
