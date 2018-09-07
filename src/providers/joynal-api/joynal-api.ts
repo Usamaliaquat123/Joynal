@@ -71,5 +71,11 @@ export class JoynalApiProvider {
   forgotPassword(userEmail){
     return this.http.post(' http://clients2.5stardesigners.net/joynal/api/web/v1/users/reset-password-request',{ userEmail : userEmail })
   }
+  requestRegisterVerification(userEmail){
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/',{ userEmail : userEmail });
+  }
+  verificationEmail(userEmail){
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/verify-registration',{ userEmail : userEmail })
+  }
 
 }

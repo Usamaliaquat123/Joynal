@@ -58,32 +58,38 @@ export class LoginPage {
       if(this.authForm.valid){
           await this.joynalApi.authenticationLogin(value.email,value.password).subscribe(data => {
             const that = this;
-            // console.log(data.json());
-            if(this.isChecked == true){
+            this.data  = data.json();
+            if(this.data.data.userEmail == 'Unverified'){
+              console.log('Unverified');
+            }else{
+              if(this.isChecked == true){
+                this.data = data.json();
+                console.log(this.data);
+                this.storage.set('session.rememberme', true);
+                this.storage.set('session.accessToken',this.data.data.token);
+                this.storage.set('session.name',this.data.data.userName);
+                this.storage.set('session.email',this.data.data.userEmail);
+                this.storage.set('session.userPass', value.password);
+                this.storage.set('session.userId',this.data.data.userId);
+                this.storage.set('session.isNotificationAllowed',this.data.data.isNotificationAllowed);
+                this.storage.set('session.isEntryVisible',this.data.data.isEntryVisible);
+                this.storage.set('session.reminderTime',this.data.data.reminderTime);
+                this.navCtrl.setRoot('HomeScreenPage');
+            }else{
               this.data = data.json();
-              console.log(this.data);
-              this.storage.set('session.rememberme', true);
-              this.storage.set('session.accessToken',this.data.data.token);
-              this.storage.set('session.name',this.data.data.userName);
-              this.storage.set('session.email',this.data.data.userEmail);
-              this.storage.set('session.userPass', value.password);
-              this.storage.set('session.userId',this.data.data.userId);
-              this.storage.set('session.isNotificationAllowed',this.data.data.isNotificationAllowed);
-              this.storage.set('session.isEntryVisible',this.data.data.isEntryVisible);
-              this.storage.set('session.reminderTime',this.data.data.reminderTime);
-              this.navCtrl.setRoot('HomeScreenPage');
-          }else{
-            this.data = data.json();
-              this.storage.set('session.accessToken',this.data.data.token);
-              this.storage.set('session.name',this.data.data.userName);
-              this.storage.set('session.email',this.data.data.userEmail);
-              this.storage.set('session.userPass', value.password);
-              this.storage.set('session.userId',this.data.data.userId);
-              this.storage.set('session.isNotificationAllowed',this.data.data.isNotificationAllowed);
-              this.storage.set('session.isEntryVisible',this.data.data.isEntryVisible);
-              this.storage.set('session.reminderTime',this.data.data.reminderTime);
-              this.navCtrl.setRoot('HomeScreenPage');
-          }
+                this.storage.set('session.accessToken',this.data.data.token);
+                this.storage.set('session.name',this.data.data.userName);
+                this.storage.set('session.email',this.data.data.userEmail);
+                this.storage.set('session.userPass', value.password);
+                this.storage.set('session.userId',this.data.data.userId);
+                this.storage.set('session.isNotificationAllowed',this.data.data.isNotificationAllowed);
+                this.storage.set('session.isEntryVisible',this.data.data.isEntryVisible);
+                this.storage.set('session.reminderTime',this.data.data.reminderTime);
+                this.navCtrl.setRoot('HomeScreenPage');
+            }
+            }
+            // console.log(data.json());
+            
         },err => {
           // console.log(err.json());
           if(err.json().error.status  = '400'){

@@ -447,6 +447,9 @@ export class EntryComponent {
   }
 
 
+  ionViewCanEnter(){
+    this.getLocation();
+  }
 
 }
 
