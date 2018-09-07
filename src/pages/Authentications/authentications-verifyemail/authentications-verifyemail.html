@@ -10,27 +10,27 @@
   <ion-grid style="height: 100%">
     <ion-row justify-content-center align-items-center style="margin-top: 30%;">
       <div text-center>
-        <h2 text-wrap style="color: #222222c9">Enter the verification code sent to your email</h2>
+        <h2 text-wrap style="color: rgba(34, 34, 34, 0.60);" text-center>Enter the verification code sent to your email</h2>
       </div>
     </ion-row>
     <ion-row justify-content-center align-items-center style="height: 30%">
       <ion-col col-2>
-        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel" maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+        <input #code1 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 1px solid #e0e0e0e0; height: 40px; border-radius: 15%;" type="tel" maxlength="1" text-center (keypress)="handleKeyboardEvent($event)" (keypress)="movefocus(code2)">
       </ion-col>
       <ion-col col-2>
-        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+        <input #code2 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 1px solid #e0e0e0e0; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)" (keypress)="movefocus(code3)">
       </ion-col>
       <ion-col col-2>
-        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+        <input #code3 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 1px solid #e0e0e0e0; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)" (keypress)="movefocus(code4)">
       </ion-col>
       <ion-col col-2>
-        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+        <input #code4 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 1px solid #e0e0e0e0; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)" (keypress)="movefocus(code5)">
       </ion-col>
       <ion-col col-2>
-        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+        <input #code5 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 1px solid #e0e0e0e0; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)" (keypress)="movefocus(code6)">
       </ion-col>
       <ion-col col-2>
-        <input style="width: 76.66666666666667%; float: left; border: 1px solid rgba(52, 52, 52, 0.82); height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
+        <input #code6 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 1px solid #e0e0e0e0; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keypress)="handleKeyboardEvent($event)">
       </ion-col>
     </ion-row>
     <ion-row>

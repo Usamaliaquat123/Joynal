@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HostListener } from '@angular/core';
 
@@ -9,9 +9,9 @@ import { HostListener } from '@angular/core';
 })
 @HostListener('document:keypress', ['$event'])
 export class AuthenticationsVerifyemailPage {
-  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,  test : ElementRef) {
   }
 
   ionViewDidLoad() {
@@ -23,5 +23,7 @@ export class AuthenticationsVerifyemailPage {
       event.preventDefault();
     }
   }
-
+  movefocus(nextElement){
+    nextElement.focus();
+  }
 }
