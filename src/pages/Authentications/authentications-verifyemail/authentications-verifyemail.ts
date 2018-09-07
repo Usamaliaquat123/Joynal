@@ -7,10 +7,7 @@ import { HostListener } from '@angular/core';
   selector: 'page-authentications-verifyemail',
   templateUrl: 'authentications-verifyemail.html',
 })
-@HostListener('document:keypress', ['$event'])
 export class AuthenticationsVerifyemailPage {
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams,  test : ElementRef) {
   }
 
@@ -25,5 +22,10 @@ export class AuthenticationsVerifyemailPage {
   }
   movefocus(nextElement){
     nextElement.focus();
+  }
+  deleteFocus(previousElement,event: KeyboardEvent){
+    if(event.key == "Backspace"){
+      previousElement.focus();
+    }
   }
 }
