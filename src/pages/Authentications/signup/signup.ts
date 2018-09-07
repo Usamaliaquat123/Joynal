@@ -86,83 +86,51 @@ export class SignupPage {
    try{
     if(this.authForm.valid){
       await this.apiJoynal.authenticationSignup(value.name,value.email,value.password).subscribe(() => {
+
+        this.apiJoynal.requestRegisterVerification(value.email).subscribe(resp => {
+          console.log(resp);
+          this.alrtCtrl.create({
+            title : 'Registered Successfully',
+            message : 'A verification link has sent to your email, please check your email and verify your email for complete the registration process',
+            buttons : [
+              {
+                text : 'Ok!',
+                handler : () => {
+                  this.navCtrl.push('AuthenticationsVerifyemailPage', value.email);
+                }
+              }
+            ]
+          }).present();
+        
+        },err => {
+          console.log(err);
+          if(err.status == 400){
+            this.alrtCtrl.create({
+              title : 'Already Registered!',
+              message : 'This email is already registered please login.',
+              buttons : [
+                {
+                  text : 'Ok!',
+                  handler : () => {
+                    this.navCtrl.setRoot('LoginPage');
+                  }
+                
+                }
+              ]
+            }).present();
+          }
+        })
         //this.navCtrl.setRoot('LoginPage');
-        this.alrtCtrl.create({
-          title : 'Registered Successfully',
-          message : 'A verification link has sent to your email, please check your email and verify your email for complete the registration process',
-          buttons : [
-            {
-              text : 'Ok!'
-            }
-          ]
-        }).present();
+     
       },err => {this.response = true; this.userEmailChecking="errors"});
+ 
       //this.presentVerificationPrompt();
+  
     }
     else{this.response = true;this.userEmailChecking = "Something missing please check and try again..!";}
    }catch{this.response = true;this.userEmailChecking = "Please check your connection and try again";}
     
 
   }
-  testVerify(){
-    this.navCtrl.push("AuthenticationsVerifyemailPage");
-  }
-  // presentVerificationPrompt() {
 
-  //   let alert = this.alrtCtrl.create({
-  //     title: 'Enter the 6 digit code sent to your email',
-  //     inputs: [
-  //       {
-  //         name: 'code1',
-  //         placeholder: '',
-  //         max: 1,
-  //         type: 'value'
-  //       },
-  //       {
-  //         name: 'code2',
-  //         placeholder: '',
-  //         max: 1,
-  //         type: 'value'
-  //       }
-  //       ,
-  //       {
-  //         name: 'code3',
-  //         placeholder: '',
-  //         max: 1,
-  //         type: 'value'
-  //       },
-  //       {
-  //         name: 'code4',
-  //         placeholder: '',
-  //         max: 1,
-  //         type: 'value'
-  //       },
-  //       {
-  //         name: 'code5',
-  //         placeholder: '',
-  //         max: 1,
-  //         type: 'value'
-  //       },
-  //       {
-  //         name: 'code6',
-  //         placeholder: '',
-  //         max: 1,
-  //         type: 'value'
-  //       }
-  //     ],
-  //     buttons: [
-  //       {
-  //         text: 'Confirm',
-  //         handler: data => {
-
-  //         }
-  //       }
-  //     ],
-  //     cssClass : 'custom6DigitAlert',
-  //     enableBackdropDismiss: false
-  //   });
-  //   alert.present();
-  //   this.testTest = this.element.nativeElement.getElementsByTagName("alert-input-wrapper");
-  //   console.log(this.testTest);
-  // }
 }

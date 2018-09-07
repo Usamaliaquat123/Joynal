@@ -88,8 +88,16 @@ export class EntryComponent {
                   content: 'Please wait..',
                 });
                 loading.present();
-               
-              
+                if(this.locationCity==null||this.locationCountry==null){
+                  let alert = this.alertCtrl.create({
+                    title: 'Location Unknown',
+                    subTitle: 'Please tap on the location icon to load your location, also, make sure that location services are on',
+                    buttons: ['Dismiss']
+                  }); 
+                  alert.present(); 
+                  loading.dismiss();
+                }
+                else{
                   this.entries.push(
                     {
                       title:this.title,
@@ -144,7 +152,7 @@ export class EntryComponent {
                 })
                 })
               })
-            
+                }            
               // todo
               }
             },
@@ -155,6 +163,16 @@ export class EntryComponent {
                     content: 'Please wait..',
                   });
                   loading.present();
+                  if(this.locationCity==null||this.locationCountry==null){
+                    let alert = this.alertCtrl.create({
+                      title: 'Location Unknown',
+                      subTitle: 'Please tap on the location icon to load your location, also, make sure that location services are on',
+                      buttons: ['Dismiss']
+                    }); 
+                    alert.present(); 
+                    loading.dismiss();
+                  }
+                  else{
                     this.entries.push(
                       {
                         title:this.title,
@@ -207,8 +225,7 @@ export class EntryComponent {
                   })
                   })
                 })
-
-              
+                  }
                 // todo
               }
             }
@@ -227,6 +244,14 @@ export class EntryComponent {
       content: 'Locating you, Please wait...'
     });
     loading.present();
+    setTimeout(() => {
+      this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+      loading.dismiss();
+    }, 10000);
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       console.log('latitude : '+resp.coords.latitude);
@@ -238,13 +263,26 @@ export class EntryComponent {
       //getting device pin point location using the obtained lat and long values
       this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => this.confirmLocation(JSON.stringify(result[0].locality),JSON.stringify(result[0].countryName),JSON.stringify(result[0].administrativeArea)))
-      .catch((error: any) => console.log(error));
+      .catch((error: any) => {
+        loading.dismiss();
+        this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
+          toast => {
+            console.log(toast);
+          }
+        );
+      });
       
       // console.log('this is device city'+this.locationCity);
       loading.dismiss();
 
 
      }).catch((error) => {
+       loading.dismiss();
+       this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
        console.log('Error getting location', error);
      });
   }
@@ -447,7 +485,8 @@ export class EntryComponent {
   }
 
 
-  ionViewCanEnter(){
+  ionViewDidLoad(){
+    console.log("trigger location");
     this.getLocation();
   }
 

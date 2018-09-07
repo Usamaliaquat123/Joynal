@@ -7,36 +7,40 @@
 
 
 <ion-content padding>
-  <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="margin-top: 30%;">
-      <div text-center>
-        <h2 text-wrap style="color: rgba(34, 34, 34, 0.60);" text-center>Enter the verification code sent to your email</h2>
-      </div>
-    </ion-row>
-    <ion-row justify-content-center align-items-center style="height: 30%;  margin-left: 4%;">
-      <ion-col col-2>
-        <input #code1 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; height: 40px; border-radius: 15%; border: 0px;" type="tel" maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code2)" (keyup)="deleteFocus(code1,$event)">
-      </ion-col>
-      <ion-col col-2>
-        <input #code2 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; height: 40px; border-radius: 15%; border: 0px;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code3)" (keyup)="deleteFocus(code1,$event)">
-      </ion-col>
-      <ion-col col-2>
-        <input #code3 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; height: 40px; border-radius: 15%; border: 0px;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code4)" (keyup)="deleteFocus(code2,$event)">
-      </ion-col>
-      <ion-col col-2>
-        <input #code4 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; height: 40px; border-radius: 15%; border: 0px;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code5)" (keyup)="deleteFocus(code3,$event)">
-      </ion-col>
-      <ion-col col-2>
-        <input #code5 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; height: 40px; border-radius: 15%; border: 0px;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code6)" (keyup)="deleteFocus(code4,$event)">
-      </ion-col>
-      <ion-col col-2>
-        <input #code6 style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; height: 40px; border-radius: 15%; border: 0px;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="deleteFocus(code5,$event)">
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <button ion-button style="width: 100%;">Verify</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+      <ion-grid style="height: 100%">
+          <ion-row justify-content-center align-items-center style="margin-top: 30%;">
+            <div text-center>
+              <h2 text-wrap style="color: #222222c9">Enter the verification code sent to your email</h2>
+            </div>
+          </ion-row>
+          <ion-row justify-content-center align-items-center style="height: 30%">
+            <ion-col col-2>
+              <input #code1 [(ngModel)]="value1" style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 0px; height: 40px; border-radius: 15%;" type="tel" maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code2)"  (keyup)="deleteFocus(code1,$event)">
+            </ion-col>
+            <ion-col col-2>
+              <input #code2 [(ngModel)]="value2" style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 0px; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code3)" (keyup)="deleteFocus(code1,$event)">
+            </ion-col>
+            <ion-col col-2>
+              <input #code3 [(ngModel)]="value3" style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 0px; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code4)" (keyup)="deleteFocus(code2,$event)">
+            </ion-col>
+            <ion-col col-2>
+              <input #code4 [(ngModel)]="value4" style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 0px; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code5)" (keyup)="deleteFocus(code3,$event)">
+            </ion-col>
+            <ion-col col-2>
+              <input #code5 [(ngModel)]="value5"  style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 0px; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code6)" (keyup)="deleteFocus(code4,$event)">
+            </ion-col>
+            <ion-col col-2>
+              <input #code6 [(ngModel)]="value6" style="background-color: #01aef0; color: white; width: 76.66666666666667%; float: left; border: 0px; height: 40px; border-radius: 15%;" type="tel"  maxlength="1" text-center (keyup)="handleKeyboardEvent($event)" (keyup)="movefocus(code1)"  (keyup)="deleteFocus(code5,$event)">
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-12>
+              <button ion-button (click)="verify()" style="width: 100%;">Verify</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+ 
 </ion-content>

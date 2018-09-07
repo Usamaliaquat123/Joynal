@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
-@IonicPage()
+@IonicPage({
+  segment : 'age-new-pass-setup',
+  name : 'age-new-pass-setup'
+})
 @Component({
   selector: 'page-new-pass-setup',
   templateUrl: 'new-pass-setup.html',

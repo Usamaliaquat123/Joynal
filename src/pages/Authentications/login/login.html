@@ -22,8 +22,8 @@
             <ion-input [formControl]="authForm.controls['email']" type="text" placeholder= "Enter an email"></ion-input>
           </ion-item>
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">     
-              <small class="error" *ngIf="authForm.get('email').hasError('required')">* The Email field is required.</small>
-              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* The Email field must contain a valid email address.</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('required')">* Email is required.</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* Enter a valid email address.</small>
           </span>
         </ion-col>
     </ion-row>
@@ -31,7 +31,7 @@
         <ion-col col-12>
           <ion-item no-lines>
              <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
-            <ion-input [formControl]="authForm.controls['password']"  [type]="passwordType"  placeholder="Password" ></ion-input> 
+            <ion-input [formControl]="authForm.controls['password']"  [type]="passwordType"  placeholder="Enter a password" ></ion-input> 
             <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
           </ion-item>
           <span *ngIf="authForm.get('password').dirty || formSubmitclicked">

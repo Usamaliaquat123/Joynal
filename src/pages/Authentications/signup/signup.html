@@ -31,7 +31,7 @@
                </ion-item>
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">
             <!-- <small class="error" *ngIf="this.checkingEmailIfExists">{{}}</small> -->
-            <small class="error" *ngIf="authForm.get('email').hasError('required')">* The Email field is required.</small>
+            <small class="error" *ngIf="authForm.get('email').hasError('required')">* Email is required.</small>
             <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* The Email field must contain a valid email address.</small>
         </span>
         </ion-col>
@@ -42,7 +42,7 @@
            </ion-item>  
            <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
 
-            <small class="error"  *ngIf="authForm.controls['confirmPass'].hasError('required') && authForm.controls['confirmPass'].touched">* Password is required!</small>
+            <small class="error"  *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">* Password is required!</small>
             <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
           </span>
         </ion-col>
@@ -61,7 +61,7 @@
         <button ion-button type="submit" style="letter-spacing: 2px; font-size:0.9em;" full>Sign up</button>
       </div>
 </form>
-<button ion-button (click)="testVerify()"></button>
+
 </div>
 
 <footerlogin class="footerResp" [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta"></footerlogin>

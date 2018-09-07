@@ -72,10 +72,10 @@ export class JoynalApiProvider {
     return this.http.post(' http://clients2.5stardesigners.net/joynal/api/web/v1/users/reset-password-request',{ userEmail : userEmail })
   }
   requestRegisterVerification(userEmail){
-    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/',{ userEmail : userEmail });
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/registration-token' ,{ userEmail : userEmail });
   }
-  verificationEmail(userEmail){
-    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/verify-registration',{ userEmail : userEmail })
+  verificationEmail(userEmail,verifyCode){
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/verify-registration',{ userEmail : userEmail , verifyCode: verifyCode})
   }
 
 }

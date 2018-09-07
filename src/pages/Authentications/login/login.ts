@@ -1,7 +1,7 @@
 
 import { JoynalApiProvider } from '../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 import  firebase from "firebase";
@@ -27,7 +27,7 @@ export class LoginPage {
   passwordShown : boolean = false;
   response : boolean;
   responseText : any;
-  constructor(public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast) {
+  constructor(private alrtCtrl : AlertController,public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast) {
       this.response = false;
       // Implementing form validations
       this.authForm = formBuilder.group({
@@ -60,7 +60,23 @@ export class LoginPage {
             const that = this;
             this.data  = data.json();
             if(this.data.data.userEmail == 'Unverified'){
-              console.log('Unverified');
+              //  Todo : If it is unverified
+              this.joynalApi.requestRegisterVerification(value.email).subscribe(sendVerification => {
+                this.alrtCtrl.create({
+                  title : 'Verification',
+                  message : 'A verification link has sent to your email, please check your email and verify your email to complete your registration process',
+                  buttons : [
+               
+                    {
+                      text : 'Ok!',
+                      handler : () => {
+                        this.joynalApi.requestRegisterVerification(value.email).subscribe(() => { console.log('resended!'); this.navCtrl.push('AuthenticationsVerifyemailPage', value.email)});
+                      }
+                    },
+                 
+                  ]
+                }).present();
+              })  
             }else{
               if(this.isChecked == true){
                 this.data = data.json();
