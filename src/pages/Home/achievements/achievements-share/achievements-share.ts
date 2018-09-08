@@ -42,7 +42,9 @@ export class AchievementsSharePage {
       });
     }
     else{
-      console.log("call twitter share api here");
+      this.socialSharing.shareViaTwitter('This is instagram share test','http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg').then(resp => {
+        console.log('Shaing message via twitter' + resp);
+      })
     }
   }
   shareWhyMessage(){

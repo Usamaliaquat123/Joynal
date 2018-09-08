@@ -21,7 +21,7 @@
 
              </ion-item>
              <span *ngIf="authForm.get('name').dirty || formSubmitclicked">
-              <small class="error" *ngIf="authForm.get('name').hasError('pattern')">* The name must contain a valid Name</small>
+              <small class="error" *ngIf="authForm.get('name').hasError('pattern')">* This field contains valid characters i.e. A,a -Z,z</small>
                 <small class="error" *ngIf="authForm.get('name').hasError('required')">* Name is required.</small>
             </span>
             </ion-col>
@@ -32,12 +32,12 @@
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">
             <!-- <small class="error" *ngIf="this.checkingEmailIfExists">{{}}</small> -->
             <small class="error" *ngIf="authForm.get('email').hasError('required')">* Email is required.</small>
-            <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* The Email field must contain a valid email address.</small>
+            <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* This field must contain a valid email address.</small>
         </span>
         </ion-col>
         <ion-col col-12>
           <ion-item no-lines>
-             <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"   placeholder="Password" ></ion-input> 
+             <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"   placeholder="Enter your password" ></ion-input> 
              <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
            </ion-item>  
            <span *ngIf="authForm.get('password').dirty || formSubmitclicked">

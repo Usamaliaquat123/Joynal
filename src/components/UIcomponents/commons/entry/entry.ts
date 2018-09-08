@@ -60,7 +60,7 @@ export class EntryComponent {
         );
       }else{
         if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
-          this.toast.show(`Upload Image is required!`, '3000', 'bottom').subscribe(
+          this.toast.show(`Please Upload an image first to upload your entry`, '3000', 'bottom').subscribe(
             toast => {
               console.log(toast);
             }
@@ -90,9 +90,9 @@ export class EntryComponent {
                 loading.present();
                 if(this.locationCity==null||this.locationCountry==null){
                   let alert = this.alertCtrl.create({
-                    title: 'Location Unknown',
-                    subTitle: 'Please tap on the location icon to load your location, also, make sure that location services are on',
-                    buttons: ['Dismiss']
+                    title: 'Location',
+                    subTitle: 'You need to enter your location first to upload your entry. Please make sure you turn on your location from your device.',
+                    buttons: ['Okay']
                   }); 
                   alert.present(); 
                   loading.dismiss();
@@ -165,9 +165,9 @@ export class EntryComponent {
                   loading.present();
                   if(this.locationCity==null||this.locationCountry==null){
                     let alert = this.alertCtrl.create({
-                      title: 'Location Unknown',
-                      subTitle: 'Please tap on the location icon to load your location, also, make sure that location services are on',
-                      buttons: ['Dismiss']
+                      title: 'Location',
+                      subTitle: 'You need to enter your location first to upload your entry. Please make sure you turn on your location from your device.',
+                      buttons: ['Okay']
                     }); 
                     alert.present(); 
                     loading.dismiss();
@@ -245,11 +245,13 @@ export class EntryComponent {
     });
     loading.present();
     setTimeout(() => {
-      this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
-        toast => {
-          console.log(toast);
-        }
-      );
+      if(this.lat==null || this.Lng == null){
+        this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
+          toast => {
+            console.log(toast);
+          }
+        );
+      }
       loading.dismiss();
     }, 10000);
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -471,7 +473,15 @@ export class EntryComponent {
       saveToPhotoAlbum: false,
       allowEdit : false
     }
-    try{ this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
+    try{ this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);
+      if(!this.base64Image==null){
+        this.alertCtrl.create({
+          title : 'Sucessfully uploaded',
+          subTitle : 'Image sucessfully uploaded !',
+          buttons : ['Ok']
+        }).present();
+      }
+    }
   }   
   // Camera openCamera for image upload
   async openCamera(): Promise<any>{
@@ -481,7 +491,12 @@ export class EntryComponent {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    try{ this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);}
+    try{ this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);
+      this.alertCtrl.create({
+        title : 'Sucessfully uploaded',
+        subTitle : 'Image sucessfully uploaded !',
+        buttons : ['Ok']
+      }).present();}
   }
 
 
