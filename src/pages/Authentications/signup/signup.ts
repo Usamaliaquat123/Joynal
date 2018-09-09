@@ -29,7 +29,7 @@ export class SignupPage {
     passwordShown : boolean = false;
     confirmPassType : boolean  = false;
     passwordTypeConfirm : String = 'password';
-    eyeiconName : string;
+  
 
   constructor(private alrtCtrl : AlertController,public apiJoynal : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams,public element: ElementRef, public renderer: Renderer) {
     this.response = false;
@@ -62,11 +62,9 @@ export class SignupPage {
   togglePasswordConfirm(){
     if(this.confirmPassType){
       this.confirmPassType = false;
-      // this.eyeiconNameConfirm = 'ios-eye-outline';
       this.passwordTypeConfirm = 'password';
     }else{
       this.confirmPassType = true;
-      // this.eyeiconNameConfirm = 'ios-eye-off-outline';
       this.passwordTypeConfirm = 'text';
     }
   }
@@ -74,11 +72,10 @@ export class SignupPage {
     console.log('clicked');
     if(this.passwordShown){
       this.passwordShown = false;
-      this.eyeiconName = 'ios-eye-outline';
+     
       this.passwordType = 'password';
     }else{
       this.passwordShown = true;
-      this.eyeiconName = 'ios-eye-off-outline';
       this.passwordType = 'text';
     }
   }

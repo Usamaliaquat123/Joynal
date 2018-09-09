@@ -38,7 +38,7 @@
         <ion-col col-12>
           <ion-item no-lines>
              <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"   placeholder="Enter your password" ></ion-input> 
-             <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
+             <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="passwordShown === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePassword()" item-end></ion-icon> 
            </ion-item>  
            <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
 
@@ -49,7 +49,7 @@
         <ion-col col-12>
             <ion-item no-lines>
                <ion-input [formControl]="authForm.controls['confirmPass']" [type]="passwordTypeConfirm"  placeholder="Confirm your password" ></ion-input> 
-               <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePasswordConfirm()" item-end></ion-icon> 
+               <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="confirmPassType === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePasswordConfirm()" item-end></ion-icon> 
              </ion-item>  
              <span *ngIf="authForm.get('confirmPass').dirty || formSubmitclicked">
                 <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Password does not match</small>

@@ -32,7 +32,7 @@
           <ion-item no-lines>
              <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
             <ion-input [formControl]="authForm.controls['password']"  [type]="passwordType"  placeholder="Enter a password" ></ion-input> 
-            <ion-icon  style="font-size: 25px;z-index: 999999;" name="ios-eye-outline" (click)="togglePassword()" item-end></ion-icon> 
+            <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="passwordShown === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePassword()" item-end></ion-icon> 
           </ion-item>
           <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
               <small class="error"  *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">* Password is required!</small>
