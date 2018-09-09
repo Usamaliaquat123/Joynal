@@ -79,8 +79,8 @@ export class EntryComponent {
                   this.storage.get('session.accessToken').then(accessToken=>{
                     console.log(userId+'   '+accessToken);
                     var headers = {user_id : ""+userId,access_token: accessToken }
-                    this.joynalApi.updateUserEntryVisibility(headers,userId,"False").subscribe(resp => {
-                      console.log(resp);
+                    this.joynalApi.updateUserEntryVisibility(headers,userId,"True").subscribe(resp => {
+                      this.storage.set('session.isEntryVisible', 'True');
                     })
                   });
                 });
@@ -173,6 +173,7 @@ export class EntryComponent {
                     loading.dismiss();
                   }
                   else{
+    
                     this.entries.push(
                       {
                         title:this.title,
@@ -191,11 +192,16 @@ export class EntryComponent {
                   this.storage.ready().then(() => {
                     this.storage.get('session.userId').then(res => {
                       this.storage.get('session.accessToken').then(accessToken => {
+                      
                         var headers = {
                           user_id : ""+res,
                           access_token: accessToken
                           }
                           console.log(res)
+                          this.joynalApi.updateUserEntryVisibility(headers,res,'False').subscribe(entryVisibilityChanged => {
+                            console.log(entryVisibilityChanged);
+                            this.storage.set('session.isEntryVisible', 'False');
+                          })
                           this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
                             loading.dismiss();
                             console.log(success);

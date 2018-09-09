@@ -2,6 +2,7 @@ import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
+import 'rxjs/add/operator/map';
 /**
  * Generated class for the AchievementsMainPage page.
  *
@@ -17,6 +18,7 @@ import { Storage } from "@ionic/storage";
 })
 export class AchievementsMainPage {
   achievements = [];
+  color : String;
   constructor(private storage : Storage,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
   this.achievements = this.navParams.data;
   }
@@ -29,6 +31,9 @@ export class AchievementsMainPage {
     this.navCtrl.push("AchievementsPage");
   }
   ionViewCanEnter(){
+ 
+
+
     this.storage.get('session.userId').then(userid => {
       this.storage.get('session.accessToken').then(accesstoken => {
         var headers = {

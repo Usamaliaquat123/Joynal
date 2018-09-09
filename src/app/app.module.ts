@@ -1,3 +1,4 @@
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Geolocation } from "@ionic-native/geolocation";
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
@@ -35,6 +36,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     BrowserModule,
     HttpClientModule,
     HttpModule,
+    AngularSvgIconModule, 
     BrowserAnimationsModule,
     IonicStorageModule.forRoot({
       name: '__mydb',

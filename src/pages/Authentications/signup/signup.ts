@@ -62,11 +62,11 @@ export class SignupPage {
   togglePasswordConfirm(){
     if(this.confirmPassType){
       this.confirmPassType = false;
-      this.eyeiconNameConfirm = 'ios-eye-outline';
+      // this.eyeiconNameConfirm = 'ios-eye-outline';
       this.passwordTypeConfirm = 'password';
     }else{
       this.confirmPassType = true;
-      this.eyeiconNameConfirm = 'ios-eye-off-outline';
+      // this.eyeiconNameConfirm = 'ios-eye-off-outline';
       this.passwordTypeConfirm = 'text';
     }
   }

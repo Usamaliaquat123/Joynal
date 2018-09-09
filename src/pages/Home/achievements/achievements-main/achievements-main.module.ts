@@ -1,3 +1,4 @@
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AchievementsMainPage } from './achievements-main';
@@ -9,7 +10,8 @@ import { ComponentsModule } from '.././../../../components/components.module';
   ],
   imports: [
     IonicPageModule.forChild(AchievementsMainPage),
-    ComponentsModule
+    ComponentsModule,
+    AngularSvgIconModule
   ],
   exports :[
     AchievementsMainPage

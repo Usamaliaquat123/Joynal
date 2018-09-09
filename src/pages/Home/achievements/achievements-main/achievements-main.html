@@ -7,24 +7,12 @@
 
 
 
-<ion-content padding>
+<ion-content>
   <div *ngFor="let achive of achievements.data">
-    <h5>{{ achive.name }}</h5>
+    <h5>{{ achive.name }} <span>  </span> </h5>
+  
     <p text-wrap>
       {{ achive.description }}
     </p>
   </div>
-  <p>  </p>
-  <!-- <h5 text-center>How Achievements Work</h5>
-      <h5>Free Streaks</h5>
-      <p text-wrap>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo harum placeat, quam perspiciatis itaque quod corporis esse doloribus incidunt odio atque repellat enim asperiores alias, laudantium dolor in voluptatem id.
-      </p>
-  
-    <div>
-        <h5>Streak info</h5>
-        <p text-wrap>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero expedita voluptate minima tempore nemo quas. Cum quas distinctio quibusdam et culpa. Ut quisquam officia corrupti asperiores deserunt commodi eaque neque!
-        </p>
-    </div> -->
 </ion-content>

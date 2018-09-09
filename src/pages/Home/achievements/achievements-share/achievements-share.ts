@@ -50,7 +50,7 @@ export class AchievementsSharePage {
   shareWhyMessage(){
     let alert = this.alertCtrl.create({
       title: 'Why you cannot share your entries to social media?',
-      subTitle: '<p text-wrap text-center style="color:#424242cf; font-size:1.1em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>',
+      subTitle: '<p text-wrap text-center style="color:#424242cf; font-size:1.1em;">Although social media can be a very positive tool for interacting with others, it can also put pressure on you to create posts, and be rewarded with likes and retweets. So although this app allows you to celebrate Streaks and other achievements, I don’t have the option to share the Joynal entries on social media, to avoid putting you under pressure.<br> Your Joynal entries can be shared anonymously to help inspire other users, but all personally identifying information is removed. <br> Of course, if you do have something that made you happy and you want to share it with your social media friends, you can always post it directly onto your social media account.</p>',
       buttons: ['Dismiss']
     }); 
     alert.present();
