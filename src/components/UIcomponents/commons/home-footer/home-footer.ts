@@ -19,8 +19,8 @@ export class HomeFooterComponent {
   logout(){
 
     let alert = this.alertCtrl.create({
-      title: 'Confirm sign out',
-      message: 'Are you sure you want to sign out?',
+      title: 'Confirm Log out',
+      message: 'Are you sure you want to log out?',
       buttons: [
         {
           text: 'Cancel',
@@ -30,7 +30,7 @@ export class HomeFooterComponent {
           }
         },
         {
-          text: 'Logout',
+          text: 'Log out',
           handler: () => {
             firebase.auth().onAuthStateChanged(user => {
               if(user){

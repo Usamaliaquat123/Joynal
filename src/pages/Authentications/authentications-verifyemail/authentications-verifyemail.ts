@@ -54,10 +54,10 @@ export class AuthenticationsVerifyemailPage {
     if(this.value1 == '' || this.value1 == undefined || this.value2 == '' || this.value2 == undefined || this.value3 == '' || this.value3 == undefined || this.value4 == '' || this.value4 == undefined || this.value5 == '' || this.value5 == undefined || this.value6 == '' || this.value6 ==  undefined){
       this.alertCtrl.create({
         title : 'Verification Code Invalid',
-        message : 'Please fill all valid inputs.',
+        message : 'Please make sure all fields are set',
         buttons : [
           {
-            text : 'Ok Thanks!',
+            text : 'Okay',
           }     
         ]
       }).present();
@@ -65,11 +65,11 @@ export class AuthenticationsVerifyemailPage {
       console.log(this.verifyCode)
       this.joynalAoi.verificationEmail(this.email,this.verifyCode).subscribe(resp => {
         this.alertCtrl.create({
-          title : 'Verification Sucessfull',
-          message : 'Verification is completed now you can login now..',
+          title : 'Verification Successfull',
+          message : 'Your account has been verified. Please login and enjoy Joynal',
           buttons : [
             {
-              text : 'Ok!',
+              text : 'Okay',
               handler : () =>{
                 this.navCtrl.setRoot('LoginPage');
               } 
@@ -80,10 +80,10 @@ export class AuthenticationsVerifyemailPage {
         if(err.status == 400){
           this.alertCtrl.create({
             title : 'Verification Code Invalid',
-            message : 'Verification code you provided is invalid or expire code',
+            message : 'Verification code you provided is invalid or expired',
             buttons : [
               {
-                text : 'Change email!',
+                text : 'Change Email',
                 handler : () =>{
                   this.navCtrl.pop();
                 } 

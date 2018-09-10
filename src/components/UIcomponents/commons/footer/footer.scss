@@ -26,7 +26,7 @@ footerlogin {
       height: 65px;
       background-color: #01aef0;
       z-index: -1;
-      margin-left: -44px;
+      margin-left: -45px;
       margin-top: -20px;
       border-radius: 50%;
     }
@@ -64,7 +64,7 @@ footerlogin {
     height: 65px;
     background-color: #01aef0;
     z-index: -1;
-    margin-left: -44px;
+    margin-left: -45px;
     margin-top: -20px;
     border-radius: 50%;
   }
@@ -75,7 +75,7 @@ footerlogin {
     height: 65px;
     background-color: #01aef0;
     z-index: -1;
-    margin-left: -44px;
+    margin-left: -45px;
     margin-top: -20px;
     border-radius: 50%;
   }
@@ -95,12 +95,23 @@ footerlogin {
   home-footer .align-footer-bottom{
     position: fixed;
   }
-  .ion-logo-twitter:before {
+  .ion-logo-twitter::before {
     content: "\f2b0";
-    width: 21px;
+    width: 24px;
     height: 28px;
     margin-top: 2px;
     margin-bottom: -2px;
+  }
+  .ion-logo-twitter::after {
+    content: '';
+    position: absolute;
+    width: 67px;
+    height: 65px;
+    background-color: #01aef0;
+    z-index: -1;
+    margin-left: -45px;
+    margin-top: -20px;
+    border-radius: 50%;
   }
   ion-icon.icon.icon-md.ion-logo-twitter {
     font-size: 1.8em;

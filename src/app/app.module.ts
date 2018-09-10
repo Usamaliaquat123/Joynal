@@ -25,6 +25,8 @@ import { CameraMock } from "./camera.mock";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Deeplinks } from "../../node_modules/@ionic-native/deeplinks";
 import { EmailComposer } from '@ionic-native/email-composer';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 
 
@@ -65,7 +67,9 @@ import { EmailComposer } from '@ionic-native/email-composer';
     SocialSharing,
     Toast,
     InAppBrowser,
-    EmailComposer
+    EmailComposer,
+    Diagnostic,
+    LocationAccuracy
   ]
 })
 export class AppModule {}

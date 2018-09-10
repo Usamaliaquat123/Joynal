@@ -30,7 +30,7 @@ export class ForgotPasswordPage {
   submitEmail(){
     console.log('todo')
     this.joynalApi.forgotPassword(this.email).subscribe(resp => {
-     
+      console.log(resp);
     })
   }
   

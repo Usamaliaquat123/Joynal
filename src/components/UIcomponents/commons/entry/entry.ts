@@ -10,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import moment from 'moment';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
-
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 @Component({
   selector: 'entry',
@@ -43,7 +44,7 @@ export class EntryComponent {
   singleEntryImage : string;
   lat : any;
   Lng : any;
-  constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder ) {
+  constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder,private diagnostic: Diagnostic,private locationAccuracy:LocationAccuracy) {
     this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
     this.authForm = formBuilder.group({
@@ -53,14 +54,14 @@ export class EntryComponent {
   }
   didYouKnowAchievement(){
       if(this.description == '' || this.title == ''){
-        this.toast.show(`Cannot post empty entry`, '3000', 'bottom').subscribe(
+        this.toast.show(`Cannot post empty entry`, '3000', 'center').subscribe(
           toast => {
             console.log(toast);
           }
         );
       }else{
         if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
-          this.toast.show(`Please Upload an image first to upload your entry`, '3000', 'bottom').subscribe(
+          this.toast.show(`Please upload an image first to post your entry`, '3000', 'center').subscribe(
             toast => {
               console.log(toast);
             }
@@ -79,8 +80,8 @@ export class EntryComponent {
                   this.storage.get('session.accessToken').then(accessToken=>{
                     console.log(userId+'   '+accessToken);
                     var headers = {user_id : ""+userId,access_token: accessToken }
-                    this.joynalApi.updateUserEntryVisibility(headers,userId,"True").subscribe(resp => {
-                      this.storage.set('session.isEntryVisible', 'True');
+                    this.joynalApi.updateUserEntryVisibility(headers,userId,"False").subscribe(resp => {
+                      this.storage.set('session.isEntryVisible', 'False');
                     })
                   });
                 });
@@ -91,7 +92,7 @@ export class EntryComponent {
                 if(this.locationCity==null||this.locationCountry==null){
                   let alert = this.alertCtrl.create({
                     title: 'Location',
-                    subTitle: 'You need to enter your location first to upload your entry. Please make sure you turn on your location from your device.',
+                    subTitle: 'You need to enter your location first to post your entry. Please make sure you turn on your location from your device.',
                     buttons: ['Okay']
                   }); 
                   alert.present(); 
@@ -166,7 +167,7 @@ export class EntryComponent {
                   if(this.locationCity==null||this.locationCountry==null){
                     let alert = this.alertCtrl.create({
                       title: 'Location',
-                      subTitle: 'You need to enter your location first to upload your entry. Please make sure you turn on your location from your device.',
+                      subTitle: 'You need to enter your location first to post your entry. Please make sure you turn on your location from your device.',
                       buttons: ['Okay']
                     }); 
                     alert.present(); 
@@ -198,9 +199,9 @@ export class EntryComponent {
                           access_token: accessToken
                           }
                           console.log(res)
-                          this.joynalApi.updateUserEntryVisibility(headers,res,'False').subscribe(entryVisibilityChanged => {
+                          this.joynalApi.updateUserEntryVisibility(headers,res,'True').subscribe(entryVisibilityChanged => {
                             console.log(entryVisibilityChanged);
-                            this.storage.set('session.isEntryVisible', 'False');
+                            this.storage.set('session.isEntryVisible', 'True');
                           })
                           this.joynalApi.creatingEntriesofUser(res,headers,this.entries).subscribe(success => {
                             loading.dismiss();
@@ -241,7 +242,15 @@ export class EntryComponent {
        }
       }
     }
-  getLocation(){
+  locationError(){
+    let alert = this.alertCtrl.create({
+      title: '<h1 text-center>Location</h1>',
+      subTitle: 'Please turn on your location service to post an entry',
+      buttons: ['Okay']
+    }); 
+    alert.present();
+  }
+  locationProceed(){
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5
@@ -250,16 +259,7 @@ export class EntryComponent {
       content: 'Locating you, Please wait...'
     });
     loading.present();
-    setTimeout(() => {
-      if(this.lat==null || this.Lng == null){
-        this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
-          toast => {
-            console.log(toast);
-          }
-        );
-      }
-      loading.dismiss();
-    }, 10000);
+
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       console.log('latitude : '+resp.coords.latitude);
@@ -293,6 +293,51 @@ export class EntryComponent {
       );
        console.log('Error getting location', error);
      });
+  }
+  getLocation(){
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+    };
+    let loading = this.loadCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    let successCallback = (isAvailable) => {
+      if(isAvailable == true){
+        this.locationProceed();
+        loading.dismiss();
+      }
+      else{
+        this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+          if(canRequest) {
+            loading.dismiss();
+            // the accuracy option will be ignored by iOS
+            this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+              () => this.getLocation(),
+              error =>{
+                this.locationError();
+                loading.dismiss();
+              }
+            );
+          }
+        });
+      }
+    };
+    let errorCallback = (e) => console.error(e);
+
+    this.diagnostic.isLocationEnabled().then(successCallback).catch(errorCallback);
+    // setTimeout(() => {
+    //   console.log(this.lat);
+    //   if(this.lat==null || this.Lng == null){
+    //     this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'center').subscribe(
+    //       toast => {
+    //         console.log(toast);
+    //       }
+    //     );
+    //   }
+    //   loading.dismiss();
+    // }, 20000);
   }
   confirmLocation(city:string,country:string,state:string){
     state = state.replace(/['"]+/g, '');
@@ -349,15 +394,22 @@ export class EntryComponent {
   // Create an array of entries 
   againAddEntry(){
   if(this.description == '' || this.title == ''){
-      this.toast.show(`Cannot post invalid entry! Please submit all required entries`, '3000', 'bottom').subscribe(
+      this.toast.show(`Cannot post empty entry`, '3000', 'center').subscribe(
       toast => {
         console.log(toast);
       }
     );
   }
+  else if(this.locationCountry == null || this.locationCity == null){
+    this.alertCtrl.create({
+      title : 'Location Services Disabled',
+      subTitle : 'Please turn on the location services on your device',
+      buttons : ['Ok']
+    }).present();
+  }
   else{
     if(this.base64Image == null || this.base64Image == undefined){
-      this.toast.show(`Upload Image is required!`, '3000', 'bottom').subscribe(
+      this.toast.show(`Please upload an image first to post your entry`, '3000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
@@ -479,14 +531,16 @@ export class EntryComponent {
       saveToPhotoAlbum: false,
       allowEdit : false
     }
-    try{ this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);
-      if(!this.base64Image==null){
+    try{ 
+      this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;
+      if(!this.base64Image==null || !this.base64Image==undefined || this.base64Image != ''){
         this.alertCtrl.create({
-          title : 'Sucessfully uploaded',
-          subTitle : 'Image sucessfully uploaded !',
+          title : 'Image Added',
+          subTitle : 'Image has been added to your entry',
           buttons : ['Ok']
         }).present();
       }
+    }catch(e){ console.log(e);
     }
   }   
   // Camera openCamera for image upload
@@ -497,12 +551,17 @@ export class EntryComponent {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    try{ this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;}catch(e){ console.log(e);
+    try{ 
+      this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;
+    }catch(e){ console.log(e);
+    }
+    if(!this.base64Image==null || !this.base64Image==undefined || this.base64Image != ''){
       this.alertCtrl.create({
-        title : 'Sucessfully uploaded',
-        subTitle : 'Image sucessfully uploaded !',
+        title : 'Image Added',
+        subTitle : 'Image has been added to your entry',
         buttons : ['Ok']
-      }).present();}
+      }).present();
+    }
   }
 
 

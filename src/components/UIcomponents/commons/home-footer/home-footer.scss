@@ -27,7 +27,7 @@ home-footer {
       background-color: #01aef0;
       z-index: -1;
       margin-left: -43px;
-      margin-top: -19px;
+      margin-top: -22px;
       border-radius: 50%;
     }
   }
@@ -65,7 +65,7 @@ home-footer {
     background-color: #01aef0;
     z-index: -1;
     margin-left: -43px;
-    margin-top: -19px;
+    margin-top: -22px;
     border-radius: 50%;
   }
   .align-content-center ion-col ion-icon {
@@ -83,5 +83,10 @@ home-footer {
   }
   home-footer .align-footer-bottom{
     position: fixed;
+  }
+  .ion-ios-notifications:before {
+    content: "\f1d3";
+    width: 20px;
+    height: 24px;
   }
 }

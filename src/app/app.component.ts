@@ -3,8 +3,8 @@ import { ForgotPasswordPage } from './../pages/Authentications/forgot-password/f
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Component } from '@angular/core';
-import { Platform,  } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav,  } from 'ionic-angular';
 import firebase from 'firebase'
 import { firebaseKeys } from "../config/keys";
 import {Deeplinks} from '@ionic-native/deeplinks';
@@ -14,6 +14,7 @@ import {Deeplinks} from '@ionic-native/deeplinks';
 export class MyApp {
   rootPage:string ;
   welcomeScreen : boolean;
+  @ViewChild(Nav) navChild:Nav;
   constructor(deeplinks : Deeplinks,platform: Platform, storage: Storage, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
    
@@ -28,14 +29,15 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-      // deeplinks.route({
-      //     '/' : 'age-new-pass-setup'
-      // }).subscribe((match) => {
-      //   alert(JSON.stringify(match))
-      //   this.rootPage  = 'page-new-pass-setup';
-      // },(nomatch) => {
-      //   alert(JSON.stringify(nomatch));
-      // })
+    deeplinks.routeWithNavController(this.navChild,{
+        '/newPass': 'newPass'
+        }).subscribe((match) => {
+        alert(JSON.stringify(match));
+        console.log('Successfully routed', match);
+        },nomatch => {
+        alert(JSON.stringify(nomatch));
+        console.log('Unmatched Route', nomatch);
+      })
     });
     firebase.initializeApp(firebaseKeys.firebaseKeys);
   }

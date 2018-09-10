@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 @IonicPage({
-  segment : 'age-new-pass-setup',
-  name : 'age-new-pass-setup'
+  segment : 'newPass',
+  name : 'newPass'
 })
 @Component({
   selector: 'page-new-pass-setup',

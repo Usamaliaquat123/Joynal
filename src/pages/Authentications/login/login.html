@@ -13,9 +13,6 @@
     </ion-row>
     <ion-row>
       <!--<ion-list>-->
-        <div class="error-box-main" *ngIf="this.response" >
-         {{this.responseText}}
-        </div>
         <ion-col col-12>
           <ion-item no-lines>
               <ion-label><ion-icon name="ios-mail-outline" item-start></ion-icon></ion-label>
@@ -23,7 +20,7 @@
           </ion-item>
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">     
               <small class="error" *ngIf="authForm.get('email').hasError('required')">* Email is required.</small>
-              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* Enter a valid email address.</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* Must be a valid email address.</small>
           </span>
         </ion-col>
     </ion-row>
