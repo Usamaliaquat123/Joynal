@@ -44,6 +44,7 @@ export class EntryComponent {
   singleEntryImage : string;
   lat : any;
   Lng : any;
+  testCatch : string;
   constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder,private diagnostic: Diagnostic,private locationAccuracy:LocationAccuracy) {
     this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
@@ -59,21 +60,30 @@ export class EntryComponent {
             console.log(toast);
           }
         );
-      }else{
+      }
+      else{
         if(this.base64Image == '' || this.base64Image == undefined || this.base64Image == null){
           this.toast.show(`Please upload an image first to post your entry`, '3000', 'center').subscribe(
             toast => {
               console.log(toast);
             }
           );
-        
-       }else{
+       }
+      else if(this.locationCity == null || this.locationCountry == null){
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Location Services Disabled</h1>',
+          subTitle: 'You need to enter your location first to post an entry. Please turn on the location services on your device',
+          buttons: ['Okay']
+        }); 
+        alert.present();
+       }
+      else{
         let alert = this.alertCtrl.create({
           title: 'Share Entries',
           message: 'Do you want your diary entries to anonymously appear to others? Your entries will be uploaded to a moderated database which only stores your entry and your general location. Your personal information won’t ever be shown.',
           buttons: [
             {
-              text: 'No Thanks',
+              text: 'No, Thanks',
               role: 'cancel',
               handler: () => {
                 this.storage.get('session.userId').then(userId=>{
@@ -91,8 +101,8 @@ export class EntryComponent {
                 loading.present();
                 if(this.locationCity==null||this.locationCountry==null){
                   let alert = this.alertCtrl.create({
-                    title: 'Location',
-                    subTitle: 'You need to enter your location first to post your entry. Please make sure you turn on your location from your device.',
+                    title: 'Location Services Disabled',
+                    subTitle: 'Please turn on the location services on your device',
                     buttons: ['Okay']
                   }); 
                   alert.present(); 
@@ -166,8 +176,8 @@ export class EntryComponent {
                   loading.present();
                   if(this.locationCity==null||this.locationCountry==null){
                     let alert = this.alertCtrl.create({
-                      title: 'Location',
-                      subTitle: 'You need to enter your location first to post your entry. Please make sure you turn on your location from your device.',
+                      title: 'Location Disabled',
+                      subTitle: 'Please turn on the location services on your device',
                       buttons: ['Okay']
                     }); 
                     alert.present(); 
@@ -244,8 +254,8 @@ export class EntryComponent {
     }
   locationError(){
     let alert = this.alertCtrl.create({
-      title: '<h1 text-center>Location</h1>',
-      subTitle: 'Please turn on your location service to post an entry',
+      title: '<h1 text-center>Location Services Disabled</h1>',
+      subTitle: 'Please turn on the location services on your device',
       buttons: ['Okay']
     }); 
     alert.present();
@@ -403,7 +413,7 @@ export class EntryComponent {
   else if(this.locationCountry == null || this.locationCity == null){
     this.alertCtrl.create({
       title : 'Location Services Disabled',
-      subTitle : 'Please turn on the location services on your device',
+      subTitle : 'You need to enter your location first to post an entry. Please turn on the location services on your device',
       buttons : ['Ok']
     }).present();
   }
@@ -533,14 +543,16 @@ export class EntryComponent {
     }
     try{ 
       this.base64Image =  await this.camera.getPicture(options); this.imageUpload = true;
-      if(!this.base64Image==null || !this.base64Image==undefined || this.base64Image != ''){
+      if(this.base64Image !=null){
         this.alertCtrl.create({
           title : 'Image Added',
           subTitle : 'Image has been added to your entry',
           buttons : ['Ok']
         }).present();
       }
-    }catch(e){ console.log(e);
+      console.log(this.base64Image);
+    }catch(e){ 
+      console.log(e);
     }
   }   
   // Camera openCamera for image upload
@@ -551,16 +563,19 @@ export class EntryComponent {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    try{ 
+    try{
       this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;
-    }catch(e){ console.log(e);
-    }
-    if(!this.base64Image==null || !this.base64Image==undefined || this.base64Image != ''){
-      this.alertCtrl.create({
-        title : 'Image Added',
-        subTitle : 'Image has been added to your entry',
-        buttons : ['Ok']
-      }).present();
+      console.log(this.base64Image);
+      if(this.base64Image !=null){
+        this.alertCtrl.create({
+          title : 'Image Added',
+          subTitle : 'Image has been added to your entry',
+          buttons : ['Ok']
+        }).present();
+      }
+    }catch(e){ 
+      console.log("this log is important"+e);
+      this.testCatch = e;
     }
   }
 

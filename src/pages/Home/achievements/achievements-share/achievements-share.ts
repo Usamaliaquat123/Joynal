@@ -11,8 +11,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 export class AchievementsSharePage {
   public shareValue : string;
   public shareIcon : string;
+  public dayValue : string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private socialSharing: SocialSharing) {
     this.shareValue = this.navParams.get('shareValue');
+    this.dayValue = this.navParams.get('dayValue');
     console.log(this.shareValue);
     if(this.shareValue == "fb"){
       this.shareIcon = "./assets/icon/fbshare.svg";

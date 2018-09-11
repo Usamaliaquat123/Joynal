@@ -12,6 +12,7 @@ export class AchievementsPage{
   achievements : any;
   shareValue : string;
   value : string;
+  dayValue : string;
   rewardName : string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer2) {
     this.achievements = this.navParams.data;
@@ -22,14 +23,17 @@ export class AchievementsPage{
     // this.renderer.setElementStyle(this.test, 'fill', '#ff0000');
     //this.renderer.setStyle(this.test, 'webkitTransition', 'margin-top 500ms');
     if(this.achievements.combo.name == "Bronze Combo"){
+      this.dayValue = "One";
       this.value = '3';
       this.rewardName = 'Bronze Combo';
       console.log('Bronze Combo');
       this.trophyColor = '#B47237';
     }else if(this.achievements.name == "Bronze Streak"){
+      this.dayValue = "Five";
       this.rewardName = 'Bronze Streak';
       this.trophyColor = '#01AEF0';
     }else if(this.achievements.name == "Silver Streak"){
+      this.dayValue = "Fifteen";
       this.rewardName = 'Silver Streak';
       this.trophyColor = '#01AEF0';
     }else if(this.achievements.name == "Welcome Back"){
@@ -45,18 +49,21 @@ export class AchievementsPage{
       this.rewardName = 'Thanks for your Feedback!';
       this.trophyColor = '#01AEF0';
     }else if(this.achievements.combo.name == "Silver Combo"){
+      this.dayValue = "One";
       this.value = '5';
       this.rewardName = 'Silver Combo';
       this.trophyColor = '#C0C0C0';
     }else if(this.achievements.combo.name == "Gold Combo"){
+      this.dayValue = "One";
       this.value = '10';
       this.rewardName = 'Gold Combo';
       this.trophyColor = '#FED700';
     }else if(this.achievements.name == "Gold Streak"){
+      this.dayValue = "Thirty";
       this.trophyColor = '#01AEF0';
       this.rewardName = 'Gold Streak';
     }else{
-      console.log('dafa ho !');
+      console.log('None');
     }
     // this.trophyColor = '#01AEF0';
     // (this.test.querySelector("st0") as HTMLElement).style.top = '150px';
@@ -76,19 +83,22 @@ export class AchievementsPage{
   fbShare(){
     this.shareValue = "fb";
     this.navCtrl.push("AchievementsSharePage",{
-      shareValue:this.shareValue
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
     });
   }
   instaShare(){
     this.shareValue = "insta";
     this.navCtrl.push("AchievementsSharePage",{
-      shareValue:this.shareValue
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
     });
   }
   twitterShare(){
     this.shareValue = "twitter";
     this.navCtrl.push("AchievementsSharePage",{
-      shareValue:this.shareValue
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
     });
   }
 }

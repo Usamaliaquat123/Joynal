@@ -20,7 +20,7 @@
           </ion-item>
           <span *ngIf="authForm.get('email').dirty || formSubmitclicked">     
               <small class="error" *ngIf="authForm.get('email').hasError('required')">* Email is required.</small>
-              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* Must be a valid email address.</small>
+              <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* This field must contain a valid email address</small>
           </span>
         </ion-col>
     </ion-row>
@@ -58,5 +58,7 @@
   <button  (click)="signUp()" type="button" >Sign Up</button>
 </div>
 <div class="clearfix"></div>
-<footerlogin class="footerResp" [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta" ></footerlogin>
 </ion-content>
+<ion-footer>
+  <footerlogin class="footerResp" [authFacebook]="authfb" [authTwitter]="authtweet" [authInstagram]="authInsta" ></footerlogin>
+</ion-footer>

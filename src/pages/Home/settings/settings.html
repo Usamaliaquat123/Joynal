@@ -29,7 +29,7 @@
   <ion-item>
     <ion-label>
       Reminder Time <br>
-      <h1 style="margin-top: 10px;"><ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="reminderTime" (ionChange)="changeDate()"></ion-datetime></h1>
+      <h1 style="margin-top: 10px;"><ion-datetime displayFormat="hh:mm:ss:A" [(ngModel)]="reminderTime" (ionChange)="changeDate()"></ion-datetime></h1>
       <ion-label (click)="editTime()">
           <ion-icon name="ios-create-outline" item-start></ion-icon>
           <p>Edit</p>

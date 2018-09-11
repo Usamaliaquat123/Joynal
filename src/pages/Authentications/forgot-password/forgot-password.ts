@@ -1,13 +1,8 @@
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-/**
- * Generated class for the ForgotPasswordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage({
   segment : 'forgotPass'
@@ -18,20 +13,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   providers : [JoynalApiProvider]
 })
 export class ForgotPasswordPage {
+  forgotPasswordForm : FormGroup;
   email:any;
-  constructor(private joynalApi : JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private joynalApi : JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams,public formBuilder : FormBuilder,private alertCtrl: AlertController) {
+    this.forgotPasswordForm = formBuilder.group({
+      'email' : [null, Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')])]
+    })
   }
-
-
 
   goBack(){
     this.navCtrl.pop();
   }
-  submitEmail(){
-    console.log('todo')
-    this.joynalApi.forgotPassword(this.email).subscribe(resp => {
-      console.log(resp);
-    })
+  forgotpassword(value){
+    console.log(value);
+    if(this.email !=null){
+      this.joynalApi.forgotPassword(this.email).subscribe(resp => {
+        console.log(resp);
+      })
+    }
+    else{
+      let alert = this.alertCtrl.create({
+        title: '<h1 text-center>Email Invalid</h1>',
+        subTitle: 'Please make sure you enter your email address before proceeding',
+        buttons: ['Okay']
+      }); 
+      alert.present();
+    }
   }
   
 }
