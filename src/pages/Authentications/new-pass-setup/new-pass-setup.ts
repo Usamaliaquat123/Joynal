@@ -62,7 +62,23 @@ export class NewPassSetupPage {
     this.navCtrl.pop();
   }
   ionViewDidEnter(){
-  
+    this.storage.get('session.deeplinkArgs.result').then(result => {
+      if(result == 'false'){
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Link has been expired</h1>',
+          subTitle: 'Reset password link has been expired',
+          buttons: [
+            {
+              text : 'Okay!',
+              handler : () => {
+                this.navCtrl.setRoot('LoginPage');
+              }
+            }
+          ]
+        }); 
+        alert.present();
+      }
+    })
   }
   
 

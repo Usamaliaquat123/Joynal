@@ -34,13 +34,19 @@ export class MyApp {
     deeplinks.routeWithNavController(this.navChild,{
         '/newPass': 'newPass',
         }).subscribe((match) => {
-          this.data = JSON.stringify(match.$args);
-            console.log(JSON.stringify(match));
+          // this.data = JSON.stringify(match.$args);
+          //   console.log(JSON.stringify(match));
             storage.set('session.deeplinkArgs.email', JSON.stringify(match.$args.email)).then(resp => {
               console.log('saved ' + resp);
             }).catch(err => {
               console.log(err)
             });
+            storage.set('session.deeplinkArgs.result', JSON.stringify(match.$args.result)).then(resp => {
+              console.log('saved ' + resp);
+            }).catch(err => {
+              console.log(err)
+            });
+
                    
         },nomatch => {
         alert(JSON.stringify(nomatch));
