@@ -35,7 +35,7 @@ export class SignupPage {
     this.response = false;
     this.authForm = formBuilder.group({
       'name' : [null, Validators.compose([null, Validators.compose([Validators.required,Validators.pattern('[A-Za-z ]+$')])])],
-      'email' : [null, Validators.compose([null, Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')])
+      'email' : [null, Validators.compose([null, Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_]{2,}[.]{1}[a-zA-Z]{2,}')])
      ])],
       'password':  [null, Validators.compose([Validators.required, Validators.minLength(8) ])],
       'confirmPass': [null, Validators.compose([Validators.required, Validators.minLength(8) ])] 

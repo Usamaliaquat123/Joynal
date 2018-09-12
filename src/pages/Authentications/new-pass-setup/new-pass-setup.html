@@ -8,21 +8,31 @@
         <p>Reset Password</p>
     </div>
       <ion-grid>
+          <form [formGroup]="resetPassForm" (ngSubmit)="resetPass(resetPassForm.value)">
         <ion-row>
           <ion-col col-12>
               <ion-item no-lines>
                   <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
-                 <ion-input [(ngModel)]="newPass"  type="password" placeholder="New Password" ></ion-input> 
-               </ion-item><br>
+                 <ion-input [formControl]="resetPassForm.controls['password']" [(ngModel)]="newPass"  type="password" placeholder="New Password" ></ion-input> 
+               </ion-item>
+               <span *ngIf="resetPassForm.get('password').dirty || formSubmitclicked">
+                  <small class="error"  *ngIf="resetPassForm.controls['password'].hasError('required') && resetPassForm.controls['password'].touched">* Password is required!</small>
+                  <small class="error" *ngIf="resetPassForm.controls['password'].hasError('minlength') && resetPassForm.controls['password'].touched">* Minimum password length is 8!</small>
+                </span>
+              <br>
                <ion-item no-lines>
                   <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
-                 <ion-input [(ngModel)]="newPassConfirm"  type="password" placeholder="Confirm Password" ></ion-input> 
-               </ion-item><br>
+                 <ion-input [formControl]="resetPassForm.controls['confirmPass']"  type="password" placeholder="Confirm Password" ></ion-input> 
+               </ion-item>
+               <span *ngIf="resetPassForm.get('confirmPass').dirty || formSubmitclicked">
+                  <small class="error"  *ngIf="resetPassForm.controls['confirmPass'].value != '' && resetPassForm.controls['password'].value != resetPassForm.controls['confirmPass'].value">* Password does not match</small>
+              </span>
                <br>
-               <button (click)="submitResetPassword()" style="border-radius: 5px; text-transform:none; letter-spacing: 1px;" ion-button color="primary" full>Reset Password</button>
+               <br>
+               <button  type="submit" style="border-radius: 5px; text-transform:none; letter-spacing: 1px;" ion-button color="primary" full>Reset Password</button>
           </ion-col>
         </ion-row>
-      
+      </form>
       </ion-grid>
      
 </div>

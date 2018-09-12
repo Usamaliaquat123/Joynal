@@ -80,7 +80,7 @@ export class EntryComponent {
       else{
         let alert = this.alertCtrl.create({
           title: 'Share Entries',
-          message: 'Do you want your diary entries to anonymously appear to others? Your entries will be uploaded to a moderated database which only stores your entry and your general location. Your personal information won’t ever be shown.',
+          message: 'Do you want your diary entries to anonymously appear to others? Your personal information won’t ever be shown.',
           buttons: [
             {
               text: 'No, Thanks',

@@ -77,5 +77,8 @@ export class JoynalApiProvider {
   verificationEmail(userEmail,verifyCode){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/verify-registration',{ userEmail : userEmail , verifyCode: verifyCode})
   }
+  resetPassworDeeplink(userEmail , newPassword){
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/reset-password',{ userEmail : userEmail , newPassword: newPassword})
+  }
 
 }

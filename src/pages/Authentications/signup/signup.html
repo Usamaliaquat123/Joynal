@@ -52,7 +52,7 @@
                <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="confirmPassType === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePasswordConfirm()" item-end></ion-icon> 
              </ion-item>  
              <span *ngIf="authForm.get('confirmPass').dirty || formSubmitclicked">
-                <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Passwords do not match</small>
+                <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Password does not match</small>
             </span>
         </ion-col>
   </ion-row>

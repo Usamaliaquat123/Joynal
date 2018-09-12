@@ -1,7 +1,8 @@
+import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Storage } from "@ionic/storage";
 @IonicPage({
   segment : 'newPass',
   name : 'newPass'
@@ -9,15 +10,60 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-new-pass-setup',
   templateUrl: 'new-pass-setup.html',
+  providers : [JoynalApiProvider]
 })
 export class NewPassSetupPage {
+  newPass  : any;
+  newPassConfirm : any;
+  email : any; 
+  resetPassForm : FormGroup;
+  data : any;
+  constructor(public alertCtrl : AlertController,public storage: Storage,public formBuilder : FormBuilder,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(` ${this.email}`);
+    this.resetPassForm = formBuilder.group({
+      'password':  [null, Validators.compose([Validators.required, Validators.minLength(8) ])],
+      'confirmPass': [null, Validators.compose([Validators.required, Validators.minLength(8) ])] 
+    })
+    
   }
-  submitResetPassword(){
-    console.log("reset password button has been clicked, reset the user pass here.");
+  resetPass(value){
+    this.storage.get('session.deeplinkArgs.email').then(email => {
+      if(this.resetPassForm.valid){
+        console.log(email);
+        this.joynalApi.resetPassworDeeplink(email,value.password).subscribe(resp => {
+          let alert = this.alertCtrl.create({
+            title: '<h1 text-center>Password Changed</h1>',
+            subTitle: 'Your password has been changed successfully',
+            buttons: ['Okay']
+          }); 
+          alert.present();
+        })
+      }else{
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Password</h1>',
+          subTitle: 'New password not valid',
+          buttons: ['Okay']
+        }); 
+        alert.present();
+      }
+    }, err=>{
+      let alert = this.alertCtrl.create({
+        title: '<h1 text-center>Error</h1>',
+        subTitle: 'Joynal has encountered an error, please try again',
+        buttons: ['Okay']
+      }); 
+      alert.present();
+    })
+    
+  
   }
   goBack(){
     this.navCtrl.pop();
   }
+  ionViewDidEnter(){
+  
+  }
+  
+
 }

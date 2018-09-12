@@ -28,7 +28,13 @@ export class ForgotPasswordPage {
     console.log(value);
     if(this.email !=null){
       this.joynalApi.forgotPassword(this.email).subscribe(resp => {
-        console.log(resp);
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Password Recovery</h1>',
+          subTitle: 'A Password Recovery Email has been sent to your email address',
+          buttons: ['Okay']
+        }); 
+        alert.present();
+      
       })
     }
     else{

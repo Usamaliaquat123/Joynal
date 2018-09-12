@@ -99,8 +99,8 @@ footerlogin {
     content: "\f2b0";
     width: 21px;
     height: 28px;
-    margin-top: 2px;
-    margin-bottom: -2px;
+    margin-top: 4px;
+    margin-bottom: -6px;
   }
   .ion-logo-twitter::after {
     content: '';
@@ -115,5 +115,19 @@ footerlogin {
   }
   ion-icon.icon.icon-md.ion-logo-twitter {
     font-size: 1.8em;
+  }
+  .ion-logo-facebook:before {
+    content: "\f236";
+    width: 21px;
+    height: 28px;
+    margin-top: 2px;
+    margin-bottom: -2px;
+  }
+  .ion-logo-instagram:before {
+    content: "\f23e";
+    width: 21px;
+    height: 28px;
+    margin-top: 2px;
+    margin-bottom: -2px;
   }
 }

@@ -110,7 +110,7 @@ export class LoginPage {
           // console.log(err.json());
           if(err.json().error.status  = '400'){
             this.response = true;
-            this.toast.show(`credentials is not valid. please register and try again`, '3000', 'bottom').subscribe(toast => { console.log(toast);});}
+            this.toast.show(`Credentials are not valid, please register and try again`, '3000', 'bottom').subscribe(toast => { console.log(toast);});}
         });  
       }else{this.response = true;this.toast.show(`Please check credentials and try again`, '3000', 'bottom').subscribe(toast => {console.log(toast);});
       }

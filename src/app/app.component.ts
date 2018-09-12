@@ -8,6 +8,7 @@ import { Platform, Nav,  } from 'ionic-angular';
 import firebase from 'firebase'
 import { firebaseKeys } from "../config/keys";
 import {Deeplinks} from '@ionic-native/deeplinks';
+
 @Component({
   templateUrl: 'app.html'
 })  
@@ -15,6 +16,7 @@ export class MyApp {
   rootPage:string ;
   welcomeScreen : boolean;
   @ViewChild(Nav) navChild:Nav;
+  data : any;
   constructor(deeplinks : Deeplinks,platform: Platform, storage: Storage, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
    
@@ -30,10 +32,16 @@ export class MyApp {
       splashScreen.hide();
 
     deeplinks.routeWithNavController(this.navChild,{
-        '/newPass': 'newPass'
+        '/newPass': 'newPass',
         }).subscribe((match) => {
-        alert(JSON.stringify(match));
-        console.log('Successfully routed', match);
+          this.data = JSON.stringify(match.$args);
+            console.log(JSON.stringify(match));
+            storage.set('session.deeplinkArgs.email', JSON.stringify(match.$args.email)).then(resp => {
+              console.log('saved ' + resp);
+            }).catch(err => {
+              console.log(err)
+            });
+                   
         },nomatch => {
         alert(JSON.stringify(nomatch));
         console.log('Unmatched Route', nomatch);
