@@ -17,6 +17,7 @@ export class HomeFooterComponent {
   }
 
   logout(){
+    this.storage.set('session.currentPage','');
 
     let alert = this.alertCtrl.create({
       title: 'Confirm Log out',
@@ -64,15 +65,43 @@ export class HomeFooterComponent {
     alert.present();
   }
   redirectNotifications(){
-    this.navCtrl.push("NotificationsPage");
+    this.storage.get('session.currentPage').then(res=>{
+      if(res == "NotificationsPage"){
+
+      }
+      else{
+        this.navCtrl.push("NotificationsPage");
+      }
+    })
   }
   about(){
-    this.navCtrl.push("AboutPage");
+    this.storage.get('session.currentPage').then(res=>{
+      if(res == "AboutPage"){
+
+      }
+      else{
+        this.navCtrl.push("AboutPage");
+      }
+    })
   }
   redirectAchievements(){
-    this.navCtrl.push("AchievementsMainPage");
+    this.storage.get('session.currentPage').then(res=>{
+      if(res == "AchievementsMainPage"){
+
+      }
+      else{
+        this.navCtrl.push("AchievementsMainPage");
+      }
+    })
   }
   redirectSettings(){
-    this.navCtrl.push("SettingsPage");
+    this.storage.get('session.currentPage').then(res=>{
+      if(res == "SettingsPage"){
+
+      }
+      else{
+        this.navCtrl.push("SettingsPage");
+      }
+    })
   }
 }

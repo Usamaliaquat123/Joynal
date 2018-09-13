@@ -16,7 +16,7 @@ export class NotificationsPage {
   public notificationToggle:boolean;
   
   constructor(private localNotify: LocalNotifications,private joynalApi : JoynalApiProvider,private storage : Storage ,public navCtrl: NavController, public navParams: NavParams,private toast: Toast) {
-
+    storage.set('session.currentPage','NotificationsPage');
   }
 
   ionViewDidLoad() {

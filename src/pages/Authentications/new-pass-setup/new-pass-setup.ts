@@ -18,6 +18,8 @@ export class NewPassSetupPage {
   email : any; 
   resetPassForm : FormGroup;
   data : any;
+  passwordType : string = 'password'
+  passwordShown : boolean = false;
   constructor(public alertCtrl : AlertController,public storage: Storage,public formBuilder : FormBuilder,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
 
     console.log(` ${this.email}`);
@@ -31,10 +33,19 @@ export class NewPassSetupPage {
     this.storage.get('session.deeplinkArgs.email').then(email => {
       if(this.resetPassForm.valid){
         console.log(email);
+        email = email.replace(/['"]+/g, '');
         this.joynalApi.resetPassworDeeplink(email,value.password).subscribe(resp => {
           let alert = this.alertCtrl.create({
             title: '<h1 text-center>Password Changed</h1>',
             subTitle: 'Your password has been changed successfully',
+            buttons: ['Okay']
+          }); 
+          alert.present();
+          this.navCtrl.setRoot("LoginPage");
+        }, err=>{
+          let alert = this.alertCtrl.create({
+            title: '<h1 text-center>Error</h1>',
+            subTitle: 'Email not found or the server could not respond, please try again',
             buttons: ['Okay']
           }); 
           alert.present();
@@ -50,7 +61,7 @@ export class NewPassSetupPage {
     }, err=>{
       let alert = this.alertCtrl.create({
         title: '<h1 text-center>Error</h1>',
-        subTitle: 'Joynal has encountered an error, please try again',
+        subTitle: 'Email not found or the server could not respond, please try again',
         buttons: ['Okay']
       }); 
       alert.present();
@@ -69,7 +80,7 @@ export class NewPassSetupPage {
           subTitle: 'Reset password link has been expired',
           buttons: [
             {
-              text : 'Okay!',
+              text : 'Okay',
               handler : () => {
                 this.navCtrl.setRoot('LoginPage');
               }
@@ -80,6 +91,14 @@ export class NewPassSetupPage {
       }
     })
   }
-  
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+    }else{
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
+  }
 
 }

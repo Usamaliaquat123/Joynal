@@ -10,24 +10,24 @@ home-footer {
     text-align: center;
     margin-top: -35px;
     ion-icon {
-      font-size: 2em;
+      font-size: 1.8em;
       color: #ffffff;
       position: relative;
       background: #01aef0;
-      border: 3px solid rgba(255, 255, 255, 0.6);
+      border: 2.1px solid rgba(255, 255, 255, 0.2);
       border-radius: 50%;
-      padding: 8px 10px;
-      margin: 5px;
+      padding: 7px 10px;
+      margin: 4px;
     }
     ion-icon::after {
       content: '';
       position: absolute;
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       background-color: #01aef0;
       z-index: -1;
-      margin-left: -43px;
-      margin-top: -22px;
+      margin-left: -40px;
+      margin-top: -20px;
       border-radius: 50%;
     }
   }
@@ -57,36 +57,14 @@ home-footer {
         max-width: 100%;
     }
   }
-  .align-content-center ion-col ion-icon::after {
-    content: '';
-    position: absolute;
-    width: 65px;
-    height: 65px;
-    background-color: #01aef0;
-    z-index: -1;
-    margin-left: -43px;
-    margin-top: -22px;
-    border-radius: 50%;
-  }
-  .align-content-center ion-col ion-icon {
-    font-size: 1.6em;
-    color: #ffffff;
-    position: relative;
-    background: #01aef0;
-    border: 3px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    padding: 8px 10px;
-    margin: 5px;
-  }
   .grid{
     height: 50px;
   }
   home-footer .align-footer-bottom{
     position: fixed;
   }
-  .ion-ios-notifications:before {
-    content: "\f1d3";
-    width: 15px;
-    height: 19px;
+  .ion-md-notifications:before {
+    content: "\f338";
+    width: 18.2px;
   }
 }

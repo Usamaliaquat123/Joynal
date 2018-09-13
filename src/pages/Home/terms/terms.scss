@@ -16,12 +16,20 @@ page-terms {
         background: rgba(248, 248, 248, 0.5);
     }
     h3{
-        color: #222222c9;
+        color: rgba(34, 34, 34, 0.65);
+        font-weight: 500;
     }
     [col-12] {
         padding: 0px;
     }
-    p{
-        text-align: justify;
+    ol, ul {
+        list-style: none;
     }
+    ul {
+        list-style-type: disc;
+    }
+    .termsofuse-bulletlist {
+        list-style-type: disc;
+    }
+
 }

@@ -64,7 +64,7 @@ page-add-entry-new {
     }
     .userEntryLocation{
         float: left;
-        width: 85px;
+        width: 70px;
         height: 70px;
         padding-left: 25px;
         padding-right: 0px;
@@ -79,7 +79,8 @@ page-add-entry-new {
 
         h3{
             font-weight: 800;
-            margin-left: -12px;
+            margin-left: -18px;
+            font-size: 1.3rem;
         }
         ion-icon {
             display: inline-block;
@@ -93,7 +94,7 @@ page-add-entry-new {
             text-rendering: auto;
             text-transform: none;
             speak: none;
-            padding-left: 8px;
+            padding-left: 0px;
         }
       }
     .list-md {

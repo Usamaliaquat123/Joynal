@@ -17,6 +17,7 @@ export class AddEntryPage {
   entriesz = [];
   entrix = [];
   constructor(private  loadCtrl: LoadingController,private storage: Storage ,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
+    storage.set('session.currentPage','AddEntryPage');
   }
 
   ionViewDidLoad() {

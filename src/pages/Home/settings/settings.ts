@@ -19,6 +19,7 @@ export class SettingsPage {
   reminderTime : any;
   passwordTest : string;
   constructor(private localNotify : LocalNotifications,private storage : Storage,private joynalApi : JoynalApiProvider,private alertCtrl : AlertController,public navCtrl: NavController, public navParams: NavParams) {
+    storage.set('session.currentPage','SettingsPage');
   }
 
   ionViewDidLoad() {

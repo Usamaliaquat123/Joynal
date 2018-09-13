@@ -20,7 +20,8 @@ export class AchievementsMainPage {
   achievements = [];
   color : String;
   constructor(private storage : Storage,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
-  this.achievements = this.navParams.data;
+    this.achievements = this.navParams.data;
+    storage.set('session.currentPage','AchievementsMainPage');
   }
 
   ionViewDidLoad() {

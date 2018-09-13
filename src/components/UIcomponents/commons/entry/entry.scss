@@ -6,11 +6,11 @@ entry {
     .align-content-center ion-col {
         text-align: center;
         ion-icon {
-          font-size: 1.6em;
+          font-size: 1.3em;
           color: #ffffff;
           position: relative;
           background: #01aef0;
-          border: 5px solid #64D0F4;
+          border: 3px solid rgba(100, 208, 244, 0.8);
           border-radius: 50%;
           padding: 8px 10px;
           margin: 5px;
@@ -19,24 +19,25 @@ entry {
         ion-icon::after {
           content: '';
           position: absolute;
-          width: 65px;
+          width: 60px;
           height: 65px;
           background-color: #01aef0;
           z-index: -1;
-          margin-left: -42px;
-          margin-top: -20px;
+          margin-left: -39px;
+          margin-top: -25px;
           border-radius: 50%;
         }
         .test2{
-            font-size: 3em;
+            font-size: 2.5em;
             color: #ffffff;
             position: relative;
             background: #01aef0;
-            border: 5px solid #64D0F4;
+            border: 4px solid rgba(100, 208, 244, 0.8);
             border-radius: 70%;
             padding: 6px 9px;
             margin: 5px;
-            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         }
         .test2::after{
             content: '';
@@ -45,8 +46,8 @@ entry {
             height: 80px;
             background-color: #01aef0;
             z-index: -1;
-            margin-left: -59px;
-            margin-top: -16px;
+            margin-left: -56px;
+            margin-top: -24px;
             border-radius: 50%;
         }
     }

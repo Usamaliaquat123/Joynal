@@ -269,6 +269,15 @@ export class EntryComponent {
       content: 'Locating you, Please wait...'
     });
     loading.present();
+    setTimeout(() => {
+      if(this.locationCity == null || this.locationCountry == null){
+        this.toast.show(`This is taking longer than usual, please stand by`, '5000', 'bottom').subscribe(
+          toast => {
+            console.log(toast);
+          }
+        );
+      }
+    }, 20000);
 
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude

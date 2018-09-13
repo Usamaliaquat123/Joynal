@@ -35,6 +35,13 @@ export class ForgotPasswordPage {
         }); 
         alert.present();
       
+      }, err=>{
+        let alert = this.alertCtrl.create({
+          title: '<h1 text-center>Error</h1>',
+          subTitle: 'Email not found or the server could not respond, please try again',
+          buttons: ['Okay']
+        }); 
+        alert.present();
       })
     }
     else{

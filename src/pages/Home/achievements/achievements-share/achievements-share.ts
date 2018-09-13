@@ -22,7 +22,7 @@ export class AchievementsSharePage {
     else if(this.shareValue == "insta"){
       this.shareIcon = "./assets/icon/instashare.svg";
     }
-    else{
+    else if(this.shareValue == "twitter"){
       this.shareIcon = "./assets/icon/twittershare.svg";
     }
   }
@@ -33,18 +33,18 @@ export class AchievementsSharePage {
   socialShare(){
     if(this.shareValue == "fb"){
       console.log("call fb share api here");
-      this.socialSharing.shareViaFacebook("hello").then(res =>{
+      this.socialSharing.shareViaFacebook("I've logged something that made me happy for " + this.dayValue +" day(s) running in my Joynal.","http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg").then(res =>{
         console.log(res);
       });
     }
     else if(this.shareValue == "insta"){
       console.log("call insta share api here");
-      this.socialSharing.shareViaInstagram("This is instagram share test","http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg").then(res =>{
+      this.socialSharing.shareViaInstagram("I've logged something that made me happy for " + this.dayValue +" day(s) running in my Joynal.","http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg").then(res =>{
         console.log("this is instagram share response "+res);
       });
     }
     else{
-      this.socialSharing.shareViaTwitter('This is instagram share test','http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg').then(resp => {
+      this.socialSharing.shareViaTwitter("I've logged something that made me happy for " + this.dayValue +" day(s) running in my Joynal.",'http://clients2.5stardesigners.net/joynal/api/web/joynal-share-image.jpg').then(resp => {
         console.log('Shaing message via twitter' + resp);
       })
     }

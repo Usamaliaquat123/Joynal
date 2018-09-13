@@ -1,4 +1,3 @@
-
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController, LoadingController, Platform } from 'ionic-angular';
@@ -23,6 +22,7 @@ export class HomeScreenPage{
 
   constructor(private platfrm  : Platform,private localNotify: LocalNotifications,public loadCtrl : LoadingController ,private apiJoynal : JoynalApiProvider,private storage: Storage,public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.noImageThumbnail = './assets/imgs/placeholder-image.png';
+    storage.set('session.currentPage','HomeScreenPage');
    
     console.log( new Date(new Date().getTime()));
   }
