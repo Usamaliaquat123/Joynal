@@ -1,4 +1,18 @@
 page-about {
+    .scroll-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 100px;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        overflow-x: auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+        contain: size style layout;
+    }
     .content-md {
         color: #000;
         background-color: white;
@@ -21,5 +35,11 @@ page-about {
     .label-ios {
         font-size: 1em;
         color: #424242cf;
+    }
+    .customBackButton{
+        display: block;
+        z-index: 999999999;
+        position: absolute;
+        margin-left: 5px;
     }
 }

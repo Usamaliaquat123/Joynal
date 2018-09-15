@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { HostListener } from '@angular/core';
 
 @IonicPage()
@@ -23,10 +23,13 @@ export class AuthenticationsVerifyemailPage {
   value5 : any;
   value6 : any;
   verifyCode : any
-  constructor(private alertCtrl: AlertController,private joynalAoi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController,private joynalAoi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, public platform : Platform) {
     this.email = navParams.data;
     this.verifyForm = formBuilder.group({
       'code' : [null, Validators.compose([Validators.required])],
+    })
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.setRoot("LoginPage");
     })
   }
 
@@ -65,7 +68,7 @@ export class AuthenticationsVerifyemailPage {
       console.log(this.verifyCode)
       this.joynalAoi.verificationEmail(this.email,this.verifyCode).subscribe(resp => {
         this.alertCtrl.create({
-          title : 'Verification Successfull',
+          title : 'Verification Successful',
           message : 'Your account has been verified. Please login and enjoy Joynal',
           buttons : [
             {
@@ -120,5 +123,7 @@ export class AuthenticationsVerifyemailPage {
     }
   
   }
-
+  goBack(){
+    this.navCtrl.setRoot("LoginPage");
+  }
 }

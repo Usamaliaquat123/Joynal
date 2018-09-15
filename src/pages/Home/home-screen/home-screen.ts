@@ -20,7 +20,10 @@ export class HomeScreenPage{
   moment : any;
   noImageThumbnail : string;
 
-  constructor(private platfrm  : Platform,private localNotify: LocalNotifications,public loadCtrl : LoadingController ,private apiJoynal : JoynalApiProvider,private storage: Storage,public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(private platfrm  : Platform,private localNotify: LocalNotifications,public loadCtrl : LoadingController ,private apiJoynal : JoynalApiProvider,private storage: Storage,public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController,public platform : Platform) {
+    platform.registerBackButtonAction(()=>{
+      platform.exitApp();
+    })  
     this.noImageThumbnail = './assets/imgs/placeholder-image.png';
     storage.set('session.currentPage','HomeScreenPage');
    

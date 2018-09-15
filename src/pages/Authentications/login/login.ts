@@ -1,7 +1,7 @@
 
 import { JoynalApiProvider } from '../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 import  firebase from "firebase";
@@ -27,8 +27,11 @@ export class LoginPage {
   passwordShown : boolean = false;
   response : boolean;
   responseText : any;
-  constructor(private alrtCtrl : AlertController,public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast) {
-      this.response = false;
+  constructor(private alrtCtrl : AlertController,public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast, public platform: Platform) {
+    platform.registerBackButtonAction(()=>{
+      platform.exitApp();
+    })  
+    this.response = false;
       // Implementing form validations
       this.authForm = formBuilder.group({
         'email' : [null, Validators.compose([Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')])],

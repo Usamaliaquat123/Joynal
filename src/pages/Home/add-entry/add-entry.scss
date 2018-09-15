@@ -115,4 +115,10 @@ page-add-entry {
     .ion-page > ion-content{
         position: relative;
     }
+    .customBackButton{
+        display: block;
+        z-index: 999999999;
+        position: absolute;
+        margin-left: 5px;
+    }
 }

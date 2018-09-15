@@ -84,6 +84,4 @@ export class AddEntryNewPage {
     
     this.ionViewDidLoad();
   }
-
-
 }

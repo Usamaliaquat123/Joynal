@@ -15,4 +15,10 @@ page-notifications {
     .toolbar-background-md, .toolbar-background-ios {
         background: rgba(248, 248, 248, 0.5);
     }
+    .customBackButton{
+        display: block;
+        z-index: 999999999;
+        position: absolute;
+        margin-left: 5px;
+    }
 }

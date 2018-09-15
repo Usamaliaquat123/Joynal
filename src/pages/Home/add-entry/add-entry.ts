@@ -2,7 +2,7 @@
 import { Storage } from '@ionic/storage';
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 import { entry } from '../../../models/entries';
 import moment from 'moment';
 import 'rxjs/add/operator/map';
@@ -16,8 +16,11 @@ export class AddEntryPage {
   date : any;
   entriesz = [];
   entrix = [];
-  constructor(private  loadCtrl: LoadingController,private storage: Storage ,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private  loadCtrl: LoadingController,private storage: Storage ,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams, public platform : Platform) {
     storage.set('session.currentPage','AddEntryPage');
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.setRoot("HomeScreenPage");
+    })
   }
 
   ionViewDidLoad() {
@@ -60,6 +63,9 @@ export class AddEntryPage {
     })
     })
  
-  }
+    }
+    goBack(){
+      this.navCtrl.setRoot("HomeScreenPage");
+    }
   }
 

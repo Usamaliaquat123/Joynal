@@ -1,5 +1,5 @@
-import { ElementRef, Renderer2, Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -8,74 +8,46 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'achievements.html',
 })
 export class AchievementsPage{
-  trophyColor;
   achievements : any;
   shareValue : string;
-  value : string;
+  dayValueStreak : string;
+  dayValueCombo : string;
+  rewardNameStreak : string;
+  rewardNameJIT : string;
+  rewardNameCombo : string;
+  valueStreak : string;
+  valueCombo : string;
+  trophyColorStreak : string;
+  trophyColorCombo : string;
+  trophyColorJIT : string;
+  comboName : string;
   dayValue : string;
-  rewardName : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer2) {
-    this.achievements = this.navParams.data;
-    console.log(this.achievements);
-    // this.trophyColor = "'width.px':170,'fill':'rgb(150,50,255)','padding.px':1,'margin.px':3";
-    //this.test = this.element.nativeElement.getElementsByClassName("st0");
-    // console.log(this.test);
-    // this.renderer.setElementStyle(this.test, 'fill', '#ff0000');
-    //this.renderer.setStyle(this.test, 'webkitTransition', 'margin-top 500ms');
-    if(this.achievements.combo.name == "Bronze Combo"){
-      this.dayValue = "One";
-      this.value = '3';
-      this.rewardName = 'Bronze Combo';
-      console.log('Bronze Combo');
-      this.trophyColor = '#B47237';
-    }else if(this.achievements.name == "Bronze Streak"){
-      this.dayValue = "Five";
-      this.rewardName = 'Bronze Streak';
-      this.trophyColor = '#01AEF0';
-    }else if(this.achievements.name == "Silver Streak"){
-      this.dayValue = "Fifteen";
-      this.rewardName = 'Silver Streak';
-      this.trophyColor = '#01AEF0';
-    }else if(this.achievements.name == "Welcome Back"){
-      this.rewardName = 'Welcome Back';
-      this.trophyColor = '#01AEF0';
-    }else if(this.achievements.name == "Just in Time"){
-      this.rewardName = 'Just in Time';
-      this.trophyColor = '#01AEF0';
-    }else if(this.achievements.name == "Thanks for Sharing!"){
-      this.rewardName = 'Thanks for Sharing!';
-      this.trophyColor = '#01AEF0';
-    }else if(this.achievements.name == "Thanks for your Feedback!"){
-      this.rewardName = 'Thanks for your Feedback!';
-      this.trophyColor = '#01AEF0';
-    }else if(this.achievements.combo.name == "Silver Combo"){
-      this.dayValue = "One";
-      this.value = '5';
-      this.rewardName = 'Silver Combo';
-      this.trophyColor = '#C0C0C0';
-    }else if(this.achievements.combo.name == "Gold Combo"){
-      this.dayValue = "One";
-      this.value = '10';
-      this.rewardName = 'Gold Combo';
-      this.trophyColor = '#FED700';
-    }else if(this.achievements.name == "Gold Streak"){
-      this.dayValue = "Thirty";
-      this.trophyColor = '#01AEF0';
-      this.rewardName = 'Gold Streak';
-    }else{
-      console.log('None');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform : Platform,private alertCtrl: AlertController) {
+
+    this.achievements = this.navParams.get('achievements');
+    if(this.achievements !=null){
+      console.log("ok");      
+      //console.log("achievement name is this : "+this.achievements.streakachievement.name);
+      // this.valueCombo = this.navParams.get('valueCombo');
+      // this.valueStreak = this.navParams.get('valueStreak');
+      // this.dayValueCombo = this.navParams.get('dayValueCombo');
+      // this.dayValueStreak = this.navParams.get('dayValueStreak');
+      // this.rewardNameCombo = this.navParams.get('rewardNameCombo');
+      // this.rewardNameStreak = this.navParams.get('rewardNameStreak');
+      // this.trophyColorCombo = this.navParams.get('trophyColorCombo');
+      // this.trophyColorStreak = this.navParams.get('trophyColorStreak');
+      console.log(this.achievements);
     }
-    // this.trophyColor = '#01AEF0';
-    // (this.test.querySelector("st0") as HTMLElement).style.top = '150px';
-    //this.test.style = "fill:blue";
-    //this.test = this.element.nativeElement.getElementsByTagName('path');
-    //this.renderer.addClass(this.element.nativeElement.getElementsByTagName('path'),'.st1');
-    //console.log(this.test)
+    else{
+      console.log("err");
+      let alert = this.alertCtrl.create({
+        title: '<h1 text-center>Error</h1>',
+        subTitle: 'Could not get your achievement, please try again later.',
+        buttons: ['Okay']
+      }); 
+      alert.present();
+    }
   }
-
-    goBack(){
-
-    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AchievementsPage');
@@ -84,18 +56,126 @@ export class AchievementsPage{
     this.shareValue = "fb";
     this.navCtrl.push("AchievementsSharePage",{
       shareValue:this.shareValue,
-      dayValue: this.dayValue
+      dayValue: "One"
     });
   }
   instaShare(){
     this.shareValue = "insta";
     this.navCtrl.push("AchievementsSharePage",{
       shareValue:this.shareValue,
-      dayValue: this.dayValue
+      dayValue: "One"
     });
   }
   twitterShare(){
     this.shareValue = "twitter";
+    this.navCtrl.push("AchievementsSharePage",{
+      shareValue:this.shareValue,
+      dayValue: "One"
+    });
+  }
+  fbShareStreak(){
+    this.shareValue = "fb";
+    if(this.achievements.streakachievement != null){
+      if(this.achievements.streakachievement.name == "Bronze Streak"){
+        this.dayValue = "5";
+      }
+      else if(this.achievements.streakachievement.name == "Silver Streak"){
+        this.dayValue = "15";
+      }
+      else if(this.achievements.streakachievement.name == "Gold Streak"){
+        this.dayValue = "30";
+      }
+      else if(this.achievements.streakachievement.name == "Seasonal Streak"){
+        this.dayValue = "90";
+      }
+      else if(this.achievements.streakachievement.name == "Platinum Streak"){
+        this.dayValue = "365";
+      }
+      else if(this.achievements.streakachievement.name == "Ruby Streak"){
+        this.dayValue = "500";
+      }
+      else if(this.achievements.streakachievement.name == "Emerald Streak"){
+        this.dayValue = "1,000";
+      }
+      else if(this.achievements.streakachievement.name == "Sapphire Streak"){
+        this.dayValue = "2,000";
+      }
+      else if(this.achievements.streakachievement.name == "Diamond Streak"){
+        this.dayValue = "3,000";
+      }
+    }
+    this.navCtrl.push("AchievementsSharePage",{
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
+    });
+  }
+  instaShareStreak(){
+    this.shareValue = "insta";
+    if(this.achievements.streakachievement != null){
+      if(this.achievements.streakachievement.name == "Bronze Streak"){
+        this.dayValue = "5";
+      }
+      else if(this.achievements.streakachievement.name == "Silver Streak"){
+        this.dayValue = "15";
+      }
+      else if(this.achievements.streakachievement.name == "Gold Streak"){
+        this.dayValue = "30";
+      }
+      else if(this.achievements.streakachievement.name == "Seasonal Streak"){
+        this.dayValue = "90";
+      }
+      else if(this.achievements.streakachievement.name == "Platinum Streak"){
+        this.dayValue = "365";
+      }
+      else if(this.achievements.streakachievement.name == "Ruby Streak"){
+        this.dayValue = "500";
+      }
+      else if(this.achievements.streakachievement.name == "Emerald Streak"){
+        this.dayValue = "1,000";
+      }
+      else if(this.achievements.streakachievement.name == "Sapphire Streak"){
+        this.dayValue = "2,000";
+      }
+      else if(this.achievements.streakachievement.name == "Diamond Streak"){
+        this.dayValue = "3,000";
+      }
+    }
+    this.navCtrl.push("AchievementsSharePage",{
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
+    });
+  }
+  twitterShareStreak(){
+    this.shareValue = "twitter";
+    if(this.achievements.streakachievement != null){
+      if(this.achievements.streakachievement.name == "Bronze Streak"){
+        this.dayValue = "5";
+      }
+      else if(this.achievements.streakachievement.name == "Silver Streak"){
+        this.dayValue = "15";
+      }
+      else if(this.achievements.streakachievement.name == "Gold Streak"){
+        this.dayValue = "30";
+      }
+      else if(this.achievements.streakachievement.name == "Seasonal Streak"){
+        this.dayValue = "90";
+      }
+      else if(this.achievements.streakachievement.name == "Platinum Streak"){
+        this.dayValue = "365";
+      }
+      else if(this.achievements.streakachievement.name == "Ruby Streak"){
+        this.dayValue = "500";
+      }
+      else if(this.achievements.streakachievement.name == "Emerald Streak"){
+        this.dayValue = "1,000";
+      }
+      else if(this.achievements.streakachievement.name == "Sapphire Streak"){
+        this.dayValue = "2,000";
+      }
+      else if(this.achievements.streakachievement.name == "Diamond Streak"){
+        this.dayValue = "3,000";
+      }
+    }
     this.navCtrl.push("AchievementsSharePage",{
       shareValue:this.shareValue,
       dayValue: this.dayValue

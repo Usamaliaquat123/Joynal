@@ -61,4 +61,10 @@ page-settings {
         margin-top: -10px;
         width: 80%;
     }
+    .customBackButton{
+        display: block;
+        z-index: 999999999;
+        position: absolute;
+        margin-left: 5px;
+    }
 }

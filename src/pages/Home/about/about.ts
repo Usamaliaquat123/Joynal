@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { Storage } from "@ionic/storage";
@@ -13,8 +13,11 @@ import { Storage } from "@ionic/storage";
 })
 export class AboutPage {
 
-  constructor(private storage: Storage,public navCtrl: NavController, public navParams: NavParams,private iab: InAppBrowser,private emailComposer: EmailComposer) {
+  constructor(private storage: Storage,public navCtrl: NavController, public navParams: NavParams,private iab: InAppBrowser,private emailComposer: EmailComposer, public platform : Platform) {
     storage.set('session.currentPage','AboutPage');
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.setRoot("HomeScreenPage");
+    })
   }
 
   ionViewDidLoad() {
@@ -35,5 +38,8 @@ export class AboutPage {
       isHtml: true
     };
     this.emailComposer.open(email);
+  }
+  goBack(){
+    this.navCtrl.setRoot("HomeScreenPage");
   }
 }

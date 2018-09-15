@@ -1,8 +1,9 @@
+import { Toast } from '@ionic-native/toast';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import moment from 'moment';
 
@@ -18,8 +19,11 @@ export class SettingsPage {
   userName : any;
   reminderTime : any;
   passwordTest : string;
-  constructor(private localNotify : LocalNotifications,private storage : Storage,private joynalApi : JoynalApiProvider,private alertCtrl : AlertController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private localNotify : LocalNotifications,private storage : Storage,private joynalApi : JoynalApiProvider,private alertCtrl : AlertController,public navCtrl: NavController, public navParams: NavParams, public platform: Platform,private toast: Toast) {
     storage.set('session.currentPage','SettingsPage');
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.setRoot("HomeScreenPage");
+    })
   }
 
   ionViewDidLoad() {
@@ -149,6 +153,20 @@ export class SettingsPage {
   }
   // IsNotify
   entryVisibilityToggleChange(){
+    if(this.entryVisibilityToggle.toString()=="true"){
+      this.toast.show(`Sharing entry as anonymous user has been turned on`, '5000', 'bottom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+    }
+    else{
+      this.toast.show(`Sharing entry as anonymous user has been turned off`, '5000', 'bottom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+    }
     this.storage.ready().then(() => {
       this.storage.get('session.userId').then(userid => {
         this.storage.get('session.accessToken').then(accessToken => {
@@ -193,5 +211,8 @@ export class SettingsPage {
         })
       })
     })
+  }
+  goBack(){
+    this.navCtrl.setRoot("HomeScreenPage");
   }
 }

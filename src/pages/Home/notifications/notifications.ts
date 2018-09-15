@@ -1,7 +1,7 @@
 
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { Toast } from '@ionic-native/toast';
 import { LocalNotifications } from "@ionic-native/local-notifications";
@@ -15,8 +15,11 @@ import moment from 'moment';
 export class NotificationsPage {
   public notificationToggle:boolean;
   
-  constructor(private localNotify: LocalNotifications,private joynalApi : JoynalApiProvider,private storage : Storage ,public navCtrl: NavController, public navParams: NavParams,private toast: Toast) {
+  constructor(private localNotify: LocalNotifications,private joynalApi : JoynalApiProvider,private storage : Storage ,public navCtrl: NavController, public navParams: NavParams,private toast: Toast, public platform : Platform) {
     storage.set('session.currentPage','NotificationsPage');
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.setRoot("HomeScreenPage");
+    })
   }
 
   ionViewDidLoad() {
@@ -99,6 +102,8 @@ export class NotificationsPage {
     })
   }
   
-
+  goBack(){
+    this.navCtrl.setRoot("HomeScreenPage");
+  }
 
 }

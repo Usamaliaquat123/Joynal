@@ -45,6 +45,17 @@ export class EntryComponent {
   lat : any;
   Lng : any;
   testCatch : string;
+  dayValueStreak : string;
+  dayValueCombo : string;
+  rewardNameStreak : string;
+  rewardNameJIT : string;
+  rewardNameCombo : string;
+  valueStreak : string;
+  valueCombo : string;
+  trophyColorStreak : string;
+  trophyColorCombo : string;
+  trophyColorJIT : string;
+
   constructor(private loadCtrl : LoadingController,private actionSheet : ActionSheetController, public formBuilder : FormBuilder,private camera : Camera ,private httpClient: HttpClient,private storage : Storage,private  joynalApi: JoynalApiProvider ,private alertCtrl: AlertController,public navCtrl : NavController,private toast: Toast, private geolocation: Geolocation,private nativeGeocoder: NativeGeocoder,private diagnostic: Diagnostic,private locationAccuracy:LocationAccuracy) {
     this.imageUpload = false;
     this.date =  moment().format('Do MMMM YYYY');
@@ -217,24 +228,36 @@ export class EntryComponent {
                             loading.dismiss();
                             console.log(success);
                             if(success.data.achievements){
+                              console.log("in achievement redirect");
                               this.achievements = success.data.achievements;
                               console.log(this.achievements);
+
+                              // console.log(this.dayValueCombo);
+                              // console.log(this.dayValueStreak);
+                              // console.log(this.valueCombo);
+                              // console.log(this.valueStreak);
+                              // console.log(this.trophyColorCombo);
+                              // console.log(this.trophyColorStreak);
+                              // console.log(this.rewardNameCombo);
+                              // console.log(this.rewardNameStreak);
                               this.navCtrl.push('AddEntryPage').then(() => {
-                                this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
-                                  let alert = this.alertCtrl.create({
-                                    title: '<h1 text-center>Did you know</h1>',
-                                    subTitle: success.data.post,
-                                    buttons: ['Dismiss']
-                                  }); 
-                                  alert.present();
-                                  this.entries = [];
-                                })
+                                let alert = this.alertCtrl.create({
+                                  title: '<h1 text-center>Did you know</h1>',
+                                  subTitle: success.data.post,
+                                  buttons: ['Dismiss']
+                                }); 
+                                alert.present();
+                                this.entries = [];
+                                this.navCtrl.push("AchievementsPage",{
+                                  achievements : this.achievements
+                                });
+                              },err=>{
+                                console.log("this is navigation error "+err);
                               })
-                              
                             }
                             else{
                               this.navCtrl.push('AddEntryPage');
-                          }
+                            }
                       },err => {
                     console.log(err),
                     this.entries = [];
@@ -269,15 +292,15 @@ export class EntryComponent {
       content: 'Locating you, Please wait...'
     });
     loading.present();
-    setTimeout(() => {
-      if(this.locationCity == null || this.locationCountry == null){
-        this.toast.show(`This is taking longer than usual, please stand by`, '5000', 'bottom').subscribe(
-          toast => {
-            console.log(toast);
-          }
-        );
-      }
-    }, 20000);
+    // setTimeout(() => {
+    //   if(this.locationCity == null || this.locationCountry == null){
+    //     this.toast.show(`This is taking longer than usual, please stand by`, '5000', 'bottom').subscribe(
+    //       toast => {
+    //         console.log(toast);
+    //       }
+    //     );
+    //   }
+    // }, 20000);
 
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude

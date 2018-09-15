@@ -1,5 +1,10 @@
 <ion-header text-center>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
+    <ion-buttons item-start class="back-btn" class="customBackButton">
+      <button (click)="goBack()" style=" background-color: transparent;">
+          <ion-icon name="md-arrow-back" style="font-size: 1.7em; color: #424242;"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Email Verification</ion-title>
     <cloud></cloud>
   </ion-navbar>

@@ -1,14 +1,8 @@
 import { JoynalApiProvider } from './../../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import 'rxjs/add/operator/map';
-/**
- * Generated class for the AchievementsMainPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -19,9 +13,12 @@ import 'rxjs/add/operator/map';
 export class AchievementsMainPage {
   achievements = [];
   color : String;
-  constructor(private storage : Storage,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage : Storage,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams, public platform : Platform) {
     this.achievements = this.navParams.data;
     storage.set('session.currentPage','AchievementsMainPage');
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.setRoot("HomeScreenPage");
+    })
   }
 
   ionViewDidLoad() {
@@ -49,5 +46,7 @@ export class AchievementsMainPage {
     })
 
   }
-
+  goBack(){
+    this.navCtrl.setRoot("HomeScreenPage");
+  }
 }

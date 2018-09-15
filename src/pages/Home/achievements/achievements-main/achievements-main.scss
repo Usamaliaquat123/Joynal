@@ -38,4 +38,10 @@ page-achievements-main {
         will-change: scroll-position;
         contain: size style layout;
     }
+    .customBackButton{
+        display: block;
+        z-index: 999999999;
+        position: absolute;
+        margin-left: 5px;
+    }
 }

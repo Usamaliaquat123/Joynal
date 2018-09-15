@@ -23,8 +23,8 @@
               <br>
                <ion-item no-lines>
                 <ion-label><ion-icon name="ios-lock-outline" item-start></ion-icon></ion-label>
-                <ion-input [formControl]="resetPassForm.controls['confirmPass']"  [type]="passwordType" placeholder="Confirm Password" ></ion-input> 
-                <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="passwordShown === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePassword()" item-end></ion-icon> 
+                <ion-input [formControl]="resetPassForm.controls['confirmPass']"  [type]="passwordType2" placeholder="Confirm Password" ></ion-input> 
+                <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="passwordShown2 === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePassword2()" item-end></ion-icon> 
                 </ion-item>
                <span *ngIf="resetPassForm.get('confirmPass').dirty || formSubmitclicked">
                   <small class="error"  *ngIf="resetPassForm.controls['confirmPass'].value != '' && resetPassForm.controls['password'].value != resetPassForm.controls['confirmPass'].value">* Password does not match</small>

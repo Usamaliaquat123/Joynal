@@ -1,6 +1,6 @@
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 @IonicPage({
@@ -18,10 +18,14 @@ export class NewPassSetupPage {
   email : any; 
   resetPassForm : FormGroup;
   data : any;
-  passwordType : string = 'password'
+  passwordType : string = 'password';
+  passwordType2 : string = 'password'
   passwordShown : boolean = false;
-  constructor(public alertCtrl : AlertController,public storage: Storage,public formBuilder : FormBuilder,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams) {
-
+  passwordShown2 : boolean = false;
+  constructor(public alertCtrl : AlertController,public storage: Storage,public formBuilder : FormBuilder,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.pop();
+    })
     console.log(` ${this.email}`);
     this.resetPassForm = formBuilder.group({
       'password':  [null, Validators.compose([Validators.required, Validators.minLength(8) ])],
@@ -98,6 +102,15 @@ export class NewPassSetupPage {
     }else{
       this.passwordShown = true;
       this.passwordType = 'text';
+    }
+  }
+  togglePassword2(){
+    if(this.passwordShown2){
+      this.passwordShown2 = false;
+      this.passwordType2 = 'password';
+    }else{
+      this.passwordShown2 = true;
+      this.passwordType2 = 'text';
     }
   }
 

@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 @IonicPage()
@@ -12,10 +12,13 @@ export class AchievementsSharePage {
   public shareValue : string;
   public shareIcon : string;
   public dayValue : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private socialSharing: SocialSharing, public platform : Platform) {
+    platform.registerBackButtonAction(()=>{
+      this.navCtrl.pop(); 
+    })  
     this.shareValue = this.navParams.get('shareValue');
     this.dayValue = this.navParams.get('dayValue');
-    console.log(this.shareValue);
+    console.log("icon share value is this : "+this.shareValue);
     if(this.shareValue == "fb"){
       this.shareIcon = "./assets/icon/fbshare.svg";
     }
