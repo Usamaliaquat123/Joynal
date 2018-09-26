@@ -38,7 +38,7 @@ page-add-entry-new {
         float: left;
         width: 70px;
         height: 70px;
-        padding-left: 3px;
+        padding-left: 0px;
         padding-right: 0px;
         padding-top: 12px;
         font-size: 1em !important;
@@ -64,9 +64,9 @@ page-add-entry-new {
     }
     .userEntryLocation{
         float: left;
-        width: 85px;
+        width: 105px;
         height: 70px;
-        padding-left: 34px;
+        padding-left: 0px;
         padding-right: 0px;
         padding-top: 5px;
         font-size: 1.5em;
@@ -78,9 +78,9 @@ page-add-entry-new {
         text-transform: uppercase;
 
         h3{
-            font-weight: 800;
-            margin-left: -18px;
-            font-size: 1.3rem;
+            font-weight: 700;
+            margin-left: 0px;
+            font-size: 1.2rem;
         }
         ion-icon {
             display: inline-block;
@@ -93,8 +93,7 @@ page-add-entry-new {
             line-height: 1;
             text-rendering: auto;
             text-transform: none;
-            speak: none;
-            padding-left: 0px;
+            padding-left: 40px;
         }
       }
     .list-md {
@@ -131,10 +130,11 @@ page-add-entry-new {
     .item-md p {
         margin: 0 0 2px;
         overflow: inherit;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         line-height: normal;
         text-overflow: inherit;
-        color: #666;
+        font-weight: 500;
+        color: rgba(52, 52, 52, 0.85);
     }
     .item-md h1 {
         margin: 0 0 2px;
@@ -145,5 +145,19 @@ page-add-entry-new {
         .footerResp {
           visibility: hidden;
         }
+    }
+    .customBackButton{
+        display: block;
+        z-index: 999999999;
+        position: absolute;
+        margin-left: 5px;
+    }
+    .noEntryDefaultText{
+        margin-top: 20%;
+        letter-spacing: 0.1em;
+        color: rgba(0, 0, 0, 0.72);
+        margin-right: 10%;
+        font-weight: 500;
+        margin-left: 10%;
     }
 }

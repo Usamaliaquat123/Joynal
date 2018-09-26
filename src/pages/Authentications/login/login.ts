@@ -67,7 +67,7 @@ export class LoginPage {
               this.joynalApi.requestRegisterVerification(value.email).subscribe(sendVerification => {
                 this.alrtCtrl.create({
                   title : 'Verification',
-                  message : 'A verification link has sent to your email, please check your email and verify your email to complete your registration process',
+                  message : 'A verification code has sent to your email, please check your email and verify your email to complete your registration process',
                   buttons : [
                
                     {

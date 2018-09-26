@@ -19,7 +19,7 @@
       Add Entry</p>
   </div>
   <div *ngIf="this.entriesz == null">
-    <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
+    <p class="noEntryDefaultText" text-center>Your Happy Entries will appear here, click on Add Entry to post your first entry.</p>
   </div>
   <!-- Recent Entries List -->
   <div *ngFor="let entrie of entriesz" style="margin-bottom: 30%;">
@@ -31,7 +31,6 @@
           <div *ngFor="let entry of entrie.entries let i = index">
               <ion-item class="recentEntries">
                   <ion-label>
-                     <strong><h2>{{ entry.entry_title }}</h2></strong><br>
                     <p class="recentEntries-innertext" text-wrap>{{ entry.entry_description }}</p> 
                   </ion-label>
                   <ion-avatar item-end>

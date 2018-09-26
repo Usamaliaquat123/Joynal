@@ -55,11 +55,11 @@ entry {
         background-color: transparent;
         border-radius: 10px;
         color: white;
-        height: 65px;
+        height: 85px;
         overflow: auto;
         resize: none;
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         text-input{
             position: absolute;
             -webkit-box-flex: 1;
@@ -190,7 +190,7 @@ entry {
     }
 
     .label-md {
-        margin: 8px 8px 13px 0;
+        margin: 12px 8px 13px 0;
     }
     .alert-md .alert-wrapper {
         border-radius: 23px;

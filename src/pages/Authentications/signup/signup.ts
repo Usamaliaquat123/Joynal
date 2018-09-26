@@ -94,7 +94,7 @@ export class SignupPage {
           console.log(resp);
           this.alrtCtrl.create({
             title : 'Registered Successfully',
-            message : 'A verification email has been sent to your email account. Please check your mailbox to complete the registration process',
+            message : 'A verification code has been sent to your email account. Please check your mailbox to complete the registration process',
             buttons : [
               {
                 text : 'Ok!',

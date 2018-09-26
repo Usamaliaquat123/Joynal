@@ -24,13 +24,18 @@ export class HomeScreenPage{
     platform.registerBackButtonAction(()=>{
       platform.exitApp();
     })  
-    this.noImageThumbnail = './assets/imgs/placeholder-image.png';
+    this.noImageThumbnail = './assets/imgs/joynal-default-entry-image.jpg';
     storage.set('session.currentPage','HomeScreenPage');
    
     console.log( new Date(new Date().getTime()));
   }
   addEntry(){
     this.navCtrl.push("AddEntryPage");
+  }
+  addEntryNewUser(){
+    this.navCtrl.push("AddEntryNewPage",{
+      newEntryPageValue:"Yes"
+    });
   }
   showImageFull(imageSource:string){
     this.navCtrl.push("ImageviewerPage",{

@@ -1,77 +1,94 @@
-
 <ion-header text-center>
-  <ion-navbar>
-    <ion-title>Add Entry</ion-title>
-    <cloud></cloud>
-  </ion-navbar>
-  <entry (getEntries)="isEntryChange($event)" (EntryImage)="gettingImageTest($event)"></entry>
+    <ion-navbar hideBackButton>
+        <ion-buttons item-start class="back-btn" class="customBackButton">
+            <button (click)="goBack()" style=" background-color: transparent;">
+                <ion-icon name="md-arrow-back" style="font-size: 1.7em; color: #424242;"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Add Entry</ion-title>
+        <cloud></cloud>
+    </ion-navbar>
+    <entry (getEntries)="isEntryChange($event)" (EntryImage)="gettingImageTest($event)"></entry>
 </ion-header>
 
 <ion-content>
-    <div *ngIf="this.recentEntery == null"> 
-            <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
+    <div *ngIf="this.recentEntery == null">
+        <p class="noEntryDefaultText" text-center>Your Happy Entries will appear here, click on Add Entry to post your first entry.</p>
     </div>
     <!-- Random Entries -->
-    <div *ngIf="this.entries"> 
+    <div *ngIf="this.entries">
         <ion-list>
             <div *ngFor="let entry of entries">
                 <div *ngFor="let singleEntry of entry">
-                        <ion-item>
-                                <div class="otherEntries">
-                                  <!-- User Uploaded photo -->
-                                  <div class="userUploadedPhoto" (click)="showImageFull(singleEntry.image)">
-                                      <img [src]="singleEntry.image" alt="">
-                                  </div>    
-                                  <!-- User Entry date -->
-                                  <h1 class="userEntryDate" text-center><h3>{{ singleEntry.todayDate }}</h3> <br> {{ singleEntry.dateMonth}}</h1>
-                                  <span *ngIf="singleEntry.state" class="userEntryLocation"> 
-                                      <ion-icon name="ios-pin"></ion-icon>
-                                      <h3>{{ singleEntry.state }}</h3>
-                                  </span>
-                                </div>
-                            </ion-item>
-                            <ion-item>
-                                <div class="userEntryHeading">
+                    <ion-item>
+                        <div class="otherEntries">
+                            <!-- User Uploaded photo -->
+                            <div class="userUploadedPhoto" (click)="showImageFull(singleEntry.image)" *ngIf="singleEntry.image != null && singleEntry.image != undefined">
+                                <img [src]="singleEntry.image" alt="">
+                            </div>
+
+                            <!-- Entry default photo which appears when the user does not upload any photo -->
+                            <div class="userUploadedPhoto" (click)="showImageFull(noImageThumbnail)" *ngIf="singleEntry.image == null || singleEntry.image == undefined">
+                                <img [src]="noImageThumbnail" alt="">
+                            </div>
+                            <!-- User Entry date -->
+                            <h1 class="userEntryDate" text-center>
+                                <h3>{{ singleEntry.todayDate }}</h3>
+                                <br> {{ singleEntry.dateMonth}}</h1>
+                            <span *ngIf="singleEntry.state" class="userEntryLocation">
+                                <ion-icon name="ios-pin"></ion-icon>
+                                <h3 text-center text-wrap>{{ singleEntry.state }}</h3>
+                            </span>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <!-- <div class="userEntryHeading">
                                     <strong><h1>{{ singleEntry.titleStuck }}</h1></strong>
-                                </div>
-                                <div class="userEntryText">
-                                    <p text-wrap>{{ singleEntry.descriptionStuck }}</p>
-                                </div>
-                            </ion-item>
+                                </div> -->
+                        <div class="userEntryText">
+                            <p text-wrap>{{ singleEntry.descriptionStuck }}</p>
+                        </div>
+                    </ion-item>
                 </div>
-                </div>
-                  
-           
-          </ion-list>
+            </div>
+
+
+        </ion-list>
     </div>
     <div *ngIf="!this.recentEntery == '' || !this.recentEntery == null || !this.recentEntery == undefined">
-            <div>
-                        <ion-list>
-                                <ion-item>
-                                    <div class="otherEntries">
-                                         <!-- User Uploaded photo -->
-                                         <div class="userUploadedPhoto">
-                                            <img [src]= "recentEntery.entry_image_url"  alt="" (click)="showImageFull(recentEntery.entry_image_url)">
-                                        </div>
-                                         <!-- User Entry date  -->
-                                         <h1 class="userEntryDate" text-center><h3>{{ recentEntery.entry_date | date: 'dd'  }}</h3><br>
-                                            {{ recentEntery.entry_date | date: 'MMM'  }} </h1>
-                                            <span *ngIf="recentEntery.country" class="userEntryLocation"> 
-                                                    <ion-icon name="ios-pin"></ion-icon>
-                                                    <h3>{{ recentEntery.city }}</h3>
-                                                </span>
-                                    </div> 
-                                 </ion-item>
-                                    <ion-item>
-                                        <div class="userEntryHeading">
-                                            <strong><h1>{{ recentEntery.entry_description }}</h1></strong>
-                                        </div>
-                                        <div class="userEntryText">
+        <div *ngIf="this.entries==''">
+            <ion-list>
+                <ion-item>
+                    <div class="otherEntries">
+                        <!-- User Uploaded photo -->
+                        <div class="userUploadedPhoto" *ngIf="recentEntery.entry_image_url != 'null' && recentEntery.entry_image_url != undefined">
+                            <img [src]="recentEntery.entry_image_url" alt="" (click)="showImageFull(recentEntery.entry_image_url)">
+                        </div>
+
+                        <!-- Entry default photo which appears when the user does not upload any photo -->
+                        <div class="userUploadedPhoto" (click)="showImageFull(noImageThumbnail)" *ngIf="recentEntery.entry_image_url == 'null' || recentEntery.entry_image_url == undefined">
+                            <img [src]="noImageThumbnail" alt="">
+                        </div>
+                        <!-- User Entry date  -->
+                        <h1 class="userEntryDate" text-center>
+                            <h3>{{ recentEntery.entry_date | date: 'dd' }}</h3>
+                            <br> {{ recentEntery.entry_date | date: 'MMM' }} </h1>
+                        <span *ngIf="recentEntery.country" class="userEntryLocation">
+                            <ion-icon name="ios-pin"></ion-icon>
+                            <h3 text-center text-wrap>{{ recentEntery.city }}</h3>
+                        </span>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <div class="userEntryText">
+                        <p text-wrap>{{ recentEntery.entry_description }}</p>
+                    </div>
+                    <!-- <div class="userEntryHeading">
                                             <p text-wrap>{{ recentEntery.entry_title }}</p>
-                                        </div>
-                                 </ion-item>
-                              </ion-list> 
-                   
+                                        </div> -->
+                </ion-item>
+            </ion-list>
+
         </div>
     </div>
 </ion-content>

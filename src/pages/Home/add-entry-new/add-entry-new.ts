@@ -1,7 +1,7 @@
 import { StatusBar } from '@ionic-native/status-bar';
 import { JoynalApiProvider } from './../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController, Platform } from 'ionic-angular';
 import moment from 'moment';
 import { Storage } from "@ionic/storage";
 @IonicPage()
@@ -17,15 +17,24 @@ export class AddEntryNewPage {
   laoding : any;
   entryImageTest: string;
   noImageThumbnail : string;
-  constructor(public loadCtrl : LoadingController,private storage : Storage ,private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
+  newEntryPageValue : string;
+  constructor(public loadCtrl : LoadingController,private storage : Storage ,private joynalApi: JoynalApiProvider ,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController, public platform : Platform) {
     // this.imageSource = "./assets/imgs/icons/camera-picture-dummy.jpg";
-    this.noImageThumbnail = './assets/imgs/placeholder-image.png';
+    this.noImageThumbnail = './assets/imgs/joynal-default-entry-image.jpg';
+    this.newEntryPageValue = this.navParams.get('newEntryPageValue');
+    platform.registerBackButtonAction(()=>{
+      if(this.newEntryPageValue == "Yes"){
+        this.navCtrl.setRoot("HomeScreenPage");
+      }
+      else{
+        this.navCtrl.pop();
+      }
+    })
   }
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddEntryNewPage');
+    console.log('this is the one '+this.entries);
   }
   showImageFull(imageSource:string){
     this.navCtrl.push("ImageviewerPage",{
@@ -79,9 +88,17 @@ export class AddEntryNewPage {
     this.entryImageTest = singeEntryImage;
   }
   isEntryChange(entries){
-    console.log("hello "+entries);
+    console.log("hello jee"+entries);
     this.entries = entries;
     
     this.ionViewDidLoad();
+  }
+  goBack(){
+    if(this.newEntryPageValue == "Yes"){
+      this.navCtrl.setRoot("HomeScreenPage");
+    }
+    else{
+      this.navCtrl.pop();
+    }
   }
 }

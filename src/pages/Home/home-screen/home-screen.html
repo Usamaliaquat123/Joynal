@@ -9,36 +9,52 @@
 
 <ion-content>
     <!-- Create entry -->
-    <div class="newEntry" text-center (click)="addEntry()">
-        <p style="margin-top: -8px;"><img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt=""><br>
-        View Recent Entries</p>
+    <div class="newEntry" text-center (click)="addEntry()" *ngIf="this.entries != null">
+        <p style="margin-top: -8px;">
+            <img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt="">
+            <br> View Recent Entries</p>
+    </div>
+
+    <!-- Create entry div to display when the user has not posted any entry yet i.e. new user -->
+    <div class="newEntry" text-center (click)="addEntryNewUser()" *ngIf="this.entries == null">
+        <p style="margin-top: -8px;">
+            <img width="50" height="50" src="./assets/imgs/icons/calenderAdd.png" alt="">
+            <br> Add Entry</p>
     </div>
     <!-- <div *ngFor="let entry of entries.data"></div> -->
     <div *ngIf="this.entries == null">
-        <p style="margin-top: 10%;" text-center>You dont have any entries yet..!</p>
+        <p class="noEntryDefaultText" text-center text-wrap>Your Happy Entries will appear here, click on Add Entry to post your first entry.</p>
     </div>
     <div *ngIf="this.entries">
         <ion-list>
             <ion-item>
                 <div class="otherEntries">
                     <!-- User Uploaded photo -->
-                    <div class="userUploadedPhoto">
+                    <div class="userUploadedPhoto" *ngIf="entries.entry_image_url!='null' && entries.entry_image_url!=undefined && entries.entry_image_url!=''">
                         <img [src]="entries.entry_image_url" alt="" (click)="showImageFull(entries.entry_image_url)">
                     </div>
+
+                    <!-- Entry default photo which appears when the user does not upload any photo -->
+                    <div class="userUploadedPhoto" *ngIf="entries.entry_image_url == 'null' || entries.entry_image_url==undefined || entries.entry_image_url==''">
+                        <img [src]="noImageThumbnail" alt="" (click)="showImageFull(noImageThumbnail)">
+                    </div>
                     <!-- User Entry date  -->
-                    <h1 class="userEntryDate" text-center><h3>{{ entries.entry_date | date: 'dd'  }}</h3><br>
-                            {{ entries.entry_date | date: 'MMM'  }} </h1>
-                </div> 
+                    <h1 class="userEntryDate" text-center>
+                        <h3>{{ entries.entry_date | date: 'dd' }}</h3>
+                        <br> {{ entries.entry_date | date: 'MMM' }} </h1>
+                </div>
             </ion-item>
             <ion-item>
                 <div class="userEntryHeading">
-                    <strong><h1>{{ entries.entry_title }}</h1></strong>
+                    <strong>
+                        <h1>{{ entries.entry_title }}</h1>
+                    </strong>
                 </div>
                 <div class="userEntryText">
                     <p text-wrap>{{ entries.entry_description }}</p>
                 </div>
             </ion-item>
-        </ion-list> 
+        </ion-list>
     </div>
 </ion-content>
 <ion-footer>
