@@ -58,7 +58,7 @@
   </ion-row>
    </ion-grid>
      <div padding>
-        <button ion-button type="submit" style="letter-spacing: 2px; font-size:0.9em;" full>Sign up</button>
+        <button ion-button type="submit" [disabled]="authForm.invalid" style="letter-spacing: 2px; font-size:0.9em;" full>Sign up</button>
       </div>
 </form>
 

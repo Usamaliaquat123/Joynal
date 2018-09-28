@@ -3,10 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Storage } from "@ionic/storage";
-@IonicPage({
-  segment : 'newPass',
-  name : 'newPass'
-})
+@IonicPage()
 @Component({
   selector: 'page-new-pass-setup',
   templateUrl: 'new-pass-setup.html',
@@ -23,10 +20,11 @@ export class NewPassSetupPage {
   passwordShown : boolean = false;
   passwordShown2 : boolean = false;
   constructor(public alertCtrl : AlertController,public storage: Storage,public formBuilder : FormBuilder,private joynalApi: JoynalApiProvider,public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
+    this.email = navParams.get('email'); 
+    console.log("my email boy "+this.email);   
     platform.registerBackButtonAction(()=>{
       this.navCtrl.pop();
     })
-    console.log(` ${this.email}`);
     this.resetPassForm = formBuilder.group({
       'password':  [null, Validators.compose([Validators.required, Validators.minLength(8) ])],
       'confirmPass': [null, Validators.compose([Validators.required, Validators.minLength(8) ])] 
@@ -34,11 +32,18 @@ export class NewPassSetupPage {
     
   }
   resetPass(value){
-    this.storage.get('session.deeplinkArgs.email').then(email => {
-      if(this.resetPassForm.valid){
-        console.log(email);
-        email = email.replace(/['"]+/g, '');
-        this.joynalApi.resetPassworDeeplink(email,value.password).subscribe(resp => {
+    if(this.resetPassForm.valid){
+      if(value.password != value.confirmPass){
+        this.alertCtrl.create({
+          title: 'Password mismatch',
+          message: 'Password does not match',
+          buttons: ['Dimiss']
+        }).present();
+      }
+      else{
+        console.log(this.email);
+        this.email = this.email.replace(/['"]+/g, '');
+        this.joynalApi.resetPassworDeeplink(this.email,value.password).subscribe(resp => {
           let alert = this.alertCtrl.create({
             title: '<h1 text-center>Password Changed</h1>',
             subTitle: 'Your password has been changed successfully',
@@ -54,46 +59,37 @@ export class NewPassSetupPage {
           }); 
           alert.present();
         })
-      }else{
-        let alert = this.alertCtrl.create({
-          title: '<h1 text-center>Password</h1>',
-          subTitle: 'New password not valid',
-          buttons: ['Okay']
-        }); 
-        alert.present();
       }
-    }, err=>{
+    }else{
       let alert = this.alertCtrl.create({
-        title: '<h1 text-center>Error</h1>',
-        subTitle: 'Email not found or the server could not respond, please try again',
+        title: '<h1 text-center>Password</h1>',
+        subTitle: 'You need to confirm your new Password first',
         buttons: ['Okay']
       }); 
       alert.present();
-    })
-    
-  
+    }
   }
   goBack(){
     this.navCtrl.pop();
   }
   ionViewDidEnter(){
-    this.storage.get('session.deeplinkArgs.result').then(result => {
-      if(result == 'false'){
-        let alert = this.alertCtrl.create({
-          title: '<h1 text-center>Link has been expired</h1>',
-          subTitle: 'Reset password link has been expired',
-          buttons: [
-            {
-              text : 'Okay',
-              handler : () => {
-                this.navCtrl.setRoot('LoginPage');
-              }
-            }
-          ]
-        }); 
-        alert.present();
-      }
-    })
+    // this.storage.get('session.deeplinkArgs.result').then(result => {
+    //   if(result == 'false'){
+    //     let alert = this.alertCtrl.create({
+    //       title: '<h1 text-center>Link has been expired</h1>',
+    //       subTitle: 'Reset password link has been expired',
+    //       buttons: [
+    //         {
+    //           text : 'Okay',
+    //           handler : () => {
+    //             this.navCtrl.setRoot('LoginPage');
+    //           }
+    //         }
+    //       ]
+    //     }); 
+    //     alert.present();
+    //   }
+    // })
   }
   togglePassword(){
     if(this.passwordShown){

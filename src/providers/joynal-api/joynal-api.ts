@@ -29,6 +29,10 @@ export class JoynalApiProvider {
     const options = new RequestOptions({headers: headers});
     return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`, { entries : entries  },options).map(res => res.json());
   }
+  creatingEntriesofUser2(userId,headers,entries,date){
+    const options = new RequestOptions({headers: headers});
+    return this.http.post(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entrydate`, { entries : entries, entry_date: date  },options).map(res => res.json());
+  }
   getListofEntriesOfUser(headers,userId){
     const options = new RequestOptions({headers: headers});
   return this.http.get(`http://clients2.5stardesigners.net/joynal/api/web/v1/entries/user/${userId}/entry`,options).map(res => res.json());
@@ -76,6 +80,9 @@ export class JoynalApiProvider {
   }
   verificationEmail(userEmail,verifyCode){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/verify-registration',{ userEmail : userEmail , verifyCode: verifyCode})
+  }
+  verificationEmailResetPassword(userEmail,verifyCode){
+    return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/verify-token',{ userEmail : userEmail , verifyCode: verifyCode})
   }
   resetPassworDeeplink(userEmail , newPassword){
     return this.http.post('http://clients2.5stardesigners.net/joynal/api/web/v1/users/reset-password',{ userEmail : userEmail , newPassword: newPassword})

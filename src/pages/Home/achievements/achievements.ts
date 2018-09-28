@@ -181,4 +181,30 @@ export class AchievementsPage{
       dayValue: this.dayValue
     });
   }
+
+
+  fbShareJust(){
+    this.shareValue = "fb";
+    this.dayValue = "1";
+    this.navCtrl.push("AchievementsSharePage",{
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
+    });
+  }
+  instaShareJust(){
+    this.shareValue = "insta";
+    this.dayValue = "1";
+    this.navCtrl.push("AchievementsSharePage",{
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
+    });
+  }
+  twitterShareJust(){
+    this.shareValue = "twitter";
+    this.dayValue = "1";
+    this.navCtrl.push("AchievementsSharePage",{
+      shareValue:this.shareValue,
+      dayValue: this.dayValue
+    });
+  }
 }

@@ -22,7 +22,7 @@ export class AuthenticationsVerifyemailPage {
   value4 : any;
   value5 : any;
   value6 : any;
-  verifyCode : any
+  verifyCode : any;
   constructor(private alertCtrl: AlertController,private joynalAoi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, public platform : Platform) {
     this.email = navParams.data;
     this.verifyForm = formBuilder.group({

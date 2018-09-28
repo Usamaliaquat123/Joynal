@@ -58,7 +58,8 @@ export class EntryComponent {
 
   constructor(private loadCtrl: LoadingController, private actionSheet: ActionSheetController, public formBuilder: FormBuilder, private camera: Camera, private httpClient: HttpClient, private storage: Storage, private joynalApi: JoynalApiProvider, private alertCtrl: AlertController, public navCtrl: NavController, private toast: Toast, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private diagnostic: Diagnostic, private locationAccuracy: LocationAccuracy) {
     this.imageUpload = false;
-    this.date = moment().format('Do MMMM YYYY');
+    //this.date = moment().format('YYYY-MM-DD H:I:S');
+    this.date = moment().format('YYYY-MM-DD HH:mm:ss');
     this.authForm = formBuilder.group({
       'description': [null]
     })
@@ -137,7 +138,7 @@ export class EntryComponent {
                           access_token: accessToken
                         }
                         console.log(res)
-                        this.joynalApi.creatingEntriesofUser(res, headers, this.entries).subscribe(success => {
+                        this.joynalApi.creatingEntriesofUser2(res, headers, this.entries,this.date).subscribe(success => {
                           loading.dismiss();
                           console.log(success);
                           if (success.data.achievements) {
@@ -217,7 +218,7 @@ export class EntryComponent {
                           console.log(entryVisibilityChanged);
                           this.storage.set('session.isEntryVisible', 'True');
                         })
-                        this.joynalApi.creatingEntriesofUser(res, headers, this.entries).subscribe(success => {
+                        this.joynalApi.creatingEntriesofUser2(res, headers, this.entries,this.date).subscribe(success => {
                           loading.dismiss();
                           console.log(success);
                           if (success.data.achievements) {

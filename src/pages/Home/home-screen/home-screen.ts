@@ -19,8 +19,11 @@ export class HomeScreenPage{
   date_day : any;
   moment : any;
   noImageThumbnail : string;
+  date : any;
 
   constructor(private platfrm  : Platform,private localNotify: LocalNotifications,public loadCtrl : LoadingController ,private apiJoynal : JoynalApiProvider,private storage: Storage,public navCtrl: NavController,public viewCtrl: ViewController, public navParams: NavParams, public alertCtrl: AlertController,public platform : Platform) {
+    this.date = moment().format('YYYY-MM-DD HH:mm:ss');
+    console.log(this.date);
     platform.registerBackButtonAction(()=>{
       platform.exitApp();
     })  
