@@ -63,7 +63,7 @@ export class NewPassSetupPage {
     }else{
       let alert = this.alertCtrl.create({
         title: '<h1 text-center>Password</h1>',
-        subTitle: 'You need to confirm your new Password first',
+        subTitle: 'You need to confirm your new password first',
         buttons: ['Okay']
       }); 
       alert.present();
@@ -73,23 +73,7 @@ export class NewPassSetupPage {
     this.navCtrl.pop();
   }
   ionViewDidEnter(){
-    // this.storage.get('session.deeplinkArgs.result').then(result => {
-    //   if(result == 'false'){
-    //     let alert = this.alertCtrl.create({
-    //       title: '<h1 text-center>Link has been expired</h1>',
-    //       subTitle: 'Reset password link has been expired',
-    //       buttons: [
-    //         {
-    //           text : 'Okay',
-    //           handler : () => {
-    //             this.navCtrl.setRoot('LoginPage');
-    //           }
-    //         }
-    //       ]
-    //     }); 
-    //     alert.present();
-    //   }
-    // })
+    
   }
   togglePassword(){
     if(this.passwordShown){

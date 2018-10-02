@@ -72,7 +72,7 @@ export class ResetPasswordPage {
       this.joynalAoi.verificationEmailResetPassword(this.email, this.verifyCode).subscribe(resp => {
         this.alertCtrl.create({
           title: '<h1 text-center>Verification Successful</h1>',
-          subTitle: 'Password reset code was verified successfully, press Okay to continue',
+          subTitle: 'Press okay to continue',
           buttons: [
             {
               text: 'Okay',

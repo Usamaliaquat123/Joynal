@@ -3,7 +3,7 @@
   <div [formGroup]="authForm" (ngSubmit)="enty(authForm.value)">
       <ion-item>
           <ion-label>
-            <p class="currentDateHeader" text-center>{{ this.date }}</p>
+            <p class="currentDateHeader" text-center>{{ this.dateShow }}</p>
           </ion-label>
           <ion-icon name="ios-pin" (click)="getLocation()" item-end></ion-icon>
         </ion-item>

@@ -55,10 +55,11 @@ export class EntryComponent {
   trophyColorStreak: string;
   trophyColorCombo: string;
   trophyColorJIT: string;
+  dateShow : any;
 
   constructor(private loadCtrl: LoadingController, private actionSheet: ActionSheetController, public formBuilder: FormBuilder, private camera: Camera, private httpClient: HttpClient, private storage: Storage, private joynalApi: JoynalApiProvider, private alertCtrl: AlertController, public navCtrl: NavController, private toast: Toast, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private diagnostic: Diagnostic, private locationAccuracy: LocationAccuracy) {
     this.imageUpload = false;
-    //this.date = moment().format('YYYY-MM-DD H:I:S');
+    this.dateShow =  moment().format('Do MMMM YYYY');
     this.date = moment().format('YYYY-MM-DD HH:mm:ss');
     this.authForm = formBuilder.group({
       'description': [null]
@@ -68,7 +69,6 @@ export class EntryComponent {
     if (this.description == '' || this.description == null) {
       this.toast.show(`Cannot post empty entry`, '3000', 'center').subscribe(
         toast => {
-          console.log(toast);
         }
       );
     }
@@ -95,7 +95,6 @@ export class EntryComponent {
               handler: () => {
                 this.storage.get('session.userId').then(userId => {
                   this.storage.get('session.accessToken').then(accessToken => {
-                    console.log(userId + '   ' + accessToken);
                     var headers = { user_id: "" + userId, access_token: accessToken }
                     this.joynalApi.updateUserEntryVisibility(headers, userId, "False").subscribe(resp => {
                       this.storage.set('session.isEntryVisible', 'False');
@@ -128,8 +127,6 @@ export class EntryComponent {
                       entryImageType: "jpg",
                     }
                   );
-                  console.log("entries" + this.entries);
-
                   this.storage.ready().then(() => {
                     this.storage.get('session.userId').then(res => {
                       this.storage.get('session.accessToken').then(accessToken => {
@@ -137,13 +134,10 @@ export class EntryComponent {
                           user_id: "" + res,
                           access_token: accessToken
                         }
-                        console.log(res)
                         this.joynalApi.creatingEntriesofUser2(res, headers, this.entries,this.date).subscribe(success => {
                           loading.dismiss();
-                          console.log(success);
                           if (success.data.achievements) {
                             this.achievements = success.data.achievements;
-                            console.log(this.achievements);
                             this.navCtrl.push('AddEntryPage').then(() => {
                               this.navCtrl.push('AchievementsPage', this.achievements).then(() => {
                                 let alert = this.alertCtrl.create({
@@ -159,18 +153,15 @@ export class EntryComponent {
                           }
                           else {
                             this.navCtrl.push('AddEntryPage').then(() => {
-
                             })
                           }
                         }, err => {
-                          console.log(err),
                             this.entries = [];
                         })
                       })
                     })
                   })
                 }
-                // todo
               }
             },
             {
@@ -203,37 +194,22 @@ export class EntryComponent {
                       entryImageType: ".jpg",
                     }
                   );
-                  console.log("entries" + this.entries);
 
                   this.storage.ready().then(() => {
                     this.storage.get('session.userId').then(res => {
                       this.storage.get('session.accessToken').then(accessToken => {
-
                         var headers = {
                           user_id: "" + res,
                           access_token: accessToken
                         }
-                        console.log(res)
+                    
                         this.joynalApi.updateUserEntryVisibility(headers, res, 'True').subscribe(entryVisibilityChanged => {
-                          console.log(entryVisibilityChanged);
                           this.storage.set('session.isEntryVisible', 'True');
                         })
                         this.joynalApi.creatingEntriesofUser2(res, headers, this.entries,this.date).subscribe(success => {
                           loading.dismiss();
-                          console.log(success);
                           if (success.data.achievements) {
-                            console.log("in achievement redirect");
                             this.achievements = success.data.achievements;
-                            console.log(this.achievements);
-
-                            // console.log(this.dayValueCombo);
-                            // console.log(this.dayValueStreak);
-                            // console.log(this.valueCombo);
-                            // console.log(this.valueStreak);
-                            // console.log(this.trophyColorCombo);
-                            // console.log(this.trophyColorStreak);
-                            // console.log(this.rewardNameCombo);
-                            // console.log(this.rewardNameStreak);
                             this.navCtrl.push('AddEntryPage').then(() => {
                               let alert = this.alertCtrl.create({
                                 title: '<h1 text-center>Did you know</h1>',
@@ -246,21 +222,19 @@ export class EntryComponent {
                                 achievements: this.achievements
                               });
                             }, err => {
-                              console.log("this is navigation error " + err);
+                      
                             })
                           }
                           else {
                             this.navCtrl.push('AddEntryPage');
                           }
                         }, err => {
-                          console.log(err),
                             this.entries = [];
                         })
                       })
                     })
                   })
                 }
-                // todo
               }
             }
           ]
@@ -286,22 +260,8 @@ export class EntryComponent {
       content: 'Locating you, Please wait...'
     });
     loading.present();
-    // setTimeout(() => {
-    //   if(this.locationCity == null || this.locationCountry == null){
-    //     this.toast.show(`This is taking longer than usual, please stand by`, '5000', 'bottom').subscribe(
-    //       toast => {
-    //         console.log(toast);
-    //       }
-    //     );
-    //   }
-    // }, 20000);
 
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      console.log('latitude : ' + resp.coords.latitude);
-      // resp.coords.longitude
-      console.log('longitude : ' + resp.coords.longitude);
-      // Saving data lat lng
       this.lat = (resp.coords.latitude).toString();
       this.Lng = (resp.coords.longitude).toString();
       //getting device pin point location using the obtained lat and long values
@@ -311,12 +271,9 @@ export class EntryComponent {
           loading.dismiss();
           this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
             toast => {
-              console.log(toast);
             }
           );
         });
-
-      // console.log('this is device city'+this.locationCity);
       loading.dismiss();
 
 
@@ -324,17 +281,11 @@ export class EntryComponent {
       loading.dismiss();
       this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'bottom').subscribe(
         toast => {
-          console.log(toast);
         }
       );
-      console.log('Error getting location', error);
     });
   }
   getLocation() {
-    let options: NativeGeocoderOptions = {
-      useLocale: true,
-      maxResults: 5
-    };
     let loading = this.loadCtrl.create({
       content: 'Please wait...'
     });
@@ -363,21 +314,9 @@ export class EntryComponent {
     let errorCallback = (e) => console.error(e);
 
     this.diagnostic.isLocationEnabled().then(successCallback).catch(errorCallback);
-    // setTimeout(() => {
-    //   console.log(this.lat);
-    //   if(this.lat==null || this.Lng == null){
-    //     this.toast.show(`Joynal could not locate you, make sure location is on`, '3000', 'center').subscribe(
-    //       toast => {
-    //         console.log(toast);
-    //       }
-    //     );
-    //   }
-    //   loading.dismiss();
-    // }, 20000);
   }
   confirmLocation(city: string, country: string, state: string) {
     state = state.replace(/['"]+/g, '');
-    console.log(state);
     city = city.replace(/['"]+/g, '');
     country = country.replace(/['"]+/g, '');
     let alert = this.alertCtrl.create({
@@ -394,7 +333,6 @@ export class EntryComponent {
         {
           text: 'Confirm',
           handler: () => {
-            console.log('Save location data to database');
             this.locationCity = city;
             this.locationCountry = country;
           }
@@ -433,7 +371,6 @@ export class EntryComponent {
     if (this.description == '' || this.description == null) {
       this.toast.show(`Cannot post empty entry`, '3000', 'center').subscribe(
         toast => {
-          console.log(toast);
         }
       );
     }
@@ -473,7 +410,6 @@ export class EntryComponent {
         this.description = '';
         this.base64Image = null;
         this.locationCity = null;
-        console.log(this.entries);
         this.allEntry.push(
           // this.entries,
           this.singleEntry,
@@ -509,7 +445,6 @@ export class EntryComponent {
           this.description = '';
           this.base64Image = null;
           this.locationCity = null;
-          console.log(this.entries);
           this.allEntry.push(
             // this.entries,
             this.singleEntry,
@@ -545,7 +480,6 @@ export class EntryComponent {
           this.description = '';
           this.base64Image = null;
           this.locationCity = null;
-          console.log(this.entries);
           this.allEntry.push(
             // this.entries,
             this.singleEntry,
@@ -558,29 +492,9 @@ export class EntryComponent {
         }
       }
     }
-    // Checking if user uploaded an image 
-
 
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //                                   C  A  M  E  R  A    S  E  T  U  P
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Gallery openGallery for image upload
   async openGallery(): Promise<any> {
     const options: CameraOptions = {
@@ -601,9 +515,7 @@ export class EntryComponent {
           buttons: ['Ok']
         }).present();
       }
-      console.log(this.base64Image);
     } catch (e) {
-      console.log(e);
     }
   }
   // Camera openCamera for image upload
@@ -616,7 +528,6 @@ export class EntryComponent {
     }
     try {
       this.base64Image = await this.camera.getPicture(options); this.imageUpload = true;
-      console.log(this.base64Image);
       if (this.base64Image != null) {
         this.alertCtrl.create({
           title: 'Image Added',
@@ -625,14 +536,12 @@ export class EntryComponent {
         }).present();
       }
     } catch (e) {
-      console.log("this log is important" + e);
       this.testCatch = e;
     }
   }
 
 
   ionViewDidLoad() {
-    console.log("trigger location");
     this.getLocation();
   }
 

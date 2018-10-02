@@ -103,6 +103,9 @@ export class AchievementsPage{
       else if(this.achievements.streakachievement.name == "Diamond Streak"){
         this.dayValue = "3,000";
       }
+      else if(this.achievements.streakachievement.name == "Welcome Back"){
+        this.dayValue = "1";
+      }
     }
     this.navCtrl.push("AchievementsSharePage",{
       shareValue:this.shareValue,
@@ -139,6 +142,9 @@ export class AchievementsPage{
       else if(this.achievements.streakachievement.name == "Diamond Streak"){
         this.dayValue = "3,000";
       }
+      else if(this.achievements.streakachievement.name == "Welcome Back"){
+        this.dayValue = "1";
+      }
     }
     this.navCtrl.push("AchievementsSharePage",{
       shareValue:this.shareValue,
@@ -174,6 +180,9 @@ export class AchievementsPage{
       }
       else if(this.achievements.streakachievement.name == "Diamond Streak"){
         this.dayValue = "3,000";
+      }
+      else if(this.achievements.streakachievement.name == "Welcome Back"){
+        this.dayValue = "1";
       }
     }
     this.navCtrl.push("AchievementsSharePage",{
