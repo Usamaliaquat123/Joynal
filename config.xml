@@ -95,6 +95,9 @@
         <variable name="DEEPLINK_HOST" value="5stardesigners.com" />
         <variable name="ANDROID_PATH_PREFIX" value="/" />
     </plugin>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+    <string>We want your location! Best regards NSA</string>
+    </edit-config>
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />

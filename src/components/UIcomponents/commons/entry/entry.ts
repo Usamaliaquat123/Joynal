@@ -261,7 +261,7 @@ export class EntryComponent {
     });
     loading.present();
 
-    this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {
       this.lat = (resp.coords.latitude).toString();
       this.Lng = (resp.coords.longitude).toString();
       //getting device pin point location using the obtained lat and long values
