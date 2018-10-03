@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.stardesigners.joynal" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Joynal</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <description>An awesome Happy Entry app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -96,7 +96,7 @@
         <variable name="ANDROID_PATH_PREFIX" value="/" />
     </plugin>
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-    <string>We want your location! Best regards NSA</string>
+        <string>We want your location! Best regards NSA</string>
     </edit-config>
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />

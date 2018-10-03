@@ -27,6 +27,8 @@ export class LoginPage {
   passwordShown : boolean = false;
   response : boolean;
   responseText : any;
+  formDirty : string;
+  formDirtyEmail : string;
   constructor(private alrtCtrl : AlertController,public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast, public platform: Platform) {
     platform.registerBackButtonAction(()=>{
       platform.exitApp();
@@ -55,10 +57,21 @@ export class LoginPage {
       
     }
   }
+  changeDirtyMessage(){
+    this.formDirty = "no";
+    this.formDirtyEmail = "no";
+  }
   async login(value){
-    console.log('trigger login');
     try{
+      if(this.authForm.get('password').dirty ){
+        this.formDirty="yes";
+      }
+      if(this.authForm.get('email').dirty){
+        this.formDirtyEmail = "yes"
+      }
       if(this.authForm.valid){
+        this.formDirty = "no";
+        this.formDirtyEmail = "no";
           await this.joynalApi.authenticationLogin(value.email,value.password).subscribe(data => {
             const that = this;
             this.data  = data.json();
@@ -71,7 +84,7 @@ export class LoginPage {
                   buttons : [
                
                     {
-                      text : 'Ok!',
+                      text : 'Ok',
                       handler : () => {
                         this.joynalApi.requestRegisterVerification(value.email).subscribe(() => { console.log('resended!'); this.navCtrl.push('AuthenticationsVerifyemailPage', value.email)});
                       }
