@@ -5,8 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav,  } from 'ionic-angular';
-import firebase from 'firebase'
-import { firebaseKeys } from "../config/keys";
+// import firebase from 'firebase'
+// import { firebaseKeys } from "../config/keys";
 import {Deeplinks} from '@ionic-native/deeplinks';
 
 @Component({
@@ -30,30 +30,8 @@ export class MyApp {
         });
       statusBar.styleDefault();
       splashScreen.hide();
-
-    deeplinks.routeWithNavController(this.navChild,{
-        '/newPass': 'newPass',
-        }).subscribe((match) => {
-          // this.data = JSON.stringify(match.$args);
-          //   console.log(JSON.stringify(match));
-            storage.set('session.deeplinkArgs.email', JSON.stringify(match.$args.email)).then(resp => {
-              console.log('saved ' + resp);
-            }).catch(err => {
-              console.log(err)
-            });
-            storage.set('session.deeplinkArgs.result', JSON.stringify(match.$args.result)).then(resp => {
-              console.log('saved ' + resp);
-            }).catch(err => {
-              console.log(err)
-            });
-
-                   
-        },nomatch => {
-        alert(JSON.stringify(nomatch));
-        console.log('Unmatched Route', nomatch);
-      })
     });
-    firebase.initializeApp(firebaseKeys.firebaseKeys);
+    //firebase.initializeApp(firebaseKeys.firebaseKeys);
   }
 }
 
