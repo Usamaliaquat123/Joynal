@@ -1,7 +1,7 @@
 
 import { JoynalApiProvider } from '../../../providers/joynal-api/joynal-api';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Storage } from "@ionic/storage";
 import  firebase from "firebase";
@@ -29,7 +29,7 @@ export class LoginPage {
   responseText : any;
   formDirty : string;
   formDirtyEmail : string;
-  constructor(private alrtCtrl : AlertController,public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast, public platform: Platform) {
+  constructor(private alrtCtrl : AlertController,public storage: Storage,public joynalApi : JoynalApiProvider,public formBuilder : FormBuilder,public navCtrl: NavController, public navParams: NavParams, private toast: Toast, public platform: Platform,public loadingCtrl: LoadingController) {
     platform.registerBackButtonAction(()=>{
       platform.exitApp();
     })  
@@ -76,17 +76,29 @@ export class LoginPage {
             const that = this;
             this.data  = data.json();
             if(this.data.data.userEmail == 'Unverified'){
+              let loadingg = this.loadingCtrl.create({
+                content: 'Please wait...'
+              });
               //  Todo : If it is unverified
               this.joynalApi.requestRegisterVerification(value.email).subscribe(sendVerification => {
+                loadingg.dismiss();
                 this.alrtCtrl.create({
                   title : 'Verification',
-                  message : 'A verification code has sent to your email, please check your email and verify your email to complete your registration process',
+                  message : 'A verification code has been sent to you, please check your mailbox and verify your email to complete your registration process',
                   buttons : [
                
                     {
                       text : 'Ok',
                       handler : () => {
-                        this.joynalApi.requestRegisterVerification(value.email).subscribe(() => { console.log('resended!'); this.navCtrl.push('AuthenticationsVerifyemailPage', value.email)});
+                        let loading = this.loadingCtrl.create({
+                          content: 'Please wait...'
+                        });
+                      
+                        loading.present();
+                        this.joynalApi.requestRegisterVerification(value.email).subscribe(() => { 
+                          this.navCtrl.push('AuthenticationsVerifyemailPage', value.email)
+                          loading.dismiss();
+                        });
                       }
                     },
                  
@@ -137,19 +149,19 @@ export class LoginPage {
   }
 
   ionViewCanEnter(){
-    firebase.auth().onAuthStateChanged(socialUser => {
-      if(socialUser) {
-        this.navCtrl.setRoot('HomeScreenPage');
-      } else {
-        this.storage.ready().then(() => {
-          this.storage.get('session.rememberme').then(data => {
-            if(data !==  '' && data !== null){
-              this.navCtrl.setRoot('HomeScreenPage');
-          } 
-          })
-        })
-      }
-    });
+    // firebase.auth().onAuthStateChanged(socialUser => {
+    //   if(socialUser) {
+    //     this.navCtrl.setRoot('HomeScreenPage');
+    //   } else {
+    //     this.storage.ready().then(() => {
+    //       this.storage.get('session.rememberme').then(data => {
+    //         if(data !==  '' && data !== null){
+    //           this.navCtrl.setRoot('HomeScreenPage');
+    //       } 
+    //       })
+    //     })
+    //   }
+    // });
   }
   signUp(){this.navCtrl.push('SignupPage');}
   forgotPage(){this.navCtrl.push("ForgotPasswordPage");}

@@ -17,19 +17,18 @@
           </div>
         <ion-col col-12>
             <ion-item no-lines>
-               <ion-input [formControl]="authForm.controls['name']" type="name" placeholder="Enter your name" ></ion-input>
-
+               <ion-input [formControl]="authForm.controls['name']" type="name" placeholder="Enter your name" (keypress)="changeDirtyMessage()"></ion-input>
              </ion-item>
-             <span *ngIf="authForm.get('name').dirty || formSubmitclicked">
+             <span *ngIf="formDirtyName=='yes'||formSubmitclicked">
               <small class="error" *ngIf="authForm.get('name').hasError('pattern')">* This field must contain valid characters i.e. [A,a – Z,z].</small>
                 <small class="error" *ngIf="authForm.get('name').hasError('required')">* Name is required.</small>
             </span>
             </ion-col>
         <ion-col col-12>
               <ion-item no-lines>
-                 <ion-input [formControl]="authForm.controls['email']" type="email" placeholder="Enter an email" ></ion-input> 
+                 <ion-input [formControl]="authForm.controls['email']" type="email" placeholder="Enter an email" (keypress)="changeDirtyMessage()"></ion-input> 
                </ion-item>
-          <span *ngIf="authForm.get('email').dirty || formSubmitclicked">
+          <span *ngIf="formDirtyEmail=='yes'||formSubmitclicked">
             <!-- <small class="error" *ngIf="this.checkingEmailIfExists">{{}}</small> -->
             <small class="error" *ngIf="authForm.get('email').hasError('required')">* Email is required.</small>
             <small class="error" *ngIf="authForm.get('email').hasError('pattern')">* This field must contain a valid email address.</small>
@@ -37,10 +36,10 @@
         </ion-col>
         <ion-col col-12>
           <ion-item no-lines>
-             <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"   placeholder="Enter your password" ></ion-input> 
+             <ion-input [formControl]="authForm.controls['password']" [type]="passwordType"   placeholder="Enter your password" (keypress)="changeDirtyMessage()"></ion-input> 
              <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="passwordShown === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePassword()" item-end></ion-icon> 
            </ion-item>  
-           <span *ngIf="authForm.get('password').dirty || formSubmitclicked">
+           <span *ngIf="formDirtyPassword=='yes'||formSubmitclicked">
 
             <small class="error"  *ngIf="authForm.controls['password'].hasError('required') && authForm.controls['password'].touched">* Password is required!</small>
             <small class="error" *ngIf="authForm.controls['password'].hasError('minlength') && authForm.controls['password'].touched">* Minimum password length is 8!</small>
@@ -48,10 +47,10 @@
         </ion-col>
         <ion-col col-12>
             <ion-item no-lines>
-               <ion-input [formControl]="authForm.controls['confirmPass']" [type]="passwordTypeConfirm"  placeholder="Confirm your password" ></ion-input> 
+               <ion-input [formControl]="authForm.controls['confirmPass']" [type]="passwordTypeConfirm"  placeholder="Confirm your password" (keypress)="changeDirtyMessage()"></ion-input> 
                <ion-icon  style="font-size: 25px;z-index: 999999;" [name]="confirmPassType === true ? 'ios-eye-outline' : 'ios-eye-off-outline'" (click)="togglePasswordConfirm()" item-end></ion-icon> 
              </ion-item>  
-             <span *ngIf="authForm.get('confirmPass').dirty || formSubmitclicked">
+             <span *ngIf="formDirtyConfirmPassword=='yes'||formSubmitclicked">
                 <small class="error"  *ngIf="authForm.controls['confirmPass'].value != '' && authForm.controls['password'].value != authForm.controls['confirmPass'].value">* Password does not match</small>
             </span>
         </ion-col>

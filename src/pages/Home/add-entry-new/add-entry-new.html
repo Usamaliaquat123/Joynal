@@ -17,43 +17,35 @@
     </div>
     <!-- Random Entries -->
     <div *ngIf="this.entries">
-        <ion-list>
-            <div *ngFor="let entry of entries">
-                <div *ngFor="let singleEntry of entry">
-                    <ion-item>
-                        <div class="otherEntries">
-                            <!-- User Uploaded photo -->
-                            <div class="userUploadedPhoto" (click)="showImageFull(singleEntry.image)" *ngIf="singleEntry.image != null && singleEntry.image != undefined">
-                                <img [src]="singleEntry.image" alt="">
-                            </div>
-
-                            <!-- Entry default photo which appears when the user does not upload any photo -->
-                            <div class="userUploadedPhoto" (click)="showImageFull(noImageThumbnail)" *ngIf="singleEntry.image == null || singleEntry.image == undefined">
-                                <img [src]="noImageThumbnail" alt="">
-                            </div>
-                            <!-- User Entry date -->
-                            <h1 class="userEntryDate" text-center>
-                                <h3>{{ singleEntry.todayDate }}</h3>
-                                <br> {{ singleEntry.dateMonth}}</h1>
-                            <span *ngIf="singleEntry.state" class="userEntryLocation">
-                                <ion-icon name="ios-pin"></ion-icon>
-                                <h3 text-center text-wrap>{{ singleEntry.state }}</h3>
-                            </span>
-                        </div>
-                    </ion-item>
-                    <ion-item>
-                        <!-- <div class="userEntryHeading">
-                                    <strong><h1>{{ singleEntry.titleStuck }}</h1></strong>
-                                </div> -->
-                        <div class="userEntryText">
-                            <p text-wrap>{{ singleEntry.descriptionStuck }}</p>
-                        </div>
-                    </ion-item>
+        <ion-item>
+            <div class="otherEntries">
+                <!-- User Uploaded photo -->
+                <div class="userUploadedPhoto" (click)="showImageFull(entries.image)" *ngIf="entries.image != null && entries.image != undefined">
+                    <img [src]="entries.image" alt="">
                 </div>
+
+                <!-- Entry default photo which appears when the user does not upload any photo -->
+                <div class="userUploadedPhoto" (click)="showImageFull(noImageThumbnail)" *ngIf="entries.image == null || entries.image == undefined">
+                    <img [src]="noImageThumbnail" alt="">
+                </div>
+                <!-- User Entry date -->
+                <h1 class="userEntryDate" text-center>                                                                                                                                                                                                                                              
+                    <h3>{{ entries.todayDate }}</h3>
+                    <br> {{ entries.dateMonth}}</h1>
+                <span *ngIf="entries.state" class="userEntryLocation">
+                    <ion-icon name="ios-pin"></ion-icon>
+                    <h3 text-center text-wrap>{{ entries.state }}</h3>
+                </span>
             </div>
-
-
-        </ion-list>
+        </ion-item>
+        <ion-item>
+            <!-- <div class="userEntryHeading">
+                                <strong><h1>{{ singleEntry.titleStuck }}</h1></strong>
+                            </div> -->
+            <div class="userEntryText">
+                <p text-wrap>{{ entries.descriptionStuck }}</p>
+            </div>
+        </ion-item>
     </div>
     <div *ngIf="!this.recentEntery == '' || !this.recentEntery == null || !this.recentEntery == undefined">
         <div *ngIf="this.entries==''">

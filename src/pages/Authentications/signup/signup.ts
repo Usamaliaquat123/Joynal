@@ -30,6 +30,10 @@ export class SignupPage {
   passwordShown: boolean = false;
   confirmPassType: boolean = false;
   passwordTypeConfirm: String = 'password';
+  formDirtyName : string;
+  formDirtyEmail : string;
+  formDirtyPassword : string;
+  formDirtyConfirmPassword : string;
 
 
   constructor(public loadingCtrl: LoadingController, private alrtCtrl: AlertController, public apiJoynal: JoynalApiProvider, public formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public renderer: Renderer) {
@@ -79,6 +83,12 @@ export class SignupPage {
       this.passwordType = 'text';
     }
   }
+  changeDirtyMessage(){
+    this.formDirtyName = "no";
+    this.formDirtyEmail = "no";
+    this.formDirtyPassword = "no";
+    this.formDirtyConfirmPassword = "no";
+  }
 
   userEmailChecking: any;
 
@@ -88,6 +98,18 @@ export class SignupPage {
 
     try {
       if (this.authForm.valid) {
+        if(this.authForm.get('name').dirty){
+          this.formDirtyName = "yes";
+        }
+        if(this.authForm.get('email').dirty){
+          this.formDirtyEmail = "yes";
+        }
+        if(this.authForm.get('password').dirty){
+          this.formDirtyPassword = "yes";
+        }
+        if(this.authForm.get('confirmPass').dirty){
+          this.formDirtyConfirmPassword = "yes";
+        }
         if (value.password != value.confirmPass) {
           this.alrtCtrl.create({
             title: 'Password mismatch',
